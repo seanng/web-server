@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 // placeholder username and password
 // TODO: move pw and username to a separate settings file
-const sequelize = new Sequelize('haven', 'root', 'ca$hmere');
+const sequelize = new Sequelize('haven', 'root', 'Ca$hmere1');
 
 const Customer = sequelize.define('Customer', {
 	username: Sequelize.STRING,
