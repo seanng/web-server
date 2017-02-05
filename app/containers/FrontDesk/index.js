@@ -13,7 +13,8 @@ import messages from './messages';
 import { getView } from './selectors';
 import {switchView} from './actions';
 
-import SubNavigation from 'components/SubNavigation'
+import SubNavigation from 'components/SubNavigation';
+import SubHeader from 'components/SubHeader';
 
 export class FrontDesk extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -21,6 +22,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
       <div>
         <SubNavigation title='frontdesk' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
+          <SubHeader title={this.props.view} />
 
         </div>
       </div>
