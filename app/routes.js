@@ -47,6 +47,46 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: 'frontdesk',
+      name: 'frontDesk',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/FrontDesk/reducer'),
+          import('containers/FrontDesk/sagas'),
+          import('containers/FrontDesk'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('frontDesk', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: 'account',
+      name: 'account',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Account/reducer'),
+          import('containers/Account/sagas'),
+          import('containers/Account'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('account', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
