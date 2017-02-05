@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/Account/DEFAULT_ACTION';
+export const SWITCH_VIEW = 'app/Account/SWITCH_VIEW';

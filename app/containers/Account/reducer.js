@@ -6,15 +6,17 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  SWITCH_VIEW,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+	view: 'earnings'
+});
 
 function accountReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SWITCH_VIEW:
+      return state.set('view', action.view);
     default:
       return state;
   }
