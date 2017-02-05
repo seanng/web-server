@@ -16,6 +16,12 @@ injectGlobal`
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
+  h3 {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
   #app {
     background-color: #fafafa;
     min-height: 100%;
@@ -26,5 +32,10 @@ injectGlobal`
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
+  }
+
+  .overviewBox {
+    border: 1px solid black;
+    padding: 5px;
   }
 `;

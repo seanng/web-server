@@ -16,6 +16,10 @@ import {switchView} from './actions';
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
 
+import OverviewView from 'components/OverviewView';
+import HistoryView from 'components/HistoryView';
+
+
 export class FrontDesk extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
@@ -23,7 +27,8 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
         <SubNavigation title='frontdesk' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
           <SubHeader title={this.props.view} />
-
+          {this.props.view === 'overview' && <OverviewView />}
+          {this.props.view === 'history' && <HistoryView />}
         </div>
       </div>
     );
