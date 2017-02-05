@@ -19,7 +19,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
   render() {
     return (
       <div>
-        <SubNavigation title='frontdesk' activeView={view} clickTab={this.props.clickTab.bind(this)} />
+        <SubNavigation title='frontdesk' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
 
         </div>
