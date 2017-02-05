@@ -17,5 +17,5 @@ export default defineMessages({
   frontdesk: {
     id: 'app.components.Navigation.frontdesk',
     defaultMessage: 'Front Desk',
-  },
+  }
 });

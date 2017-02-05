@@ -5,11 +5,16 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SWITCH_VIEW,
 } from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
+function switchView(view) {
+	return {
+		type: SWITCH_VIEW,
+		view
+	};
+}
+
+export {
+	switchView
 }

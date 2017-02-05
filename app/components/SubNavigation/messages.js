@@ -10,4 +10,8 @@ export default defineMessages({
     id: 'app.components.SubNavigation.frontdesk',
     defaultMessage: 'FRONT DESK',
   },
+  account: {
+    id: 'app.components.SubNavigation.account',
+    defaultMessage: 'ACCOUNT',
+  }
 });

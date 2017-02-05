@@ -14,4 +14,16 @@ export default defineMessages({
     id: 'app.components.Tab.history',
     defaultMessage: 'History',
   },
+  earnings: {
+    id: 'app.components.Tab.earnings',
+    defaultMessage: 'Earnings',
+  },
+  hotelProfile: {
+    id: 'app.components.Tab.hotelProfile',
+    defaultMessage: 'Hotel Profile',
+  },
+  settings: {
+    id: 'app.components.Tab.settings',
+    defaultMessage: 'Settings',
+  },
 });

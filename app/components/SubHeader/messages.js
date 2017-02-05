@@ -14,12 +14,20 @@ export default defineMessages({
     id: 'app.components.SubHeader.overview',
     defaultMessage: 'Overview',
   },
+  history: {
+    id: 'app.components.SubHeader.history',
+    defaultMessage: 'Settings',
+  },
   earnings: {
     id: 'app.components.SubHeader.earnings',
     defaultMessage: 'Earnings',
   },
-  history: {
-    id: 'app.components.SubHeader.history',
-    defaultMessage: 'History',
+  hotelProfile: {
+    id: 'app.components.SubHeader.hotelProfile',
+    defaultMessage: 'Hotel Profile',
+  },
+  settings: {
+    id: 'app.components.SubHeader.settings',
+    defaultMessage: 'Settings',
   },
 });

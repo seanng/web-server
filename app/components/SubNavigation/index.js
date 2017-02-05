@@ -31,7 +31,13 @@ function SubNavigation({title, clickTab, activeView}) {
     )
   }
   if (title === 'account') {
-
+    Tabs = (
+      <span>
+        <Tab view={'earnings'} clickTab={clickTab} active={activeView === 'earnings'} />
+        <Tab view={'hotelProfile'} clickTab={clickTab} active={activeView === 'hotelProfile'} />
+        <Tab view={'settings'} clickTab={clickTab} active={activeView === 'settings'} />
+      </span>
+    )
   }
 
   return (
