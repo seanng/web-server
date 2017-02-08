@@ -10,13 +10,12 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-function SubHeader({title}) {
-  return (
-    <div>
-      <FormattedMessage {...messages[title]} />
-    </div>
-  );
-}
+const SubHeader = ({title}) => (
+  <h1>
+    <FormattedMessage {...messages[title]} />
+  </h1>
+);
+
 
 SubHeader.propTypes = {
 

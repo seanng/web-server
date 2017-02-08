@@ -12,6 +12,10 @@ import messages from './messages';
 
 import Tab from '../Tab';
 
+const Div = styled.div`
+  background-color: silver;
+`
+
 const Title = styled.div`
   color: black;
   font-weight: 600;
@@ -41,7 +45,7 @@ function SubNavigation({title, clickTab, activeView}) {
   }
 
   return (
-    <div>
+    <Div>
       <div className="container">
         <div className="row">
           <Title className="col-xs-7">
@@ -52,7 +56,7 @@ function SubNavigation({title, clickTab, activeView}) {
           </TabsList>
         </div>
       </div>
-    </div>
+    </Div>
   );
 }
 
