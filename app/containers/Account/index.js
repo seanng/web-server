@@ -18,6 +18,29 @@ import SubHeader from 'components/SubHeader';
 
 import EarningsView from 'components/EarningsView';
 
+let data = [{
+  id: 1,
+  date: new Date(2017,0,1),
+  guest: "Sean",
+  roomId: 123,
+  roomIncome: 400,
+  addIncome: 0
+}, {
+  id: 2,
+  date: new Date(2017,0,7),
+  guest: "AJ",
+  roomId: 456,
+  roomIncome: 1200,
+  addIncome: 108
+}, {
+  id: 3,
+  date: new Date(2017,1,8),
+  guest: "Michael",
+  roomId: 888,
+  roomIncome: 800,
+  addIncome: 0
+}];
+
 export class Account extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
@@ -25,7 +48,7 @@ export class Account extends React.Component { // eslint-disable-line react/pref
       <SubNavigation title='account' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
           <SubHeader title={this.props.view} />
-          {this.props.view === 'earnings' && <EarningsView />}
+          {this.props.view === 'earnings' && <EarningsView data={data}/>}
         </div>
       </div>
     );
