@@ -22,12 +22,14 @@ function EarningsTableFooter(props) {
   return (
     <div>
       <Table>
-        <tr className='row'>
-          <td className='col-sm-6'>TOTAL</td>
-          <td className='col-sm-2'>{props.roomIncomeTotal}</td>
-          <td className='col-sm-2'>{props.addIncomeTotal}</td>
-          <td className='col-sm-2'>{props.roomIncomeTotal + props.addIncomeTotal}</td>
-        </tr>
+        <tbody>
+          <tr className='row'>
+            <td className='col-sm-6'>TOTAL</td>
+            <td className='col-sm-2'>{props.roomIncomeTotal}</td>
+            <td className='col-sm-2'>{props.addIncomeTotal}</td>
+            <td className='col-sm-2'>{props.roomIncomeTotal + props.addIncomeTotal}</td>
+          </tr>
+        </tbody>
       </Table>
     </div>
   );

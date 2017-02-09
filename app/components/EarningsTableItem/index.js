@@ -22,14 +22,16 @@ function EarningsTableItem(props) {
   return (
 		<div>
       <Table>
-        <tr className='row'>
-          <td className='col-sm-2'>{props.date.toDateString()}</td>
-          <td className='col-sm-2'>{props.guest}</td>
-          <td className='col-sm-2'>{props.roomId}</td>
-          <td className='col-sm-2'>{props.roomIncome}</td>
-          <td className='col-sm-2'>{props.addIncome}</td>
-          <td className='col-sm-2'>{props.roomIncome + props.addIncome}</td>
-        </tr>
+	      <tbody>
+	        <tr className='row'>
+	          <td className='col-sm-2'>{props.date.toDateString()}</td>
+	          <td className='col-sm-2'>{props.guest}</td>
+	          <td className='col-sm-2'>{props.roomId}</td>
+	          <td className='col-sm-2'>{props.roomIncome}</td>
+	          <td className='col-sm-2'>{props.addIncome}</td>
+	          <td className='col-sm-2'>{props.roomIncome + props.addIncome}</td>
+	        </tr>
+	      </tbody>
       </Table>
     </div>
   );

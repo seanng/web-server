@@ -22,14 +22,16 @@ function EarningsTableHeader() {
   return (
     <div>
       <Table>
-        <tr className='row'>
-          <td className='col-sm-2'>Date</td>
-          <td className='col-sm-2'>Guest</td>
-          <td className='col-sm-2'>Rm #</td>
-          <td className='col-sm-2'>Rm Income (HKD)</td>
-          <td className='col-sm-2'>Add. Income (HKD)</td>
-          <td className='col-sm-2'>Total (HKD)</td>
-        </tr>
+      	<tbody>
+	        <tr className='row'>
+	          <td className='col-sm-2'>Date</td>
+	          <td className='col-sm-2'>Guest</td>
+	          <td className='col-sm-2'>Rm #</td>
+	          <td className='col-sm-2'>Rm Income (HKD)</td>
+	          <td className='col-sm-2'>Add. Income (HKD)</td>
+	          <td className='col-sm-2'>Total (HKD)</td>
+	        </tr>
+        </tbody>
       </Table>
     </div>
   );
