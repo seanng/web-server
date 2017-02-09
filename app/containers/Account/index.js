@@ -16,6 +16,8 @@ import { switchView } from './actions';
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
 
+import EarningsView from 'components/EarningsView';
+
 export class Account extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
@@ -23,6 +25,7 @@ export class Account extends React.Component { // eslint-disable-line react/pref
       <SubNavigation title='account' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
           <SubHeader title={this.props.view} />
+          {this.props.view === 'earnings' && <EarningsView />}
         </div>
       </div>
     );
