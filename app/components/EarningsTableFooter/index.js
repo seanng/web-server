@@ -14,7 +14,8 @@ const Table = styled.table`
 	background-color: grey;
 	color: white;
 	height: 40px;
-	margin: 5px;
+  margin: 5px;
+  margin-bottom: 20px;
 	width: 100%;
 `;
 

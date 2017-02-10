@@ -10,8 +10,8 @@ import { createStructuredSelector } from 'reselect';
 import makeSelectAccount from './selectors';
 import messages from './messages';
 
-import { getView } from './selectors';
-import { switchView } from './actions';
+import { getView, getEarningsFilter } from './selectors';
+import { switchView, setEarningsFilter } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -20,7 +20,7 @@ import EarningsView from 'components/EarningsView';
 
 let data = [{
   id: 1,
-  date: new Date(2017,0,1),
+  date: new Date(2016,0,1),
   guest: "Sean",
   roomId: 123,
   roomIncome: 400,
@@ -48,7 +48,7 @@ export class Account extends React.Component { // eslint-disable-line react/pref
       <SubNavigation title='account' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
           <SubHeader title={this.props.view} />
-          {this.props.view === 'earnings' && <EarningsView data={data}/>}
+          {this.props.view === 'earnings' && <EarningsView data={data} clickEarningsFilter={this.props.clickEarningsFilter.bind(this)} activeEarningsFilter={this.props.earningsFilter} />}
         </div>
       </div>
     );
@@ -61,6 +61,7 @@ Account.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   view: getView(),
+  earningsFilter: getEarningsFilter(),
   Account: makeSelectAccount(),
 });
 
@@ -69,6 +70,9 @@ const mapDispatchToProps = (dispatch) => ({
     // dispatch(setParticipantList(null));
     dispatch(switchView(view));
   },
+  clickEarningsFilter: (filter) => {
+    dispatch(setEarningsFilter(filter));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);
