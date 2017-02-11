@@ -10,10 +10,17 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-function AvailabilityBox() {
+import InputSelector from '../InputSelector'
+
+function AvailabilityBox(props) {
   return (
     <div className="overviewBox">
       <FormattedMessage {...messages.header} />
+        <InputSelector
+          incrementInput={props.incrementInput}
+          decrementInput={props.decrementInput}
+          value={props.inputValue}
+          />
     </div>
   );
 }

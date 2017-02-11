@@ -13,7 +13,11 @@ const OverviewView = (props) => (
         <SummaryBox summary={props.summary} />
       </div>
       <div className='col-sm-6'>
-        <AvailabilityBox updateAvailability={props.updateAvailability}/>
+        <AvailabilityBox
+          incrementInput={props.incrementInput}
+          decrementInput={props.decrementInput}
+          inputValue={props.inputValue}
+          updateAvailability={props.updateAvailability} />
       </div>
     </div>
     <div className='row'>
