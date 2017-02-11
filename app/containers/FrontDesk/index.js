@@ -10,8 +10,8 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
-import { getView } from './selectors';
-import {switchView} from './actions';
+import { getView, getSummary, getInboundData, getInroomData } from './selectors';
+import { switchView, updateAvailability } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -21,14 +21,32 @@ import HistoryView from 'components/HistoryView';
 
 
 export class FrontDesk extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  renderOverview() {
+    return (
+      <OverviewView
+        summary={this.props.summary}
+        updateAvailability={this.props.updateAvailability.bind(this)}
+        inroomData={this.props.inroomData}
+        inboundData={this.props.inboundData}
+        />
+    )
+  }
+
+  renderHistoryView() {
+    return (
+      <HistoryView />
+    )
+  }
+
   render() {
     return (
       <div>
         <SubNavigation title='frontdesk' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
           <SubHeader title={this.props.view} />
-          {this.props.view === 'overview' && <OverviewView />}
-          {this.props.view === 'history' && <HistoryView />}
+          {this.props.view === 'overview' && this.renderOverview()}
+          {this.props.view === 'history' && this.renderHistoryView}
         </div>
       </div>
     );
@@ -37,18 +55,24 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
 
 FrontDesk.propTypes = {
   clickTab: PropTypes.func.isRequired,
+  updateAvailability: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   view: getView(),
+  summary: getSummary(),
+  inroomData: getInroomData(),
+  inboundData: getInboundData(),
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
   clickTab: (view) => {
-    // dispatch(setParticipantList(null));
     dispatch(switchView(view));
   },
+  updateAvailability: (vacancies) => {
+    dispatch(updateAvailability(vacancies));
+  }
 });
 
 

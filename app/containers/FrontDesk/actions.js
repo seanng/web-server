@@ -6,6 +6,7 @@
 
 import {
   SWITCH_VIEW,
+  UPDATE_AVAILABILITY,
 } from './constants';
 
 function switchView(view) {
@@ -15,6 +16,14 @@ function switchView(view) {
   };
 }
 
+function updateAvailability(vacancies) {
+  return {
+    type: UPDATE_AVAILABILITY,
+    vacancies
+  };
+}
+
 export {
-  switchView
+  switchView,
+  updateAvailability
 }

@@ -16,7 +16,7 @@ export default defineMessages({
   },
   history: {
     id: 'app.components.SubHeader.history',
-    defaultMessage: 'Settings',
+    defaultMessage: 'History',
   },
   earnings: {
     id: 'app.components.SubHeader.earnings',
