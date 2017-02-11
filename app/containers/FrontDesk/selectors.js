@@ -18,8 +18,8 @@ const getSummary = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => {
     return {
-      inbound: substate.get('inbound'),
-      inroom: substate.get('inroom'),
+      inbound: substate.get('inbound').size,
+      inroom: substate.get('inroom').size,
       checkedout: substate.get('checkedout')
     }
   }
