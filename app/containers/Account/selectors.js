@@ -14,6 +14,11 @@ const getView = () => createSelector(
   (substate) => substate.get('view')
 );
 
+const getEarningsFilter = () => createSelector(
+  selectAccountDomain(),
+  (substate) => substate.get('earningsFilter')
+);
+
 /**
  * Default selector used by Account
  */
@@ -27,5 +32,6 @@ export default makeSelectAccount;
 
 export {
   selectAccountDomain,
-  getView
+  getView,
+  getEarningsFilter
 };
