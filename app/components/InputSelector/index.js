@@ -4,25 +4,35 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 // import styled from 'styled-components';
 
 
-const InputSelector = (props) =>(
-  <div>
+function InputSelector(props) {
+  return (
+    <div>
     <span
-      onClick={props.incrementInput}
-      className="glyphicon glyphicon-minus-sign"/>
+      onClick={props.decreaseValue}
+      className="glyphicon glyphicon-minus-sign"
+    />
     <input
-      type="number" />
+      type="number"
+      value={props.value}
+      onChange={props.editValue}
+    />
     <span
-      onClick={props.decrementInput}
-      className="glyphicon glyphicon-plus-sign"/>
-  </div>
-);
+      onClick={props.increaseValue}
+      className="glyphicon glyphicon-plus-sign"
+    />
+    </div>
+  );
+}
 
 InputSelector.propTypes = {
-
+  decreaseValue: PropTypes.func,
+  increaseValue: PropTypes.func,
+  editValue: PropTypes.func,
+  value: PropTypes.number
 };
 
 export default InputSelector;

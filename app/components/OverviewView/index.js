@@ -14,9 +14,7 @@ const OverviewView = (props) => (
       </div>
       <div className='col-sm-6'>
         <AvailabilityBox
-          incrementInput={props.incrementInput}
-          decrementInput={props.decrementInput}
-          inputValue={props.inputValue}
+          value={props.availabilityInput}
           updateAvailability={props.updateAvailability} />
       </div>
     </div>

@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
-import { getView, getSummary, getInboundData, getInroomData } from './selectors';
+import { getAvailableRooms, getInboundData, getInroomData, getSummary, getView } from './selectors';
 import { switchView, updateAvailability } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
@@ -26,10 +26,11 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
     return (
       <OverviewView
         summary={this.props.summary}
-        updateAvailability={this.props.updateAvailability.bind(this)}
         inroomData={this.props.inroomData}
         inboundData={this.props.inboundData}
-        />
+        updateAvailability={this.props.updateAvailability.bind(this)}
+        availabilityInput={this.props.availability}
+      />
     )
   }
 
@@ -63,6 +64,7 @@ const mapStateToProps = createStructuredSelector({
   summary: getSummary(),
   inroomData: getInroomData(),
   inboundData: getInboundData(),
+  availability: getAvailableRooms()
 });
 
 

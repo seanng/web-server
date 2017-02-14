@@ -9,6 +9,11 @@ const selectFrontDeskDomain = () => (state) => state.get('frontDesk');
  * Other specific selectors
  */
 
+const getAvailableRooms = () => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => substate.get('availability')
+)
+
 const getView = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => substate.get('view')
@@ -35,6 +40,7 @@ const getInroomData = () => createSelector(
   (substate) => substate.get('inroom')
 );
 
+
 /**
  * Default selector used by FrontDesk
  */
@@ -52,4 +58,5 @@ export {
   getSummary,
   getInboundData,
   getInroomData,
+  getAvailableRooms,
 };

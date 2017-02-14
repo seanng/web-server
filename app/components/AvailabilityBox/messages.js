@@ -10,4 +10,8 @@ export default defineMessages({
     id: 'app.components.AvailabilityBox.header',
     defaultMessage: 'This is the AvailabilityBox component !',
   },
+  update: {
+    id: 'app.components.AvailabilityBox.update',
+    defaultMessage: 'Update Availability'
+  }
 });

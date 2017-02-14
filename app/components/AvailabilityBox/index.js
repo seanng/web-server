@@ -1,32 +1,51 @@
-/**
-*
-* AvailabilityBox
-*
-*/
-
 import React from 'react';
 // import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Button from '../Button'
 import InputSelector from '../InputSelector'
 
-function AvailabilityBox(props) {
-  return (
-    <div className="overviewBox">
-      <FormattedMessage {...messages.header} />
+export default class AvailabilityBox extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: props.value
+    }
+  }
+
+  increaseValue () {
+    this.setState({value: this.state.value + 1})
+  }
+
+  decreaseValue () {
+    this.setState({value: this.state.value - 1})
+  }
+
+  editValue(evt) {
+    this.setState({value: (evt.target.value)*1})
+  }
+
+  updateAvailability() {
+    this.props.updateAvailability(this.state.value)
+  }
+
+  render() {
+    return (
+      <div className="overviewBox">
+        <FormattedMessage {...messages.header} />
         <InputSelector
-          incrementInput={props.incrementInput}
-          decrementInput={props.decrementInput}
-          value={props.inputValue}
-          />
-    </div>
-  );
+          editValue={this.editValue.bind(this)}
+          increaseValue={this.increaseValue.bind(this)}
+          decreaseValue={this.decreaseValue.bind(this)}
+          value={this.state.value}
+        />
+        <Button onClick={this.updateAvailability.bind(this)}>
+          <FormattedMessage {...messages.update} />
+        </Button>
+      </div>
+    )
+  }
+
 }
-
-AvailabilityBox.propTypes = {
-
-};
-
-export default AvailabilityBox;
