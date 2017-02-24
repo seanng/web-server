@@ -14,7 +14,7 @@ import Button from '../Button'
 
 const RoomManagementBox = (props) => {
   return (
-    <div>
+    <div className="overviewBox">
       <FormattedMessage {...messages.header} />
 
       <Button onClick={props.showAddRoomModal}>
