@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import HistoryView from '../index';
+// import FrontDeskReview from '../index';
 
-describe('<HistoryView />', () => {
+describe('<FrontDeskReview />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

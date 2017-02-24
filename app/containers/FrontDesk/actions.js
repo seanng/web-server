@@ -5,25 +5,26 @@
  */
 
 import {
-  SWITCH_VIEW,
-  UPDATE_AVAILABILITY,
+  SET_VIEW,
+  ADD_ROOM,
 } from './constants';
 
-function switchView(view) {
+function setView(view) {
   return {
-    type: SWITCH_VIEW,
+    type: SET_VIEW,
     view
   };
 }
 
-function updateAvailability(vacancies) {
+function addRoom(specs) {
   return {
-    type: UPDATE_AVAILABILITY,
-    vacancies
+    type: ADD_ROOM,
+    specs
   };
 }
 
+
 export {
-  switchView,
-  updateAvailability
+  setView,
+  addRoom
 }

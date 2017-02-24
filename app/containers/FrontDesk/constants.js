@@ -4,5 +4,5 @@
  *
  */
 
-export const SWITCH_VIEW = 'app/FrontDesk/SWITCH_VIEW';
-export const UPDATE_AVAILABILITY = 'app/FrontDesk/UPDATE_AVAILABILITY';
+export const SET_VIEW = 'app/FrontDesk/SET_VIEW';
+export const ADD_ROOM = 'app/FrontDesk/ADD_ROOM';

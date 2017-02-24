@@ -1,6 +1,6 @@
 /**
 *
-* HistoryView
+* RoomManagementBox
 *
 */
 
@@ -10,16 +10,20 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-function HistoryView() {
+function RoomManagementBox(props) {
   return (
     <div>
       <FormattedMessage {...messages.header} />
+
+      <Button onClick={props.addRoom.bind(this)}>
+        <FormattedMessage {...messages.addRoom} />
+      </Button>
     </div>
   );
 }
 
-HistoryView.propTypes = {
+RoomManagementBox.propTypes = {
 
 };
 
-export default HistoryView;
+export default RoomManagementBox;

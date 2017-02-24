@@ -10,44 +10,60 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
-import { getAvailableRooms, getInboundData, getInroomData, getSummary, getView } from './selectors';
-import { switchView, updateAvailability } from './actions';
+import { getRoomsByStatus, getView } from './selectors';
+import { switchView, addRoom } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
 
-import OverviewView from 'components/OverviewView';
-import HistoryView from 'components/HistoryView';
-
+import FrontDeskOverview from 'components/FrontDeskOverview';
+import FrontDeskReview from 'components/FrontDeskReview';
 
 export class FrontDesk extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  getSummary() {
+    const rooms = this.props.rooms;
+    return {
+      inbound: rooms.inbound.length,
+      inroom: rooms.inroom.length,
+      checkedout: rooms.checkedout.length,
+      available: rooms.available.length,
+      all: rooms.all.length,
+    }
+  }
+
   renderOverview() {
     return (
-      <OverviewView
-        summary={this.props.summary}
-        inroomData={this.props.inroomData}
-        inboundData={this.props.inboundData}
-        updateAvailability={this.props.updateAvailability.bind(this)}
-        availabilityInput={this.props.availability}
+      <FrontDeskOverview
+        summary={ this.getSummary() }
+        rooms={ this.props.rooms }
+        addRoom={ this.props.bind(this) }
       />
     )
   }
 
-  renderHistoryView() {
+  renderReview() {
     return (
-      <HistoryView />
+      <FrontDeskReview
+
+      />
     )
   }
 
   render() {
     return (
       <div>
-        <SubNavigation title='frontdesk' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
+        <SubNavigation
+          title='frontdesk'
+          activeView={this.props.view}
+          setView={this.props.setView.bind(this)}
+        />
         <div className='container'>
-          <SubHeader title={this.props.view} />
-          {this.props.view === 'overview' && this.renderOverview()}
-          {this.props.view === 'history' && this.renderHistoryView}
+          <SubHeader
+            title={this.props.view}
+          />
+          { this.props.view === 'overview' && this.renderOverview() }
+          { this.props.view === 'review' && this.renderReview() }
         </div>
       </div>
     );
@@ -55,26 +71,23 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
 }
 
 FrontDesk.propTypes = {
-  clickTab: PropTypes.func.isRequired,
-  updateAvailability: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired,
+  rooms: PropTypes.array.isRequired,
+  view: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   view: getView(),
-  summary: getSummary(),
-  inroomData: getInroomData(),
-  inboundData: getInboundData(),
-  availability: getAvailableRooms()
+  rooms: getRoomsByStatus(),
 });
 
-
 const mapDispatchToProps = (dispatch) => ({
-  clickTab: (view) => {
-    dispatch(switchView(view));
+  setView: (view) => {
+    dispatch(setView(view));
   },
-  updateAvailability: (vacancies) => {
-    dispatch(updateAvailability(vacancies));
-  }
+  addRoom: () => {
+    dispatch(addRoom());
+  },
 });
 
 

@@ -9,37 +9,24 @@ const selectFrontDeskDomain = () => (state) => state.get('frontDesk');
  * Other specific selectors
  */
 
-const getAvailableRooms = () => createSelector(
-  selectFrontDeskDomain(),
-  (substate) => substate.get('availability')
-)
-
 const getView = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => substate.get('view')
 );
 
-const getSummary = () => createSelector(
+const getRoomsByStatus = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => {
+    const stays = substate.get('stays').toJS();
     return {
-      inbound: substate.get('inbound').size,
-      inroom: substate.get('inroom').size,
-      checkedout: substate.get('checkedout')
+      all: stays,
+      inbound: stays.filter(stay => stay.status === 'inbound'),
+      inroom: stays.filter(stay => stay.status === 'inroom'),
+      checkedout: stays.filter(stay => stay.status === 'checkedout'),
+      available: stays.filter(stay => stay.status === 'available'),
     }
   }
 );
-
-const getInboundData = () => createSelector(
-  selectFrontDeskDomain(),
-  (substate) => substate.get('inbound')
-);
-
-const getInroomData = () => createSelector(
-  selectFrontDeskDomain(),
-  (substate) => substate.get('inroom')
-);
-
 
 /**
  * Default selector used by FrontDesk
@@ -55,8 +42,5 @@ export default makeSelectFrontDesk;
 export {
   selectFrontDeskDomain,
   getView,
-  getSummary,
-  getInboundData,
-  getInroomData,
-  getAvailableRooms,
+  getRoomsByStatus,
 };
