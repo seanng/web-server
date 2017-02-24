@@ -10,12 +10,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-function RoomManagementBox(props) {
+import Button from '../Button'
+
+const RoomManagementBox = (props) => {
   return (
     <div>
       <FormattedMessage {...messages.header} />
 
-      <Button onClick={props.addRoom.bind(this)}>
+      <Button onClick={props.showAddRoomModal}>
         <FormattedMessage {...messages.addRoom} />
       </Button>
     </div>

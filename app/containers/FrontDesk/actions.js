@@ -6,7 +6,7 @@
 
 import {
   SET_VIEW,
-  ADD_ROOM,
+  SELECT_ADD_ROOM,
 } from './constants';
 
 function setView(view) {
@@ -16,15 +16,15 @@ function setView(view) {
   };
 }
 
-function addRoom(specs) {
+function selectAddRoom(display) {
   return {
-    type: ADD_ROOM,
-    specs
+    type: SELECT_ADD_ROOM,
+    display
   };
 }
 
 
 export {
   setView,
-  addRoom
+  selectAddRoom,
 }

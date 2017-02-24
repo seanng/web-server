@@ -3,7 +3,6 @@ import React from 'react';
 
 import SummaryBox from '../SummaryBox';
 import AvailabilityBox from '../AvailabilityBox';
-import GuestStatusBox from '../GuestStatusBox';
 import ActivityFeedBox from '../ActivityFeedBox';
 import RoomManagementBox from '../RoomManagementBox';
 
@@ -12,14 +11,14 @@ const Overview = (props) => (
     <div className='row'>
       <div className='col-sm-6'>
         <SummaryBox
-          summary={ props.summary }
+          summary={props.summary}
         />
         <ActivityFeedBox />
       </div>
       <div className='col-sm-6'>
         <RoomManagementBox
-          rooms={ props.rooms }
-          addRoom={ props.addRoom }
+          rooms={props.rooms}
+          showAddRoomModal={props.showAddRoomModal}
         />
       </div>
     </div>

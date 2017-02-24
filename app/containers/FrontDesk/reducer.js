@@ -7,7 +7,7 @@
 import { fromJS } from 'immutable';
 import {
   SET_VIEW,
-  ADD_ROOM
+  SELECT_ADD_ROOM
 } from './constants';
 
 const fakeData = [{
@@ -31,6 +31,7 @@ const fakeData = [{
 const initialState = fromJS({
   view: 'overview',
   stays: fakeData,
+  displayAddRoom: false,
 });
 
 function frontDeskReducer(state = initialState, action) {
@@ -38,10 +39,9 @@ function frontDeskReducer(state = initialState, action) {
     case SET_VIEW:
       return state
         .set('view', action.view)
-    case ADD_ROOM:
+    case SELECT_ADD_ROOM:
       return state
-        //update backend
-        .set('')
+        .set('displayAddRoom', action.display)
 
     default:
       return state;

@@ -28,6 +28,11 @@ const getRoomsByStatus = () => createSelector(
   }
 );
 
+const getDisplayAddRoom = () => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => substate.get('displayAddRoom')
+)
+
 /**
  * Default selector used by FrontDesk
  */
@@ -43,4 +48,5 @@ export {
   selectFrontDeskDomain,
   getView,
   getRoomsByStatus,
+  getDisplayAddRoom,
 };
