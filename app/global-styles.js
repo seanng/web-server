@@ -36,7 +36,16 @@ injectGlobal`
 
   .overviewBox {
     border: 1px solid black;
-    padding: 5px;
+    padding: 1.5em;
+    text-align: left;
+  }
+
+  .modal-header {
     text-align: center;
   }
+
+  .form-group {
+    margin-bottom: 0px;
+  }
+
 `;

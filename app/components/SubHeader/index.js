@@ -5,15 +5,21 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+const Title = styled.div`
+  font-size: 1.5em;
+  margin-top: 0.9em;
+  margin-bottom: 0.9em;
+`
+
 const SubHeader = ({title}) => (
-  <h1>
+  <Title>
     <FormattedMessage {...messages[title]} />
-  </h1>
+  </Title>
 );
 
 

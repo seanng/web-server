@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.AddRoomModal.header',
-    defaultMessage: 'Add a new room',
+    defaultMessage: 'Add a room',
   },
   cancel: {
     id: 'app.components.AddRoomModal.cancel',

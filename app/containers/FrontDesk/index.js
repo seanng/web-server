@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
 import { getRoomsByStatus, getView, getDisplayAddRoom, } from './selectors';
-import { switchView, selectAddRoom  } from './actions';
+import { setView, selectAddRoom  } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';

@@ -7,7 +7,7 @@
 import React from 'react';
 import { Modal, FormGroup, Form, FormControl, Col, ControlLabel } from 'react-bootstrap'
 import Button from '../Button';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -33,17 +33,24 @@ class AddRoomModal extends React.Component {
     this.props.createRoom(this.state.newRoomNumber);
   }
 
+  header() {
+    const H4 = styled.h4`
+      font-size: 1.5em;
+    `
+    return (
+      <Modal.Header closeButton>
+        <H4><FormattedMessage {...messages.header} /></H4>
+      </Modal.Header>
+    )
+  }
+
   render() {
     return (
       <Modal
         show={this.props.show}
         onHide={this.hide.bind(this)}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <FormattedMessage {...messages.header} />
-          </Modal.Title>
-        </Modal.Header>
+        {this.header()}
         <Modal.Body>
           <Form horizontal>
             <FormGroup controlId="roomNumberInput">
