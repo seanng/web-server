@@ -7,22 +7,25 @@
 import { fromJS } from 'immutable';
 import {
   SET_VIEW,
-  SELECT_ADD_ROOM
+  SELECT_ADD_ROOM,
+  SET_FILTER,
 } from './constants';
 
 const fakeData = [{
-  stayId: 1,
+  roomId: 1,
   roomNumber: 2030,
+  guestId: 1,
   guestName: 'Kim Il Sung',
-  status: 'inbound',
+  status: 'Inbound',
   checkInTime: null,
   checkOutTime: null,
   bookingTime: 1486834400
 }, {
-  stayId: 2,
+  roomId: 2,
   roomNumber: 2044,
+  guestId: 2,
   guestName: 'Kim Pang Jun',
-  status: 'inroom',
+  status: 'Checked In',
   checkInTime: 1486804400,
   checkOutTime: null,
   bookingTime: 1486834400
@@ -30,7 +33,8 @@ const fakeData = [{
 
 const initialState = fromJS({
   view: 'overview',
-  stays: fakeData,
+  rooms: fakeData,
+  filter: 'all',
   displayAddRoom: false,
 });
 
@@ -42,6 +46,9 @@ function frontDeskReducer(state = initialState, action) {
     case SELECT_ADD_ROOM:
       return state
         .set('displayAddRoom', action.display)
+    case SET_FILTER:
+      return state
+        .set('filter', action.filter)
 
     default:
       return state;

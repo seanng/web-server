@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 const SummaryBox = ({summary}) => {
-  const { inbound, inroom, checkedout, available } = summary
+  const { inbound, checkedin, checkedout, available } = summary
   return (
     <div className='overviewBox'>
       <h3>
@@ -28,7 +28,7 @@ const SummaryBox = ({summary}) => {
         </Div>
         <Div className="row">
           <div className="col-xs-6">
-            <FormattedMessage {...messages.inroom} />
+            <FormattedMessage {...messages.checkedin} />
           </div>
           <Value className="col-xs-6">
             { inbound }
@@ -56,7 +56,7 @@ const SummaryBox = ({summary}) => {
           </Total>
           <Total className="col-xs-6">
             <Value>
-              { inbound*1 + inroom*1 + checkedout*1 + available*1 }
+              { inbound*1 + checkedin*1 + checkedout*1 + available*1 }
             </Value>
           </Total>
         </Div>

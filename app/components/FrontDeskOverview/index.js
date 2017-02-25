@@ -19,6 +19,9 @@ const Overview = (props) => (
         <RoomManagementBox
           rooms={props.rooms}
           showAddRoomModal={props.showAddRoomModal}
+          checkIn={props.checkIn}
+          makeAvailable={props.makeAvailable}
+          remove={props.remove}
         />
       </div>
     </div>

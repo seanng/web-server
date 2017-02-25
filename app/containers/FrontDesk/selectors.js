@@ -17,16 +17,21 @@ const getView = () => createSelector(
 const getRoomsByStatus = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => {
-    const stays = substate.get('stays').toJS();
+    const rooms = substate.get('rooms').toJS();
     return {
-      all: stays,
-      inbound: stays.filter(stay => stay.status === 'inbound'),
-      inroom: stays.filter(stay => stay.status === 'inroom'),
-      checkedout: stays.filter(stay => stay.status === 'checkedout'),
-      available: stays.filter(stay => stay.status === 'available'),
+      all: rooms,
+      inbound: rooms.filter(stay => stay.status === 'Inbound'),
+      checkedin: rooms.filter(stay => stay.status === 'Checked In'),
+      checkedout: rooms.filter(stay => stay.status === 'Checked Out'),
+      available: rooms.filter(stay => stay.status === 'Available'),
     }
   }
 );
+
+const getFilter = (status) => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => substate.get('filter')
+)
 
 const getDisplayAddRoom = () => createSelector(
   selectFrontDeskDomain(),
@@ -48,5 +53,6 @@ export {
   selectFrontDeskDomain,
   getView,
   getRoomsByStatus,
+  getFilter,
   getDisplayAddRoom,
 };

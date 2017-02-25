@@ -14,9 +14,9 @@ export default defineMessages({
     id: 'app.components.SummaryBox.inbound',
     defaultMessage: 'Inbound',
   },
-  inroom: {
-    id: 'app.components.SummaryBox.inroom',
-    defaultMessage: 'In Room',
+  checkedin: {
+    id: 'app.components.SummaryBox.checkedin',
+    defaultMessage: 'Checked In',
   },
   checkedout: {
     id: 'app.components.SummaryBox.checkedout',

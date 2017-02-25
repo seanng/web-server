@@ -8,10 +8,26 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.RoomManagementBox.header',
-    defaultMessage: 'This is the RoomManagementBox component !',
+    defaultMessage: 'Manage Rooms',
   },
   addRoom: {
     id: 'app.components.RoomManagementBox.addRoom',
-    defaultMessage: 'Add a new room',
+    defaultMessage: 'Add room',
+  },
+  roomNumber: {
+    id: 'app.components.RoomManagementBox.roomNumber',
+    defaultMessage: 'Room',
+  },
+  guestName: {
+    id: 'app.components.RoomManagementBox.guestName',
+    defaultMessage: 'Guest',
+  },
+  status: {
+    id: 'app.components.RoomManagementBox.status',
+    defaultMessage: 'Status',
+  },
+  action: {
+    id: 'app.components.RoomManagementBox.action',
+    defaultMessage: ' ',
   },
 });
