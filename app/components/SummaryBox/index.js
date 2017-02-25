@@ -14,9 +14,11 @@ const SummaryBox = ({summary}) => {
   const { inbound, checkedin, checkedout, available } = summary
   return (
     <div className='overviewBox'>
-      <h3>
-        <FormattedMessage {...messages.header} />
-      </h3>
+      <div className="overviewBoxHeader">
+        <h3>
+          <FormattedMessage {...messages.header} />
+        </h3>
+      </div>
       <Summary>
         <Div className="row">
           <div className="col-xs-6">
@@ -70,8 +72,7 @@ const Div = styled.div`
 `
 
 const Summary = styled.div`
-  padding-left: 12px;
-  padding-right: 40px;
+  padding: 16px 40px;
 `
 
 const Total = styled.div`

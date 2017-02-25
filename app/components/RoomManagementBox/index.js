@@ -49,9 +49,11 @@ const RoomManagementBox = (props) => {
 
   return (
     <div className="overviewBox">
-      <h3>
-        <FormattedMessage {...messages.header} />
-      </h3>
+      <div className="overviewBoxHeader">
+        <h3>
+          <FormattedMessage {...messages.header} />
+        </h3>
+      </div>
       { RoomEntryList }
       <Button onClick={props.showAddRoomModal}>
         <FormattedMessage {...messages.addRoom} />
