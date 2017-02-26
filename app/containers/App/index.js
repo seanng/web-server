@@ -12,7 +12,6 @@ import styled from 'styled-components';
 
 import Navigation from 'components/Navigation'
 import Header from 'components/Header';
-import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
@@ -31,7 +30,6 @@ export function App(props) {
       />
       <Navigation />
       {React.Children.toArray(props.children)}
-      <Footer />
     </AppWrapper>
   );
 }

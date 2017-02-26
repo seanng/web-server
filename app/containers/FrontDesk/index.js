@@ -55,6 +55,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
         checkIn={this.props.checkIn}
         makeAvailable={this.props.makeAvailable}
         remove={this.props.deleteRoom}
+        setFilter={this.props.setFilter}
       />
     )
   }

@@ -4,31 +4,28 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { FormattedMessage } from 'react-intl';
+import moment from 'moment';
 // import styled from 'styled-components';
 
 import Button from '../Button';
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 class RoomEntry extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  checkIn(e) {
+  checkIn() {
     const { roomId } = this.props.room;
     this.props.checkIn(roomId);
   }
 
-  makeAvailable(e) {
+  makeAvailable() {
     const { roomNumber } = this.props.room;
     this.props.makeAvailable(roomNumber);
   }
 
-  remove(e) {
+  remove() {
     const { roomNumber } = this.props.room;
-    this.props.deleteRoom(roomNumber)
+    this.props.remove(roomNumber);
   }
 
   renderAction() {
@@ -56,7 +53,7 @@ class RoomEntry extends React.Component {
     if (this.props.room.status === 'Checked In') {
       return (
         <span>
-          { this.props.room.checkInTime }
+          { moment(this.props.room.checkInTime).fromNow() }
         </span>
       )
     }
@@ -85,6 +82,10 @@ class RoomEntry extends React.Component {
 }
 
 RoomEntry.propTypes = {
+  checkIn: PropTypes.func.isRequired,
+  makeAvailable: PropTypes.func.isRequired,
+  room: PropTypes.object.isRequired,
+  remove: PropTypes.func.isRequired,
 
 };
 

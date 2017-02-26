@@ -5,16 +5,19 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-import RoomEntry from '../RoomEntry'
-import Button from '../Button'
+import RoomEntry from '../RoomEntry';
+import Button from '../Button';
+import Filter from '../RoomManagementFilter';
+
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 const RoomManagementBox = (props) => {
-  console.log('props:', props)
+
   const RoomEntryList = (
     <table className="table">
       <thead>
@@ -50,17 +53,34 @@ const RoomManagementBox = (props) => {
   return (
     <div className="overviewBox">
       <div className="overviewBoxHeader">
-        <h3>
-          <FormattedMessage {...messages.header} />
-        </h3>
+        <div className="row">
+          <div className="col-xs-6">
+            <h3>
+              <FormattedMessage {...messages.header} />
+            </h3>
+          </div>
+          <div className="col-xs-6">
+            <Filter setFilter={props.setFilter} />
+          </div>
+        </div>
       </div>
-      { RoomEntryList }
-      <Button onClick={props.showAddRoomModal}>
-        <FormattedMessage {...messages.addRoom} />
-      </Button>
+      <Div>
+        { RoomEntryList }
+        <Button onClick={props.showAddRoomModal}>
+          <FormattedMessage {...messages.addRoom} />
+        </Button>
+      </Div>
     </div>
   );
 }
+
+const Div = styled.div`
+  padding-bottom: 15px;
+`
+
+const FilterWrapper = styled.div`
+  text-align: right;
+`
 
 RoomManagementBox.propTypes = {
 

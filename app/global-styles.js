@@ -4,7 +4,7 @@ import { injectGlobal } from 'styled-components';
 injectGlobal`
   html,
   body {
-    height: 100%;
+    height: 100vh;
     width: 100%;
   }
 
@@ -50,6 +50,18 @@ injectGlobal`
 
   .form-group {
     margin-bottom: 0px;
+  }
+
+  .table {
+    margin-bottom: 10px;
+  }
+
+  .table > thead > tr > .col-xs-2 {
+    padding-left: 1.2em;
+  }
+
+  .table > tbody > tr > .col-xs-2 {
+    padding-left: 1.2em;
   }
 
 `;
