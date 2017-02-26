@@ -1,17 +1,53 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const bodyParser = require('body-parser')
+const pretty = new require('pretty-error')();
 const logger = require('./logger');
-
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
+
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
 
+const actions = require('./actions')
+const mapUrl = require('./utils/url.js');
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+app.use(bodyParser.json());
+
+app.use('/api', (req, res) => {
+  const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
+
+  const {action, params} = mapUrl(actions, splittedUrlPath);
+
+  if (action) {
+    console.log('action:', action)
+    action(req, params)
+      .then((result) => {
+        if (result instanceof Function) {
+          console.log('here1')
+          result(res);
+        } else {
+          console.log('here2')
+          res.json(result);
+        }
+      }, (reason) => {
+          console.log('here3', reason)
+        if (reason && reason.redirect) {
+          res.redirect(reason.redirect);
+        } else {
+          console.error('API ERROR:', pretty.render(reason));
+          res.status(reason.status || 500).json(reason);
+        }
+      });
+  } else {
+    res.status(404).end('NOT FOUND');
+  }
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
