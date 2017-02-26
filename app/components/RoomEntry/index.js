@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 import moment from 'moment';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 import Button from '../Button';
 import messages from './messages';
@@ -34,38 +34,42 @@ class RoomEntry extends React.Component {
         <Button onClick={this.remove.bind(this)}>
           <FormattedMessage {...messages.remove} />
         </Button>
-      )
+      );
     }
     if (this.props.room.status === 'Checked Out') {
       return (
         <Button onClick={this.makeAvailable.bind(this)}>
           <FormattedMessage {...messages.makeAvailable} />
         </Button>
-      )
+      );
     }
     if (this.props.room.status === 'Inbound') {
       return (
         <Button onClick={this.checkIn.bind(this)}>
           <FormattedMessage {...messages.checkIn} />
         </Button>
-      )
+      );
     }
     if (this.props.room.status === 'Checked In') {
       return (
         <span>
           { moment(this.props.room.checkInTime).fromNow() }
         </span>
-      )
+      );
     }
   }
 
   render() {
     const { roomNumber, guestName, status, checkInTime } = this.props.room;
+    const TD = styled.td`
+      padding-left: 1.2em!important;
+    `;
+
     return (
       <tr>
-        <td className="col-xs-2">
+        <TD className="col-xs-2">
           { roomNumber }
-        </td>
+        </TD>
         <td className="col-xs-3">
           { guestName }
         </td>
@@ -76,7 +80,7 @@ class RoomEntry extends React.Component {
           { this.renderAction() }
         </td>
       </tr>
-    )
+    );
   }
 
 }

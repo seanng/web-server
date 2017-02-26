@@ -4,27 +4,24 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Filter from '../RoomManagementFilter';
 import RoomEntry from '../RoomEntry';
 import Button from '../Button';
-import Filter from '../RoomManagementFilter';
-
-import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 const RoomManagementBox = (props) => {
-
   const RoomEntryList = (
     <table className="table">
       <thead>
         <tr>
-          <th className="col-xs-2">
+          <TH className="col-xs-2">
             <FormattedMessage {...messages.roomNumber} />
-          </th>
+          </TH>
           <th className="col-xs-3">
             <FormattedMessage {...messages.guestName} />
           </th>
@@ -38,13 +35,13 @@ const RoomManagementBox = (props) => {
       </thead>
       <tbody>
         { props.rooms.map((room, key) => (
-            <RoomEntry
-              key={key}
-              makeAvailable={props.makeAvailable}
-              checkIn={props.checkIn}
-              remove={props.remove}
-              room={room}
-            />
+          <RoomEntry
+            key={key}
+            makeAvailable={props.makeAvailable}
+            checkIn={props.checkIn}
+            remove={props.remove}
+            room={room}
+          />
           )) }
       </tbody>
     </table>
@@ -76,13 +73,16 @@ const RoomManagementBox = (props) => {
 
 const Div = styled.div`
   padding-bottom: 15px;
-`
+`;
 
-const FilterWrapper = styled.div`
-  text-align: right;
-`
+const TH = styled.th`
+  padding-left: 1.2em!important;
+`;
 
 RoomManagementBox.propTypes = {
+  rooms: PropTypes.array.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  showAddRoomModal: PropTypes.func.isRequired,
 
 };
 

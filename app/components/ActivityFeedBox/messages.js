@@ -10,4 +10,12 @@ export default defineMessages({
     id: 'app.components.ActivityFeedBox.header',
     defaultMessage: 'Feed',
   },
+  time: {
+    id: 'app.components.ActivityFeedBox.time',
+    defaultMessage: 'Time',
+  },
+  activity: {
+    id: 'app.components.ActivityFeedBox.activity',
+    defaultMessage: 'Activity',
+  },
 });

@@ -14,15 +14,15 @@ import messages from './messages';
 const RoomManagementFilter = ({ setFilter }) => {
   const selectFilter = (e) => {
     setFilter(e.target.value);
-  }
+  };
 
   return (
     <FilterWrapper>
-      <H4>
+      <H5>
         <FormattedMessage {...messages.show} />
         &nbsp;&nbsp;&nbsp;
-      </H4>
-      <Select componentClass="select" placeholder="All" onChange={selectFilter.bind(this)}>
+      </H5>
+      <Select componentClass="select" placeholder="All" onChange={selectFilter}>
         <option value="all">
           <FormattedMessage {...messages.all} />
         </option>
@@ -43,7 +43,7 @@ const RoomManagementFilter = ({ setFilter }) => {
   );
 };
 
-const H4 = styled.h4`
+const H5 = styled.h5`
   display: inline;
 `;
 
@@ -54,7 +54,7 @@ const FilterWrapper = styled.div`
 const Select = styled(FormControl)`
   display: inline-block;
   width: 40%;
-`
+`;
 
 RoomManagementFilter.propTypes = {
   setFilter: PropTypes.func.isRequired,
