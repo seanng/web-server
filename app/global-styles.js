@@ -19,7 +19,7 @@ injectGlobal`
   h3 {
     font-size: 18px;
     margin: 0;
-    margin-bottom: 10px;
+    display: inline-block;
   }
 
   #app {
@@ -36,6 +36,20 @@ injectGlobal`
 
   .overviewBox {
     border: 1px solid black;
-    padding: 5px;
+    text-align: left;
   }
+
+  .overviewBoxHeader {
+    border-bottom: 1px solid
+    padding: 15px
+  }
+
+  .modal-header {
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
+  }
+
 `;

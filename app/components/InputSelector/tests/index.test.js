@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import HistoryView from '../index';
+// import InputSelector from '../index';
 
-describe('<HistoryView />', () => {
+describe('<InputSelector />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

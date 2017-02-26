@@ -10,33 +10,78 @@ import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+const SummaryBox = ({summary}) => {
+  const { inbound, checkedin, checkedout, available } = summary
+  return (
+    <div className='overviewBox'>
+      <div className="overviewBoxHeader">
+        <h3>
+          <FormattedMessage {...messages.header} />
+        </h3>
+      </div>
+      <Summary>
+        <Div className="row">
+          <div className="col-xs-6">
+            <FormattedMessage {...messages.inbound} />
+          </div>
+          <Value className="col-xs-6">
+            { inbound }
+          </Value>
+        </Div>
+        <Div className="row">
+          <div className="col-xs-6">
+            <FormattedMessage {...messages.checkedin} />
+          </div>
+          <Value className="col-xs-6">
+            { inbound }
+          </Value>
+        </Div>
+        <Div className="row">
+          <div className="col-xs-6">
+            <FormattedMessage {...messages.checkedout} />
+          </div>
+          <Value className="col-xs-6">
+            { checkedout }
+          </Value>
+        </Div>
+        <Div className="row">
+          <div className="col-xs-6">
+            <FormattedMessage {...messages.available} />
+          </div>
+          <Value className="col-xs-6">
+            { available }
+          </Value>
+        </Div>
+        <Div className="row">
+          <Total className="col-xs-6">
+            <FormattedMessage {...messages.total} />
+          </Total>
+          <Total className="col-xs-6">
+            <Value>
+              { inbound*1 + checkedin*1 + checkedout*1 + available*1 }
+            </Value>
+          </Total>
+        </Div>
+      </Summary>
+    </div>
+  )
+};
 
+const Div = styled.div`
+  padding: 6px 0px;
+`
 
-const SummaryBox = () => (
-  <div className='overviewBox'>
-    <h3>
-      <FormattedMessage {...messages.header} />
-    </h3>
-    <table>
-      <tr>
-        <td>Inbound</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>In Room</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>Checked Out</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>Total</td>
-        <td>3</td>
-      </tr>
-    </table>
-  </div>
-);
+const Summary = styled.div`
+  padding: 16px 40px;
+`
+
+const Total = styled.div`
+  font-weight: 700;
+`
+
+const Value = styled.div`
+  text-align: right;
+`
 
 SummaryBox.propTypes = {
 

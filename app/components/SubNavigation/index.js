@@ -30,7 +30,7 @@ function SubNavigation({title, clickTab, activeView}) {
     Tabs = (
       <span>
         <Tab view={'overview'} clickTab={clickTab} active={activeView === 'overview'} />
-        <Tab view={'history'} clickTab={clickTab} active={activeView === 'history'} />
+        <Tab view={'review'} clickTab={clickTab} active={activeView === 'review'} />
       </span>
     )
   }

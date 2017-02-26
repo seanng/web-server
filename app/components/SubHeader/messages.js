@@ -14,9 +14,9 @@ export default defineMessages({
     id: 'app.components.SubHeader.overview',
     defaultMessage: 'Overview',
   },
-  history: {
-    id: 'app.components.SubHeader.history',
-    defaultMessage: 'Settings',
+  review: {
+    id: 'app.components.SubHeader.review',
+    defaultMessage: 'Review',
   },
   earnings: {
     id: 'app.components.SubHeader.earnings',

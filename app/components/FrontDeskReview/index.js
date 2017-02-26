@@ -1,6 +1,6 @@
 /**
 *
-* HistoryView
+* FrontDeskReview
 *
 */
 
@@ -10,7 +10,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-function HistoryView() {
+function Review() {
   return (
     <div>
       <FormattedMessage {...messages.header} />
@@ -18,8 +18,8 @@ function HistoryView() {
   );
 }
 
-HistoryView.propTypes = {
+Review.propTypes = {
 
 };
 
-export default HistoryView;
+export default Review;

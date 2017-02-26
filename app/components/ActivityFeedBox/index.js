@@ -13,7 +13,11 @@ import messages from './messages';
 function ActivityFeedBox() {
   return (
     <div className="overviewBox">
-      <FormattedMessage {...messages.header} />
+      <div className="overviewBoxHeader">
+        <h3>
+          <FormattedMessage {...messages.header} />
+        </h3>
+      </div>
     </div>
   );
 }

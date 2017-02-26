@@ -10,9 +10,9 @@ export default defineMessages({
     id: 'app.components.Tab.overview',
     defaultMessage: 'Overview',
   },
-  history: {
-    id: 'app.components.Tab.history',
-    defaultMessage: 'History',
+  review: {
+    id: 'app.components.Tab.review',
+    defaultMessage: 'Review',
   },
   earnings: {
     id: 'app.components.Tab.earnings',

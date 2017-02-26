@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import GuestStatusBox from '../index';
+// import FrontDeskReview from '../index';
 
-describe('<GuestStatusBox />', () => {
+describe('<FrontDeskReview />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });
