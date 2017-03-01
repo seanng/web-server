@@ -53,7 +53,7 @@ const FilterWrapper = styled.div`
 
 const Select = styled(FormControl)`
   display: inline-block;
-  width: 40%;
+  width: 50%;
 `;
 
 RoomManagementFilter.propTypes = {

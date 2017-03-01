@@ -52,9 +52,9 @@ const RoomManagementBox = (props) => {
       <div className="overviewBoxHeader">
         <div className="row">
           <div className="col-xs-6">
-            <h3>
+            <H3>
               <FormattedMessage {...messages.header} />
-            </h3>
+            </H3>
           </div>
           <div className="col-xs-6">
             <Filter setFilter={props.setFilter} />
@@ -63,21 +63,33 @@ const RoomManagementBox = (props) => {
       </div>
       <Div>
         { RoomEntryList }
-        <Button onClick={props.showAddRoomModal}>
-          <FormattedMessage {...messages.addRoom} />
-        </Button>
+        <ButtonWrapper>
+          <Button onClick={props.showAddRoomModal}>
+            <FormattedMessage {...messages.addRoom} />
+          </Button>
+        </ButtonWrapper>
       </Div>
     </div>
   );
 }
 
+const H3 = styled.h3`
+  padding-top: 8px;
+`
+
 const Div = styled.div`
   padding-bottom: 15px;
+  height: 478px;
 `;
 
 const TH = styled.th`
   padding-left: 1.2em!important;
 `;
+
+const ButtonWrapper = styled.div`
+  text-align: left;
+  padding-left: 15px;
+`
 
 RoomManagementBox.propTypes = {
   rooms: PropTypes.array.isRequired,

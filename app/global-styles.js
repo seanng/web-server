@@ -52,9 +52,7 @@ injectGlobal`
     margin-bottom: 0px;
   }
 
-  .table {
-    margin-bottom: 10px;
+  .table > tbody > tr > td {
+    vertical-align: middle;
   }
-
-
 `;
