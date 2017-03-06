@@ -24,9 +24,9 @@ export function App(props) {
     <AppWrapper>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        defaultTitle="Haven Web Application"
         meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
+          { name: 'description', content: 'Haven Web Application' },
         ]}
       />
       <Navigation />
