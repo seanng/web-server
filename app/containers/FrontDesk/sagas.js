@@ -1,11 +1,13 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, select, takeLatest } from 'redux-saga/effects';
+import { MAKE_AVAILABLE, CREATE_ROOM } from './constants';
+import { roomCreationSuccess, roomCreationFailure } from './actions'
 
 // Individual exports for testing
-export function* defaultSaga() {
+export function* frontDeskWatcher() {
   // See example in containers/HomePage/sagas.js
 }
 
 // All sagas to be loaded
 export default [
-  defaultSaga,
+  frontDeskWatcher,
 ];

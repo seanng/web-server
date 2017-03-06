@@ -35,6 +35,7 @@ const initialState = fromJS({
   view: 'overview',
   rooms: fakeData,
   filter: 'all',
+  createRoomError: false,
   displayAddRoom: false,
 });
 
@@ -43,9 +44,21 @@ function frontDeskReducer(state = initialState, action) {
     case SET_VIEW:
       return state
         .set('view', action.view)
+
     case SELECT_ADD_ROOM:
       return state
         .set('displayAddRoom', action.display)
+
+    case 'CREATE_ROOM_ERROR':
+      console.log('create room error')
+      return state
+        .set('createRoomError', true)
+
+    case 'CREATE_ROOM_SUCCESS':
+      console.log('create room success')
+      return state
+        .update('rooms', rooms => rooms.concat(action.room))
+
     case SET_FILTER:
       return state
         .set('filter', action.filter)

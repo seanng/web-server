@@ -11,6 +11,9 @@ import {
   CHECK_IN,
   MAKE_AVAILABLE,
   DELETE_ROOM,
+  CREATE_ROOM,
+  ROOM_CREATION_SUCCESS,
+  ROOM_CREATION_FAILURE,
 } from './constants';
 
 function setView(view) {
@@ -48,6 +51,13 @@ function makeAvailable(roomNumber) {
   };
 }
 
+function createRoom(roomNumber) {
+  return {
+    type: CREATE_ROOM,
+    roomNumber
+  }
+}
+
 function deleteRoom(roomNumber) {
   return {
     type: DELETE_ROOM,
@@ -62,5 +72,6 @@ export {
   selectAddRoom,
   checkIn,
   makeAvailable,
+  createRoom,
   deleteRoom,
 }
