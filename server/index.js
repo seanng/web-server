@@ -63,7 +63,7 @@ const prettyHost = customHost || 'localhost';
 const port = argv.port || process.env.PORT || 5050;
 
 // Start your app.
-app.listen(port, host, (err) => {
+const server = app.listen(port, host, (err) => {
   if (err) {
     return logger.error(err.message);
   }
@@ -81,3 +81,6 @@ app.listen(port, host, (err) => {
     logger.appStarted(port, prettyHost);
   }
 });
+
+// initialize server-side sockets
+require('./io')(server);
