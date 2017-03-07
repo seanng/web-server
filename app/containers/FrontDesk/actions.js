@@ -35,10 +35,10 @@ function selectAddRoom(display) {
   };
 }
 
-function checkIn(stayId) {
+function checkIn(roomNumber) {
   return {
     type: CHECK_IN,
-    stayId
+    roomNumber
   };
 }
 

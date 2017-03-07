@@ -87,7 +87,17 @@ const deleteRoom = (hotelId, roomNumber, respond) => {
   .catch( delFromSetErr => respond(delFromSetErr))
 }
 
-const bookRoom = (custId ) => {
+// const bookRoom = (custId ) => {
+
+// }
+
+const checkIn = (hotelId, roomNumber, respond) => {
+  const key = `${hotelId}:room:${roomNumber}`;
+  const checkInTime = new Date();
+  const status = 'Checked In';
+  cache.hmset(key, 'status', status, 'checkInTime', checkInTime)
+  .then( updateHash => respond(null, { roomNumber, status, checkInTime }))
+  .catch( err => respond(err) )
 
 }
 
@@ -97,5 +107,6 @@ module.exports = {
   getRooms,
   createRoom,
   deleteRoom,
-  bookRoom,
+  // bookRoom,
+  checkIn,
 }

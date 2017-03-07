@@ -121,8 +121,8 @@ const mapDispatchToProps = (dispatch) => ({
   createRoom: (roomNumber) => {
     dispatch(createRoom(roomNumber));
   },
-  checkIn: (stayId) => {
-    dispatch(checkIn(stayId));
+  checkIn: (roomNumber) => {
+    dispatch(checkIn(roomNumber));
   },
   makeAvailable: (roomNumber) => {
     dispatch(makeAvailable(roomNumber));

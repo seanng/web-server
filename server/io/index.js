@@ -1,4 +1,4 @@
-const { webAuthenticate, webLogin, getRooms, createRoom, deleteRoom, bookRoom, } = require('./helpers');
+const { webAuthenticate, webLogin, getRooms, createRoom, deleteRoom, checkIn, } = require('./helpers');
 
 module.exports = (server) => {
   const io = require('socket.io').listen(server);
@@ -57,16 +57,22 @@ module.exports = (server) => {
             return reply({ type: 'DELETE_ROOM_SUCCESS', roomNumber });
           })
 
-        // this actually shouldn't be a socket route.
-        case 'server/BOOK_ROOM':
-          const { hotelId, roomNumber } = action;
-          return bookRoom(client, hotelId, roomNumber, (err, room) => {
+        // this wouldn't be a socket route.
+        // case 'server/BOOK_ROOM':
+          // const { roomNumber } = action;
+          // return bookRoom(client, 111, roomNumber, (err, room) => {
             // if (err)
               // return reply({ type: 'BOOK_ROOM_ERROR', err })
             // return io.emit "book room success" with room data to hotel and client.
-          })
+          // })
 
-        // case 'server/CHECK_IN'
+        case 'server/CHECK_IN':
+          const { roomNumber } = action;
+          return checkIn(111, roomNumber, (err, roomData) => {
+            if (err)
+              return reply({ type: 'CHECK_IN_ERROR', err })
+            return reply({ type: 'CHECK_IN_SUCCESS', roomData })
+          })
 
       }
     })

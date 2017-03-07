@@ -12,8 +12,7 @@ import {
 } from './constants';
 
 const fakeData = [{
-  roomId: 1,
-  roomNumber: 2030,
+  roomNumber: '2030',
   guestId: 1,
   guestName: 'Kim Il Sung',
   status: 'Inbound',
@@ -21,8 +20,7 @@ const fakeData = [{
   checkOutTime: null,
   bookingTime: 1486834400
 }, {
-  roomId: 2,
-  roomNumber: 2044,
+  roomNumber: '2044',
   guestId: 2,
   guestName: 'Kim Pang Jun',
   status: 'Checked In',
@@ -65,6 +63,18 @@ function frontDeskReducer(state = initialState, action) {
       console.log("delete room success", action.roomNumber)
       return state
         .update('rooms', rooms => rooms.filter(room => room.roomNumber !== action.roomNumber))
+
+    case 'CHECK_IN_SUCCESS':
+      console.log('we in here.', action.roomData)
+      const { roomNumber, status, checkInTime } = action.roomData;
+      return state
+      .update('rooms', rooms =>
+        rooms
+        .update(rooms.findIndex(room =>
+          room.get('roomNumber') === roomNumber), room =>
+          room
+          .set('status', status)
+          .set('checkInTime', checkInTime)))
 
     case SET_FILTER:
       return state

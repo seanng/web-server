@@ -14,8 +14,8 @@ import messages from './messages';
 
 class RoomEntry extends React.Component {
   checkIn() {
-    const { roomId } = this.props.room;
-    this.props.checkIn(roomId);
+    const { roomNumber } = this.props.room;
+    this.props.checkIn(roomNumber);
   }
 
   makeAvailable() {
