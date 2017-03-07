@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import messages from './messages';
 
 import Filter from '../RoomManagementFilter';
-import RoomEntry from '../RoomEntry';
+import RoomEntryRow from '../RoomEntryRow';
 import Button from '../Button';
 
 const RoomManagementBox = (props) => {
@@ -35,7 +35,7 @@ const RoomManagementBox = (props) => {
       </thead>
       <tbody>
         { props.rooms.map((room, key) => (
-          <RoomEntry
+          <RoomEntryRow
             key={key}
             makeAvailable={props.makeAvailable}
             checkIn={props.checkIn}

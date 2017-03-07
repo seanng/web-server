@@ -8,6 +8,7 @@ import { fromJS } from 'immutable';
 import {
   SET_VIEW,
   SELECT_ADD_ROOM,
+  VIEW_CHARGES,
   SET_FILTER,
 } from './constants';
 
@@ -35,6 +36,7 @@ const initialState = fromJS({
   filter: 'all',
   createRoomError: false,
   displayAddRoom: false,
+  viewCharges: false,
 });
 
 function frontDeskReducer(state = initialState, action) {
@@ -46,6 +48,10 @@ function frontDeskReducer(state = initialState, action) {
     case SELECT_ADD_ROOM:
       return state
         .set('displayAddRoom', action.display)
+
+    case VIEW_CHARGES:
+      return state
+        .set('viewCharges', action.stay)
 
     case 'CREATE_ROOM_ERROR':
       console.log('create room error', action.err)

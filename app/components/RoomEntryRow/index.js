@@ -1,6 +1,6 @@
 /**
 *
-* RoomEntry
+* RoomEntryRow
 *
 */
 
@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import Button from '../Button';
 import messages from './messages';
 
-class RoomEntry extends React.Component {
+class RoomEntryRow extends React.Component {
   checkIn() {
     const { roomNumber } = this.props.room;
     this.props.checkIn(roomNumber);
@@ -53,7 +53,7 @@ class RoomEntry extends React.Component {
     if (this.props.room.status === 'Checked In') {
       return (
         <span>
-          { moment(this.props.room.checkInTime).fromNow() }
+          { moment(this.props.room.checkInTime).calendar() }
         </span>
       );
     }
@@ -85,7 +85,7 @@ class RoomEntry extends React.Component {
 
 }
 
-RoomEntry.propTypes = {
+RoomEntryRow.propTypes = {
   checkIn: PropTypes.func.isRequired,
   makeAvailable: PropTypes.func.isRequired,
   room: PropTypes.object.isRequired,
@@ -93,4 +93,4 @@ RoomEntry.propTypes = {
 
 };
 
-export default RoomEntry;
+export default RoomEntryRow;

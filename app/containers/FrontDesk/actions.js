@@ -8,10 +8,12 @@ import {
   SET_VIEW,
   SET_FILTER,
   SELECT_ADD_ROOM,
+  VIEW_CHARGES,
   CHECK_IN,
   MAKE_AVAILABLE,
   DELETE_ROOM,
   CREATE_ROOM,
+  FETCH_STAYS,
 } from './constants';
 
 function setView(view) {
@@ -31,6 +33,13 @@ function setFilter(filter) {
 function selectAddRoom(display) {
   return {
     type: SELECT_ADD_ROOM,
+    display
+  };
+}
+
+function viewCharges(stay) {
+  return {
+    type: VIEW_CHARGES,
     display
   };
 }
@@ -63,13 +72,22 @@ function deleteRoom(roomNumber) {
   };
 }
 
+function fetchStays() {
+  return {
+    type: FETCH_STAYS
+  }
+}
+
+
 
 export {
   setView,
   setFilter,
   selectAddRoom,
+  viewCharges,
   checkIn,
   makeAvailable,
   createRoom,
   deleteRoom,
+  fetchStays,
 }

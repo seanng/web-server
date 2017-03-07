@@ -1,4 +1,4 @@
-const { webAuthenticate, webLogin, getRooms, createRoom, deleteRoom, checkIn } = require('./helpers');
+const { webAuthenticate, webLogin, getRooms, createRoom, deleteRoom, makeAvailable, checkIn, fetchStays } = require('./helpers');
 
 module.exports = (io, client) => {
 
@@ -25,21 +25,32 @@ module.exports = (io, client) => {
           // return reply log in success with token
         })
 
-      case 'server/GET_ROOMS':
-        return getRooms(hotelId, (rooms) => {
+      case 'server/FETCH_ROOMS':
+        return getRooms(111, (rooms) => {
           if (!rooms) {
             return reply({
-              type: 'GET_ROOMS_ERROR'
+              type: 'FETCH_ROOMS_ERROR'
             })
           }
           return reply({
-            type: 'GET_ROOMS_SUCCESS',
+            type: 'FETCH_ROOMS_SUCCESS',
             rooms
           })
         });
 
-      case 'server/GET_STAYS':
-        return getStays()
+      case 'server/FETCH_STAYS':
+        console.log('fetching stays.')
+        return fetchStays(111, (err, stays) => {
+          if (err) {
+            return reply({
+              type: 'FETCH_STAYS_ERROR'
+            })
+          }
+          return reply({
+            type: 'FETCH_STAYS_SUCCESS',
+            stays
+          })
+        })
 
       case 'server/CREATE_ROOM':
       // hotelId obtained from socket token.
@@ -56,6 +67,21 @@ module.exports = (io, client) => {
             room
           });
         });
+
+      case 'server/MAKE_AVAILABLE':
+        const { roomNumber, key } = action
+        return makeAvailable(111, roomNumber, (err, roomNumber) => {
+          if (err) {
+            return reply({
+              type: 'MAKE_AVAILABLE_ERROR',
+              err
+            });
+          }
+          return reply({
+            type: 'MAKE_AVAILABLE_SUCCESS',
+            roomNumber, key
+          })
+        })
 
       case 'server/DELETE_ROOM':
       // hotelId obtained from socket token.

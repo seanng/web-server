@@ -14,6 +14,11 @@ const getView = () => createSelector(
   (substate) => substate.get('view')
 );
 
+const getStays = () => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => substate.get('stays')
+)
+
 const getRoomsByStatus = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => {
@@ -39,6 +44,11 @@ const getDisplayAddRoom = () => createSelector(
   (substate) => substate.get('displayAddRoom')
 )
 
+const getViewCharges = () => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => !!substate.get('viewCharges')
+)
+
 /**
  * Default selector used by FrontDesk
  */
@@ -56,4 +66,6 @@ export {
   getRoomsByStatus,
   getFilter,
   getDisplayAddRoom,
+  getViewCharges,
+  getStays,
 };

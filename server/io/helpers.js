@@ -1,4 +1,5 @@
 const cache = require('../cache/config');
+// const { retrieveStays } = require('../db/helpers');
 
 const webAuthenticate = (token, respond) => {
   // if (!token)
@@ -21,6 +22,26 @@ const webLogin = (details, respond) => {
 }
 
 const getRooms = (hotelId, respond) => {
+  let pattern = `${hotelId}:room:*`;
+  cache.keys(pattern)
+  .then(keys => {
+    console.log('the keys:', keys);
+    let rooms = [];
+    keys.reduce((promiseChain, key) => {
+      return cache.hgetall(key)
+      .then(room => {
+        if (room.status === 'Available') {
+          room.guestName = '( empty )'
+        }
+        room.roomNumber = key.split(':')[2];
+        return rooms.push(room);
+      })
+    }, Promise.resolve())
+    .then(() => {
+      console.log('here are the rooms:', rooms)
+      respond(rooms)
+    })
+  })
   // get all rooms from cache that start with 'hotelId'
     // const roomKeys = cache.keys(`${hotelId}:room:*`)
     // console.log(roomKeys)
@@ -28,9 +49,9 @@ const getRooms = (hotelId, respond) => {
   // respond(rooms)
 }
 
-const getStays = (respond) => {
+const fetchStays = (hotelId, respond) => null;
+// retrieveStays(hotelId, respond);
 
-}
 
 const createRoom = (hotelId, roomNumber, respond) => {
   /* create new room in redis. we'll be temporarily using a fake hotelId of "111", so all rooms in the cache will be part of rooms key 111.
@@ -79,6 +100,7 @@ const createRoom = (hotelId, roomNumber, respond) => {
 }
 
 const deleteRoom = (hotelId, roomNumber, respond) => {
+  console.log('deleting room.');
   const key = `${hotelId}:room:${roomNumber}`;
   return cache.srem(`${hotelId}:available`, roomNumber)
   .then( delFromSet => cache.del(key)
@@ -109,4 +131,5 @@ module.exports = {
   deleteRoom,
   // bookRoom,
   checkIn,
+  fetchStays,
 }
