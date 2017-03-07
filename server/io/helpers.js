@@ -55,11 +55,14 @@ const createRoom = (hotelId, roomNumber, respond) => {
   const key = `${hotelId}:room:${roomNumber}`;
   // THIS IS TEMPORARILY HARDCODED
   const employeeId = '123';
+  // First, make sure the room does not exist
   return cache.exists(key)
   .then( exists => {
     if (exists*1)
       return respond('exists');
+    // Second, add room to the available rooms set
     cache.sadd(`${hotelId}:available`, roomNumber);
+    // Third, create new hash in Redis for the room
     return cache.hmset(key, 'status', 'Available', 'employeeId', employeeId)
     .then(() =>
       respond(null, {

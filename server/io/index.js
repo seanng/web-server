@@ -71,6 +71,8 @@ module.exports = (server) => {
       }
     })
 
+    // OBSOLETE!
+
     client.on('book room', () => {
       // update in Redis:
         // a) room status to inbound

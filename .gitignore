@@ -4,6 +4,7 @@ build
 node_modules
 stats.json
 dump.rdb
+yarn-error.log
 
 # Cruft
 .DS_Store
