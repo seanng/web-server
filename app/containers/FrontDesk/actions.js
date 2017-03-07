@@ -12,8 +12,6 @@ import {
   MAKE_AVAILABLE,
   DELETE_ROOM,
   CREATE_ROOM,
-  ROOM_CREATION_SUCCESS,
-  ROOM_CREATION_FAILURE,
 } from './constants';
 
 function setView(view) {

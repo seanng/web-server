@@ -48,30 +48,43 @@ const createRoom = (hotelId, roomNumber, respond) => {
       },
       // for faster access in mobile app.
       111:available: Set of roomNumbers,
-    }
+    } */
 
-  */
+  if (!roomNumber) return respond('enter roomNumber')
 
-  // if room already exists in cache, respond with null.
   const key = `${hotelId}:room:${roomNumber}`;
   // THIS IS TEMPORARILY HARDCODED
   const employeeId = '123';
-
-  if (cache.exists(key))
-    return respond('exists');
-  cache.sadd(`${hotelId}:available`, roomNumber);
-  cache.hmset(key, 'status', 'available', 'employeeId', '123')
-  .then(() => {
-    respond(null, {
-      roomNumber,
-      employeeId,
-      status: 'available',
-    })
-  });
+  return cache.exists(key)
+  .then( exists => {
+    if (exists*1)
+      return respond('exists');
+    cache.sadd(`${hotelId}:available`, roomNumber);
+    return cache.hmset(key, 'status', 'Available', 'employeeId', employeeId)
+    .then(() =>
+      respond(null, {
+        roomNumber,
+        employeeId,
+        guestName: '( empty )',
+        status: 'Available',
+      }))
+    .catch((error)=> {
+      respond(error);
+    });
+  })
 
 }
 
-const bookRoom = (custId, ) => {
+const deleteRoom = (hotelId, roomNumber, respond) => {
+  const key = `${hotelId}:room:${roomNumber}`;
+  return cache.srem(`${hotelId}:available`, roomNumber)
+  .then( delFromSet => cache.del(key)
+    .then( delHash => respond(null, roomNumber))
+    .catch( delHashErr => respond(delHashErr)))
+  .catch( delFromSetErr => respond(delFromSetErr))
+}
+
+const bookRoom = (custId ) => {
 
 }
 
@@ -80,5 +93,6 @@ module.exports = {
   webLogin,
   getRooms,
   createRoom,
+  deleteRoom,
   bookRoom,
 }

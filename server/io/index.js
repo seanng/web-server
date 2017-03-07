@@ -1,4 +1,4 @@
-const { webAuthenticate, webLogin, getRooms, createRoom, bookRoom, } = require('./helpers');
+const { webAuthenticate, webLogin, getRooms, createRoom, deleteRoom, bookRoom, } = require('./helpers');
 
 module.exports = (server) => {
   const io = require('socket.io').listen(server);
@@ -40,12 +40,21 @@ module.exports = (server) => {
           return getStays()
 
         case 'server/CREATE_ROOM':
-          // hotelId obtained from frontend.
+          // hotelId obtained from socket token.
           // for now, pass in fake hotelId of 111
           return createRoom(111, action.roomNumber, (err, room) => {
             if (err)
-              return reply({ type: 'CREATE_ROOM_ERROR', err })
-            return reply({ type: 'CREATE_ROOM_SUCCESS', room })
+              return reply({ type: 'CREATE_ROOM_ERROR', err });
+            return reply({ type: 'CREATE_ROOM_SUCCESS', room });
+          })
+
+        case 'server/DELETE_ROOM':
+          // hotelId obtained from socket token.
+          // for now, pass in fake hotelId of 111
+          return deleteRoom(111, action.roomNumber, (err, roomNumber) => {
+            if (err)
+              return reply({ type: 'DELETE_ROOM_ERROR', err });
+            return reply({ type: 'DELETE_ROOM_SUCCESS', roomNumber });
           })
 
         // this actually shouldn't be a socket route.
@@ -57,7 +66,7 @@ module.exports = (server) => {
             // return io.emit "book room success" with room data to hotel and client.
           })
 
-        case 'server/CHECK_IN'
+        // case 'server/CHECK_IN'
 
       }
     })

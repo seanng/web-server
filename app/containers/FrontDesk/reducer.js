@@ -50,14 +50,21 @@ function frontDeskReducer(state = initialState, action) {
         .set('displayAddRoom', action.display)
 
     case 'CREATE_ROOM_ERROR':
-      console.log('create room error')
+      console.log('create room error', action.err)
       return state
-        .set('createRoomError', true)
+        .set('createRoomError', action.err)
 
     case 'CREATE_ROOM_SUCCESS':
-      console.log('create room success')
+      console.log('create room success', action.room)
       return state
+        .set('createRoomError', false)
+        .set('displayAddRoom', false)
         .update('rooms', rooms => rooms.concat(action.room))
+
+    case 'DELETE_ROOM_SUCCESS':
+      console.log("delete room success", action.roomNumber)
+      return state
+        .update('rooms', rooms => rooms.filter(room => room.roomNumber !== action.roomNumber))
 
     case SET_FILTER:
       return state
