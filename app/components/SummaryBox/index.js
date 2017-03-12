@@ -13,7 +13,7 @@ import messages from './messages';
 const SummaryBox = ({summary}) => {
   const { inbound, checkedin, checkedout, available } = summary
   return (
-    <div className='overviewBox'>
+    <Wrapper className='overviewBox'>
       <div className="overviewBoxHeader">
         <h3>
           <FormattedMessage {...messages.header} />
@@ -63,9 +63,13 @@ const SummaryBox = ({summary}) => {
           </Total>
         </Div>
       </Summary>
-    </div>
+    </Wrapper>
   )
 };
+
+const Wrapper = styled.div`
+  margin-bottom: 2em;
+`
 
 const Div = styled.div`
   padding: 6px 0px;

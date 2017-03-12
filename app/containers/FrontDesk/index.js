@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
 import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, } from './selectors';
-import { setView, setFilter, selectAddRoom, checkIn, makeAvailable, deleteRoom } from './actions';
+import { setView, setFilter, selectAddRoom, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -55,6 +55,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
         checkIn={this.props.checkIn}
         makeAvailable={this.props.makeAvailable}
         remove={this.props.deleteRoom}
+        setFilter={this.props.setFilter}
       />
     )
   }
@@ -120,8 +121,8 @@ const mapDispatchToProps = (dispatch) => ({
   createRoom: (roomNumber) => {
     dispatch(createRoom(roomNumber));
   },
-  checkIn: (stayId) => {
-    dispatch(checkIn(stayId));
+  checkIn: (roomNumber) => {
+    dispatch(checkIn(roomNumber));
   },
   makeAvailable: (roomNumber) => {
     dispatch(makeAvailable(roomNumber));

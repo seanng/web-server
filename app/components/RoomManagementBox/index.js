@@ -4,24 +4,24 @@
 *
 */
 
-import React from 'react';
-// import styled from 'styled-components';
-
+import React, { PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
+import styled from 'styled-components';
+
 import messages from './messages';
 
-import RoomEntry from '../RoomEntry'
-import Button from '../Button'
+import Filter from '../RoomManagementFilter';
+import RoomEntry from '../RoomEntry';
+import Button from '../Button';
 
 const RoomManagementBox = (props) => {
-  console.log('props:', props)
   const RoomEntryList = (
     <table className="table">
       <thead>
         <tr>
-          <th className="col-xs-2">
+          <TH className="col-xs-2">
             <FormattedMessage {...messages.roomNumber} />
-          </th>
+          </TH>
           <th className="col-xs-3">
             <FormattedMessage {...messages.guestName} />
           </th>
@@ -35,13 +35,13 @@ const RoomManagementBox = (props) => {
       </thead>
       <tbody>
         { props.rooms.map((room, key) => (
-            <RoomEntry
-              key={key}
-              makeAvailable={props.makeAvailable}
-              checkIn={props.checkIn}
-              remove={props.remove}
-              room={room}
-            />
+          <RoomEntry
+            key={key}
+            makeAvailable={props.makeAvailable}
+            checkIn={props.checkIn}
+            remove={props.remove}
+            room={room}
+          />
           )) }
       </tbody>
     </table>
@@ -50,19 +50,51 @@ const RoomManagementBox = (props) => {
   return (
     <div className="overviewBox">
       <div className="overviewBoxHeader">
-        <h3>
-          <FormattedMessage {...messages.header} />
-        </h3>
+        <div className="row">
+          <div className="col-xs-6">
+            <H3>
+              <FormattedMessage {...messages.header} />
+            </H3>
+          </div>
+          <div className="col-xs-6">
+            <Filter setFilter={props.setFilter} />
+          </div>
+        </div>
       </div>
-      { RoomEntryList }
-      <Button onClick={props.showAddRoomModal}>
-        <FormattedMessage {...messages.addRoom} />
-      </Button>
+      <Div>
+        { RoomEntryList }
+        <ButtonWrapper>
+          <Button onClick={props.showAddRoomModal}>
+            <FormattedMessage {...messages.addRoom} />
+          </Button>
+        </ButtonWrapper>
+      </Div>
     </div>
   );
 }
 
+const H3 = styled.h3`
+  padding-top: 8px;
+`
+
+const Div = styled.div`
+  padding-bottom: 15px;
+  height: 478px;
+`;
+
+const TH = styled.th`
+  padding-left: 1.2em!important;
+`;
+
+const ButtonWrapper = styled.div`
+  text-align: left;
+  padding-left: 15px;
+`
+
 RoomManagementBox.propTypes = {
+  rooms: PropTypes.array.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  showAddRoomModal: PropTypes.func.isRequired,
 
 };
 

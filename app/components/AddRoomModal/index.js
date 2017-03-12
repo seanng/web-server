@@ -45,6 +45,11 @@ class AddRoomModal extends React.Component {
   }
 
   render() {
+    const ModalFooter = styled.div`
+      padding: 15px;
+      text-align: center;
+    `
+
     return (
       <Modal
         show={this.props.show}
@@ -67,7 +72,7 @@ class AddRoomModal extends React.Component {
             </FormGroup>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <ModalFooter>
           <div className="row">
             <div className="col-xs-6">
               <Button onClick={this.hide.bind(this)}>
@@ -80,7 +85,7 @@ class AddRoomModal extends React.Component {
               </Button>
             </div>
           </div>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     )
   }

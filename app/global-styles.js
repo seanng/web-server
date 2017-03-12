@@ -4,7 +4,7 @@ import { injectGlobal } from 'styled-components';
 injectGlobal`
   html,
   body {
-    height: 100%;
+    height: 100vh;
     width: 100%;
   }
 
@@ -52,4 +52,7 @@ injectGlobal`
     margin-bottom: 0px;
   }
 
+  .table > tbody > tr > td {
+    vertical-align: middle;
+  }
 `;

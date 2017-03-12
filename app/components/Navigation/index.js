@@ -30,7 +30,7 @@ function Navigation() {
         <div className="collapse navbar-collapse" id="navbar-collapse">
           <ul className="nav navbar-nav navbar-right">
             <li className="nav-item">
-              <Link className="nav-link" to="/frontdesk">
+              <Link className="nav-link" to="/">
                 <FormattedMessage {...messages.frontdesk} />
               </Link>
             </li>

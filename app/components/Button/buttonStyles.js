@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 const buttonStyles = css`
   display: inline-block;
   box-sizing: border-box;
-  padding: 0.25em 2em;
+  padding: 0.25em 1.5em;
   text-decoration: none;
   border-radius: 4px;
   -webkit-font-smoothing: antialiased;

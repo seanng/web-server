@@ -12,11 +12,11 @@ import styled from 'styled-components';
 
 import Navigation from 'components/Navigation'
 import Header from 'components/Header';
-import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
   min-height: 100%;
+  padding-bottom: 30px;
 `;
 
 export function App(props) {
@@ -24,14 +24,13 @@ export function App(props) {
     <AppWrapper>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        defaultTitle="Haven Web Application"
         meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
+          { name: 'description', content: 'Haven Web Application' },
         ]}
       />
       <Navigation />
       {React.Children.toArray(props.children)}
-      <Footer />
     </AppWrapper>
   );
 }

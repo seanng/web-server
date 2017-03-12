@@ -9,5 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-
+export const TEST_SOCKET = 'server/test_socket';
 export const DEFAULT_LOCALE = 'en';
