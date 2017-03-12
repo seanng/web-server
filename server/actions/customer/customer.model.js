@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
 
 const cipher = Promise.promisify(bcrypt.hash);
-const compare = Promise.promisify(bcrypt.compare);
+// const compare = Promise.promisify(bcrypt.compare);
 
-Customer.beforeCreate(function(user, options) {
-  return cipher(user.password, null, null).then(function (hashedPw) {
+Customer.beforeCreate((user, options) => {
+  return cipher(user.password, null, null).then((hashedPw) => {
     user.password = hashedPw;
   });
-})
+});
