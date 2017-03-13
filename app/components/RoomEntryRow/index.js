@@ -19,8 +19,8 @@ class RoomEntryRow extends React.Component {
   }
 
   makeAvailable() {
-    const { roomNumber, key } = this.props.room;
-    this.props.makeAvailable(roomNumber, key);
+    const { room, index } = this.props;
+    this.props.makeAvailable(room.roomNumber, index);
   }
 
   remove() {

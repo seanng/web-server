@@ -21,7 +21,7 @@ const webLogin = (details, respond) => {
     // respond with err
 }
 
-const getRooms = (hotelId, respond) => {
+const fetchRooms = (hotelId, respond) => {
   let pattern = `${hotelId}:room:*`;
   cache.keys(pattern)
   .then(keys => {
@@ -122,13 +122,21 @@ const checkIn = (hotelId, roomNumber, respond) => {
 
 }
 
+const makeAvailable = (hotelId, roomNumber, respond) => {
+  const key = `${hotelId}:room:${roomNumber}`;
+  cache.hmset(key, 'status', 'Available')
+  .then(ok => respond(null))
+  .catch(err => respond(err))
+}
+
 module.exports = {
   webAuthenticate,
   webLogin,
-  getRooms,
+  fetchRooms,
   createRoom,
   deleteRoom,
   // bookRoom,
   checkIn,
   fetchStays,
+  makeAvailable,
 }

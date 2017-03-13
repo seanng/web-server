@@ -35,9 +35,10 @@ const RoomManagementBox = (props) => {
         </tr>
       </thead>
       <tbody>
-        { props.rooms.map((room, key) => (
+        { props.rooms.map((room, index) => (
           <RoomEntryRow
-            key={key}
+            key={index}
+            index={index}
             makeAvailable={props.makeAvailable}
             checkIn={props.checkIn}
             remove={props.remove}
@@ -96,7 +97,7 @@ RoomManagementBox.propTypes = {
   rooms: PropTypes.array.isRequired,
   setFilter: PropTypes.func.isRequired,
   showAddRoomModal: PropTypes.func.isRequired,
-
+  makeAvailable: PropTypes.func.isRequired,
 };
 
 export default RoomManagementBox;

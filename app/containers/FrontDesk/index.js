@@ -158,7 +158,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(makeAvailable(roomNumber, key));
   },
   deleteRoom: (roomNumber) => {
-    console.log('deleting room!')
     dispatch(deleteRoom(roomNumber));
   },
 });

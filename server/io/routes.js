@@ -1,4 +1,4 @@
-const { webAuthenticate, webLogin, getRooms, createRoom, deleteRoom, makeAvailable, checkIn, fetchStays } = require('./helpers');
+const { webAuthenticate, webLogin, fetchRooms, createRoom, deleteRoom, makeAvailable, checkIn, fetchStays } = require('./helpers');
 
 module.exports = (io, client) => {
 
@@ -26,7 +26,7 @@ module.exports = (io, client) => {
         })
 
       case 'server/FETCH_ROOMS':
-        return getRooms(111, (rooms) => {
+        return fetchRooms(111, (rooms) => {
           if (!rooms) {
             return reply({
               type: 'FETCH_ROOMS_ERROR'
@@ -69,8 +69,8 @@ module.exports = (io, client) => {
         });
 
       case 'server/MAKE_AVAILABLE':
-        const { roomNumber, key } = action
-        return makeAvailable(111, roomNumber, (err, roomNumber) => {
+        const { roomNumber, key } = action;
+        return makeAvailable(111, roomNumber, (err) => {
           if (err) {
             return reply({
               type: 'MAKE_AVAILABLE_ERROR',
