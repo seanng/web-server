@@ -113,7 +113,8 @@ const deleteRoom = (hotelId, roomNumber, respond) => {
 
 const checkIn = (hotelId, roomNumber, respond) => {
   const key = `${hotelId}:room:${roomNumber}`;
-  const checkInTime = new Date();
+  const checkInTime = Date.now();
+  console.log('checkintime:', checkInTime)
   const status = 'Checked In';
   cache.hmset(key, 'status', status, 'checkInTime', checkInTime)
   .then( updateHash => respond(null, { roomNumber, status, checkInTime }))

@@ -22,7 +22,7 @@ const getStays = () => createSelector(
 const getRoomsByStatus = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => {
-    const rooms = substate.get('rooms');
+    const rooms = substate.get('rooms').toJS();
     return {
       all: rooms,
       inbound: rooms.filter(stay => stay.status === 'Inbound'),

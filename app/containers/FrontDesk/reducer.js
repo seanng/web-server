@@ -4,7 +4,7 @@
  *
  */
 
-import { fromJS } from 'immutable';
+import Immutable, { fromJS, isImmutable } from 'immutable';
 import {
   SET_VIEW,
   SELECT_ADD_ROOM,
@@ -37,8 +37,9 @@ function frontDeskReducer(state = initialState, action) {
         .set('displayAddRoom', action.display)
 
     case 'FETCH_ROOMS_SUCCESS':
+      let rooms = action.rooms.map(room => Immutable.Map(room))
       return state
-        .set('rooms', action.rooms)
+        .set('rooms', Immutable.List(rooms))
 
     case 'FETCH_ROOMS_ERROR':
       return state
@@ -94,16 +95,17 @@ function frontDeskReducer(state = initialState, action) {
         })
 
     case 'CHECK_IN_SUCCESS':
-      console.log('we in here.', action.roomData)
       const { roomNumber, status, checkInTime } = action.roomData;
       return state
       .update('rooms', rooms =>
         rooms
         .update(rooms.findIndex(room =>
-          room.get('roomNumber') === roomNumber), room =>
+          room.get('roomNumber') === roomNumber
+        ), room =>
           room
           .set('status', status)
-          .set('checkInTime', checkInTime)))
+          .set('checkInTime', checkInTime))
+      )
 
     case SET_FILTER:
       return state
