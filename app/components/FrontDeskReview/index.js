@@ -19,23 +19,28 @@ export class Review extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      loaded: false
-    }
   }
 
   componentWillMount() {
-    console.log('fetching stays.')
+    console.log('fetching stays.', this.props)
     this.props.fetchStays();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps && !this.state.loaded) {
+    if (nextProps && !this.props.isReviewLoading) {
       console.log('nextProps in Review', nextProps);
     }
   }
 
-  render() {
+  isLoading() {
+    return (
+      <div>
+        loading.
+      </div>
+    )
+  }
+
+  hasLoaded() {
     return (
       <Wrapper>
         <table className="table">
@@ -77,6 +82,10 @@ export class Review extends React.Component {
         </table>
       </Wrapper>
     )
+  }
+
+  render() {
+    return this.props.isReviewLoading ? this.isLoading() : this.hasLoaded();
   }
 }
 

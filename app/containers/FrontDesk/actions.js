@@ -13,8 +13,15 @@ import {
   MAKE_AVAILABLE,
   DELETE_ROOM,
   CREATE_ROOM,
+  FETCH_ROOMS,
   FETCH_STAYS,
 } from './constants';
+
+function fetchRooms() {
+  return {
+    type: FETCH_ROOMS
+  }
+}
 
 function setView(view) {
   return {
@@ -51,10 +58,11 @@ function checkIn(roomNumber) {
   };
 }
 
-function makeAvailable(roomNumber) {
+function makeAvailable(roomNumber, key) {
   return {
     type: MAKE_AVAILABLE,
-    roomNumber
+    roomNumber,
+    key
   };
 }
 
@@ -90,4 +98,5 @@ export {
   createRoom,
   deleteRoom,
   fetchStays,
+  fetchRooms,
 }

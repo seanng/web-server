@@ -14,4 +14,5 @@ export const FILTER_ROOMS = 'app/FrontDesk/FILTER_ROOMS';
 export const CREATE_ROOM = 'server/CREATE_ROOM';
 export const DELETE_ROOM = 'server/DELETE_ROOM';
 export const CHECK_IN = 'server/CHECK_IN';
-export const FETCH_STAYS = 'app/FrontDesk/FETCH_STAYS';
+export const FETCH_ROOMS = 'server/FETCH_ROOMS';
+export const FETCH_STAYS = 'server/FETCH_STAYS';

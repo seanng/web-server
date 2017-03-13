@@ -19,8 +19,8 @@ class RoomEntryRow extends React.Component {
   }
 
   makeAvailable() {
-    const { roomNumber } = this.props.room;
-    this.props.makeAvailable(roomNumber);
+    const { roomNumber, key } = this.props.room;
+    this.props.makeAvailable(roomNumber, key);
   }
 
   remove() {
@@ -53,7 +53,7 @@ class RoomEntryRow extends React.Component {
     if (this.props.room.status === 'Checked In') {
       return (
         <span>
-          { moment(this.props.room.checkInTime).calendar() }
+          { moment(this.props.room.checkInTime*1).calendar() }
         </span>
       );
     }

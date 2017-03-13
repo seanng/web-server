@@ -28,5 +28,5 @@ export function* frontDeskWatcher() {
 
 // All sagas to be loaded
 export default [
-  frontDeskWatcher,
+  // frontDeskWatcher,
 ];

@@ -10,8 +10,8 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
-import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, getViewCharges, getStays } from './selectors';
-import { fetchStays, setView, setFilter, selectAddRoom, viewCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
+import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, getViewCharges, getStays, getReviewLoadingState } from './selectors';
+import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, viewCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -59,6 +59,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
     return (
       <div>
         <FrontDeskOverview
+          fetchRooms={this.props.fetchRooms}
           summary={this.getSummary()}
           rooms={this.getFilteredRooms(this.props.filter)}
           showAddRoomModal={this.showAddRoomModal.bind(this)}
@@ -80,6 +81,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
     return (
       <div>
         <FrontDeskReview
+          isReviewLoading={this.props.isReviewLoading}
           fetchStays={this.props.fetchStays}
           stays={this.props.stays}
         />
@@ -127,11 +129,15 @@ const mapStateToProps = createStructuredSelector({
   displayAddRoom: getDisplayAddRoom(),
   viewCharges: getViewCharges(),
   stay: getStays(),
+  isReviewLoading: getReviewLoadingState(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchRooms: () => {
+    dispatch(fetchRooms());
+  },
   fetchStays: () => {
-    dispatch(fetchStays())
+    dispatch(fetchStays());
   },
   setView: (view) => {
     dispatch(setView(view));
@@ -148,10 +154,11 @@ const mapDispatchToProps = (dispatch) => ({
   checkIn: (roomNumber) => {
     dispatch(checkIn(roomNumber));
   },
-  makeAvailable: (roomNumber) => {
-    dispatch(makeAvailable(roomNumber));
+  makeAvailable: (roomNumber, key) => {
+    dispatch(makeAvailable(roomNumber, key));
   },
   deleteRoom: (roomNumber) => {
+    console.log('deleting room!')
     dispatch(deleteRoom(roomNumber));
   },
 });

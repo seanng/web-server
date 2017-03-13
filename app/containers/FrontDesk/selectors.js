@@ -22,8 +22,7 @@ const getStays = () => createSelector(
 const getRoomsByStatus = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => {
-    const rooms = substate.get('rooms').toJS();
-    console.log('rooms:', rooms)
+    const rooms = substate.get('rooms');
     return {
       all: rooms,
       inbound: rooms.filter(stay => stay.status === 'Inbound'),
@@ -49,6 +48,11 @@ const getViewCharges = () => createSelector(
   (substate) => !!substate.get('viewCharges')
 )
 
+const getReviewLoadingState = () => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => substate.get('isReviewLoading')
+)
+
 /**
  * Default selector used by FrontDesk
  */
@@ -68,4 +72,5 @@ export {
   getDisplayAddRoom,
   getViewCharges,
   getStays,
+  getReviewLoadingState,
 };

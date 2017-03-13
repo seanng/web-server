@@ -25,7 +25,6 @@ const getRooms = (hotelId, respond) => {
   let pattern = `${hotelId}:room:*`;
   cache.keys(pattern)
   .then(keys => {
-    console.log('the keys:', keys);
     let rooms = [];
     keys.reduce((promiseChain, key) => {
       return cache.hgetall(key)
@@ -38,7 +37,6 @@ const getRooms = (hotelId, respond) => {
       })
     }, Promise.resolve())
     .then(() => {
-      console.log('here are the rooms:', rooms)
       respond(rooms)
     })
   })

@@ -10,33 +10,20 @@ import {
   SELECT_ADD_ROOM,
   VIEW_CHARGES,
   SET_FILTER,
+  FETCH_STAYS,
 } from './constants';
-
-const fakeData = [{
-  roomNumber: '2030',
-  guestId: 1,
-  guestName: 'Kim Il Sung',
-  status: 'Inbound',
-  checkInTime: null,
-  checkOutTime: null,
-  bookingTime: 1486834400
-}, {
-  roomNumber: '2044',
-  guestId: 2,
-  guestName: 'Kim Pang Jun',
-  status: 'Checked In',
-  checkInTime: 1486804400,
-  checkOutTime: null,
-  bookingTime: 1486834400
-}]
 
 const initialState = fromJS({
   view: 'overview',
-  rooms: fakeData,
+  rooms: [],
+  stays: [],
   filter: 'all',
   createRoomError: false,
   displayAddRoom: false,
   viewCharges: false,
+  isReviewLoading: true,
+  fetchStaysError: false,
+  fetchRoomsError: false,
 });
 
 function frontDeskReducer(state = initialState, action) {
@@ -48,6 +35,30 @@ function frontDeskReducer(state = initialState, action) {
     case SELECT_ADD_ROOM:
       return state
         .set('displayAddRoom', action.display)
+
+    case 'FETCH_ROOMS_SUCCESS':
+      return state
+        .set('rooms', action.rooms)
+
+    case 'FETCH_ROOMS_ERROR':
+      return state
+        .set('rooms', [])
+        .set('fetchRoomsError', true)
+
+    case FETCH_STAYS:
+      return state
+        .set('stays', [])
+        .set('isReviewLoading', true)
+
+    case 'FETCH_STAYS_SUCCESS':
+      return state
+        .set('stays', action.stays)
+        .set('fetchStaysError', false)
+        .set('isReviewLoading', false)
+
+    case 'FETCH_STAYS_ERROR':
+      return state
+        .set('fetchStaysError', true)
 
     case VIEW_CHARGES:
       return state
@@ -69,6 +80,18 @@ function frontDeskReducer(state = initialState, action) {
       console.log("delete room success", action.roomNumber)
       return state
         .update('rooms', rooms => rooms.filter(room => room.roomNumber !== action.roomNumber))
+
+    case 'MAKE_AVAILABLE_ERROR':
+      return
+
+    case 'MAKE_AVAILABLE_SUCCESS':
+      return state
+        .setIn(['rooms', action.key], {
+          roomNumber: action.roomNumber,
+          employeeId: 123,
+          status: 'Available',
+          guestName: '( empty )'
+        })
 
     case 'CHECK_IN_SUCCESS':
       console.log('we in here.', action.roomData)
