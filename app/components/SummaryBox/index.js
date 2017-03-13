@@ -33,7 +33,7 @@ const SummaryBox = ({summary}) => {
             <FormattedMessage {...messages.checkedin} />
           </div>
           <Value className="col-xs-6">
-            { inbound }
+            { checkedin }
           </Value>
         </Div>
         <Div className="row">
