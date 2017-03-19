@@ -128,7 +128,7 @@ const mapStateToProps = createStructuredSelector({
   rooms: getRoomsByStatus(),
   displayAddRoom: getDisplayAddRoom(),
   viewCharges: getViewCharges(),
-  stay: getStays(),
+  stays: getStays(),
   isReviewLoading: getReviewLoadingState(),
 });
 

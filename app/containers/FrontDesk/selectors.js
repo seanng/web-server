@@ -16,7 +16,7 @@ const getView = () => createSelector(
 
 const getStays = () => createSelector(
   selectFrontDeskDomain(),
-  (substate) => substate.get('stays')
+  (substate) => substate.get('stays').toJS()
 )
 
 const getRoomsByStatus = () => createSelector(

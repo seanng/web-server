@@ -52,8 +52,10 @@ function frontDeskReducer(state = initialState, action) {
         .set('isReviewLoading', true)
 
     case 'FETCH_STAYS_SUCCESS':
+      let stays = action.stays.map(stay => Immutable.Map(stay))
+      console.log('stays:', stays)
       return state
-        .set('stays', action.stays)
+        .set('stays', Immutable.List(stays))
         .set('fetchStaysError', false)
         .set('isReviewLoading', false)
 

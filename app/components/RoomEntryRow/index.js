@@ -60,7 +60,8 @@ class RoomEntryRow extends React.Component {
   }
 
   render() {
-    const { roomNumber, guestName, status, checkInTime } = this.props.room;
+    console.log('this props room:', this.props.room)
+    const { roomNumber, customerName, status, checkInTime } = this.props.room;
     const TD = styled.td`
       padding-left: 1.2em!important;
     `;
@@ -71,7 +72,7 @@ class RoomEntryRow extends React.Component {
           { roomNumber }
         </TD>
         <td className="col-xs-3">
-          { guestName }
+          { customerName }
         </td>
         <td className="col-xs-3">
           { status }

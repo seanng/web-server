@@ -1,5 +1,5 @@
 const cache = require('../cache/config');
-// const { retrieveStays } = require('../db/helpers');
+const { retrieveStays } = require('../db/helpers');
 
 const webAuthenticate = (token, respond) => {
   // if (!token)
@@ -30,7 +30,7 @@ const fetchRooms = (hotelId, respond) => {
       return cache.hgetall(key)
       .then(room => {
         if (room.status === 'Available') {
-          room.guestName = '( empty )'
+          room.customerName = '( empty )'
         }
         room.roomNumber = key.split(':')[2];
         return rooms.push(room);
@@ -47,8 +47,7 @@ const fetchRooms = (hotelId, respond) => {
   // respond(rooms)
 }
 
-const fetchStays = (hotelId, respond) => null;
-// retrieveStays(hotelId, respond);
+const fetchStays = (hotelId, respond) => retrieveStays(hotelId, respond);
 
 
 const createRoom = (hotelId, roomNumber, respond) => {

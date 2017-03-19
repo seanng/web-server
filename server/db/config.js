@@ -59,8 +59,15 @@ const Stay = sequelize.define('stay', {
 });
 
 // many-to-many relationship between customers and hotels
+
 Customer.belongsToMany(Hotel, { through: Stay });
 Hotel.belongsToMany(Customer, { through: Stay });
+
+Customer.hasMany(Stay);
+Stay.belongsTo(Customer);
+
+Hotel.hasMany(Stay);
+Stay.belongsTo(Hotel);
 
 const Employee = sequelize.define('employee', {
   regDate: Sequelize.DATE,

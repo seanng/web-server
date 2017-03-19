@@ -26,15 +26,17 @@ class ReviewEntryRow extends React.Component {
   }
 
   render () {
-    const { guestName, roomNumber, checkInTime, checkOutTime, earnings } = this.props.stay
+    console.log(this.props.stay)
+    const { customerName, roomNumber, checkInTime, checkOutTime, totalCharge } = this.props.stay
     return (
       <tr>
-        <td>{ guestName }</td>
+        <td> [ date ] </td>
+        <td>{ customerName }</td>
         <td>{ roomNumber }</td>
         <td>{ checkInTime }</td>
         <td>{ checkOutTime }</td>
         <td>{ this.getDuration() }</td>
-        <td>HK${ earnings }</td>
+        <td>HK${ totalCharge }</td>
         <td>
           <Button onClick={this.showChargesModal}>
             <FormattedMessage {...messages.addCharges} />

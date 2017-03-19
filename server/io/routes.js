@@ -42,10 +42,12 @@ module.exports = (io, client) => {
         console.log('fetching stays.')
         return fetchStays(1, (err, stays) => {
           if (err) {
+            console.log('error!', err)
             return reply({
               type: 'FETCH_STAYS_ERROR'
             })
           }
+          console.log('fetched stays!', stays)
           return reply({
             type: 'FETCH_STAYS_SUCCESS',
             stays

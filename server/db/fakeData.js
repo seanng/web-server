@@ -46,6 +46,7 @@ fakeData = {
     bookingTime: 1469381804189,
     checkInTime: 1470381804189,
     checkOutTime: 1470381904189,
+    totalCharge: 102.59,
   }, {
     hotelId: 1,
     customerId: 2,
@@ -54,6 +55,7 @@ fakeData = {
     bookingTime: 1469381804189,
     checkInTime: 1470381804189,
     checkOutTime: 1470381904189,
+    totalCharge: 1203.18,
   }, {
     hotelId: 1,
     customerId: 3,
@@ -62,13 +64,13 @@ fakeData = {
     bookingTime: 1469381804189,
     checkInTime: 1470381804189,
     checkOutTime: 1470381904189,
+    totalCharge: 1603.30,
   }]
 }
 
 module.exports = {
   preloadData: () => {
     sequelize.sync(
-      // if force true, it will first drop tables before recreating them.
       { force: true }
     )
     .then(function() {

@@ -34,7 +34,7 @@ export default defineMessages({
     id: 'app.components.FrontDeskReview.earnings',
     defaultMessage: 'Earnings',
   },
-  Surcharges: {
+  surcharges: {
     id: 'app.components.FrontDeskReview.surcharges',
     defaultMessage: 'Surcharges',
   },

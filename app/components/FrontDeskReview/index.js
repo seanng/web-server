@@ -22,12 +22,11 @@ export class Review extends React.Component {
   }
 
   componentWillMount() {
-    console.log('fetching stays.', this.props)
     this.props.fetchStays();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps && !this.props.isReviewLoading) {
+    if (nextProps && !nextProps.isReviewLoading) {
       console.log('nextProps in Review', nextProps);
     }
   }
@@ -41,6 +40,7 @@ export class Review extends React.Component {
   }
 
   hasLoaded() {
+    console.log('hasloaded.');
     return (
       <Wrapper>
         <table className="table">
@@ -73,11 +73,12 @@ export class Review extends React.Component {
             </tr>
           </thead>
           <tbody>
-            { /*props.stays.map((stay, key)=> (
+            { this.props.stays.map((stay, key)=> (
               <ReviewEntryRow
                 showChargesModal={this.props.showChargesModal}
+                stay={stay}
               />
-            )) */}
+            )) }
           </tbody>
         </table>
       </Wrapper>
