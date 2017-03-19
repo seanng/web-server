@@ -26,7 +26,7 @@ module.exports = (io, client) => {
         })
 
       case 'server/FETCH_ROOMS':
-        return fetchRooms(111, (rooms) => {
+        return fetchRooms(1, (rooms) => {
           if (!rooms) {
             return reply({
               type: 'FETCH_ROOMS_ERROR'
@@ -40,7 +40,7 @@ module.exports = (io, client) => {
 
       case 'server/FETCH_STAYS':
         console.log('fetching stays.')
-        return fetchStays(111, (err, stays) => {
+        return fetchStays(1, (err, stays) => {
           if (err) {
             return reply({
               type: 'FETCH_STAYS_ERROR'
@@ -54,8 +54,8 @@ module.exports = (io, client) => {
 
       case 'server/CREATE_ROOM':
       // hotelId obtained from socket token.
-      // for now, pass in fake hotelId of 111
-        return createRoom(111, action.roomNumber, (err, room) => {
+      // for now, pass in fake hotelId of 1
+        return createRoom(1, action.roomNumber, (err, room) => {
           if (err) {
             return reply({
               type: 'CREATE_ROOM_ERROR',
@@ -70,7 +70,7 @@ module.exports = (io, client) => {
 
       case 'server/MAKE_AVAILABLE':
         const { roomNumber, key } = action;
-        return makeAvailable(111, roomNumber, (err) => {
+        return makeAvailable(1, roomNumber, (err) => {
           if (err) {
             return reply({
               type: 'MAKE_AVAILABLE_ERROR',
@@ -85,8 +85,8 @@ module.exports = (io, client) => {
 
       case 'server/DELETE_ROOM':
       // hotelId obtained from socket token.
-      // for now, pass in fake hotelId of 111
-        return deleteRoom(111, action.roomNumber, (err, roomNumber) => {
+      // for now, pass in fake hotelId of 1
+        return deleteRoom(1, action.roomNumber, (err, roomNumber) => {
           if (err) {
             return reply({
               type: 'DELETE_ROOM_ERROR',
@@ -101,8 +101,8 @@ module.exports = (io, client) => {
 
       case 'server/CHECK_IN':
       // hotelId obtained from socket token.
-      // for now, pass in fake hotelId of 111
-        return checkIn(111, action.roomNumber, (err, roomData) => {
+      // for now, pass in fake hotelId of 1
+        return checkIn(1, action.roomNumber, (err, roomData) => {
           if (err) {
             return reply({
               type: 'CHECK_IN_ERROR',

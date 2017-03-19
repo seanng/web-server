@@ -87,7 +87,7 @@ const createRoom = (hotelId, roomNumber, respond) => {
       respond(null, {
         roomNumber,
         employeeId,
-        guestName: '( empty )',
+        customerName: '( empty )',
         status: 'Available',
       }))
     .catch((error)=> {

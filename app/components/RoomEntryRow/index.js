@@ -51,7 +51,6 @@ class RoomEntryRow extends React.Component {
       );
     }
     if (this.props.room.status === 'Checked In') {
-      console.log('this guy:', this.props.room.guestName, 'checkintime:', this.props.room.checkInTime)
       return (
         <span>
           { moment(this.props.room.checkInTime*1).calendar() }

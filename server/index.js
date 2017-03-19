@@ -12,8 +12,9 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const resolve = require('path').resolve;
 const app = express();
 
-const actions = require('./actions')
-const mapUrl = require('./utils/url.js');
+const { preloadData } = require('./db/fakeData');
+const actions = require('./actions');
+const mapUrl = require('./utils/url');
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
@@ -80,6 +81,10 @@ const server = app.listen(port, host, (err) => {
   } else {
     logger.appStarted(port, prettyHost);
   }
+
+  // preload with fake data
+  preloadData();
+
 });
 
 // initialize server-side sockets
