@@ -8,7 +8,7 @@ import {
   SET_VIEW,
   SET_FILTER,
   SELECT_ADD_ROOM,
-  VIEW_CHARGES,
+  SELECT_VIEW_CHARGES,
   CHECK_IN,
   MAKE_AVAILABLE,
   DELETE_ROOM,
@@ -44,10 +44,10 @@ function selectAddRoom(display) {
   };
 }
 
-function viewCharges(stay) {
+function selectViewCharges(stay) {
   return {
-    type: VIEW_CHARGES,
-    display
+    type: SELECT_VIEW_CHARGES,
+    stay
   };
 }
 
@@ -92,7 +92,7 @@ export {
   setView,
   setFilter,
   selectAddRoom,
-  viewCharges,
+  selectViewCharges,
   checkIn,
   makeAvailable,
   createRoom,

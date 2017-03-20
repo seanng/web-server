@@ -7,7 +7,7 @@
 export const SET_VIEW = 'app/FrontDesk/SET_VIEW';
 export const SET_FILTER = 'app/FrontDesk/SET_FILTER';
 export const SELECT_ADD_ROOM = 'app/FrontDesk/SELECT_ADD_ROOM';
-export const VIEW_CHARGES = 'app/FrontDesk/VIEW_CHARGES';
+export const SELECT_VIEW_CHARGES = 'app/FrontDesk/SELECT_VIEW_CHARGES';
 export const FILTER_ROOMS = 'app/FrontDesk/FILTER_ROOMS';
 
 export const CREATE_ROOM = 'server/CREATE_ROOM';

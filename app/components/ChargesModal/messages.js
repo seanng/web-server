@@ -8,6 +8,14 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.ChargesModal.header',
-    defaultMessage: 'This is the ChargesModal component !',
+    defaultMessage: 'Surcharges',
+  },
+  cancel: {
+    id: 'app.components.ChargesModal.cancel',
+    defaultMessage: 'Cancel',
+  },
+  submit: {
+    id: 'app.components.ChargesModal.submit',
+    defaultMessage: 'Send to Haven for Billing',
   },
 });

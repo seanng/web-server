@@ -38,7 +38,7 @@ class ReviewEntryRow extends React.Component {
         <td>{ this.getDuration() }</td>
         <td>HK${ totalCharge }</td>
         <td>
-          <Button onClick={this.showChargesModal}>
+          <Button onClick={this.showChargesModal.bind(this)}>
             <FormattedMessage {...messages.addCharges} />
           </Button>
         </td>

@@ -8,7 +8,7 @@ import Immutable, { fromJS, isImmutable } from 'immutable';
 import {
   SET_VIEW,
   SELECT_ADD_ROOM,
-  VIEW_CHARGES,
+  SELECT_VIEW_CHARGES,
   SET_FILTER,
   FETCH_STAYS,
 } from './constants';
@@ -63,7 +63,7 @@ function frontDeskReducer(state = initialState, action) {
       return state
         .set('fetchStaysError', true)
 
-    case VIEW_CHARGES:
+    case SELECT_VIEW_CHARGES:
       return state
         .set('viewCharges', action.stay)
 

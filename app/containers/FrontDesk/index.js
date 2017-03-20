@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
 import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, getViewCharges, getStays, getReviewLoadingState } from './selectors';
-import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, viewCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
+import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, selectViewCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -48,11 +48,11 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
   }
 
   showChargesModal(stay) {
-    this.props.viewCharges(stay);
+    this.props.selectViewCharges(stay);
   }
 
   hideChargesModal() {
-    this.props.viewCharges(false);
+    this.props.selectViewCharges(false);
   }
 
   renderOverview() {
@@ -84,9 +84,10 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
           isReviewLoading={this.props.isReviewLoading}
           fetchStays={this.props.fetchStays}
           stays={this.props.stays}
+          showChargesModal={this.showChargesModal.bind(this)}
         />
         <ChargesModal
-          show={this.props.viewCharges}
+          show={this.props.getViewCharges}
           hide={this.hideChargesModal.bind(this)}
         />
       </div>
@@ -119,7 +120,7 @@ FrontDesk.propTypes = {
   rooms: PropTypes.object.isRequired,
   view: PropTypes.string.isRequired,
   displayAddRoom: PropTypes.bool.isRequired,
-  viewCharges: PropTypes.bool.isRequired,
+  getViewCharges: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -127,7 +128,7 @@ const mapStateToProps = createStructuredSelector({
   view: getView(),
   rooms: getRoomsByStatus(),
   displayAddRoom: getDisplayAddRoom(),
-  viewCharges: getViewCharges(),
+  getViewCharges: getViewCharges(),
   stays: getStays(),
   isReviewLoading: getReviewLoadingState(),
 });
@@ -147,6 +148,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   selectAddRoom: (display) => {
     dispatch(selectAddRoom(display));
+  },
+  selectViewCharges: (stay) => {
+    dispatch(selectViewCharges(stay))
   },
   createRoom: (roomNumber) => {
     dispatch(createRoom(roomNumber));
