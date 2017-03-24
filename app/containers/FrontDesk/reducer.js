@@ -53,7 +53,6 @@ function frontDeskReducer(state = initialState, action) {
 
     case 'FETCH_STAYS_SUCCESS':
       let stays = action.stays.map(stay => Immutable.Map(stay))
-      console.log('stays:', stays)
       return state
         .set('stays', Immutable.List(stays))
         .set('fetchStaysError', false)
@@ -68,33 +67,30 @@ function frontDeskReducer(state = initialState, action) {
         .set('viewCharges', action.stay)
 
     case 'CREATE_ROOM_ERROR':
-      console.log('create room error', action.err)
       return state
         .set('createRoomError', action.err)
 
     case 'CREATE_ROOM_SUCCESS':
-      console.log('create room success', action.room)
       return state
         .set('createRoomError', false)
         .set('displayAddRoom', false)
-        .update('rooms', rooms => rooms.concat(action.room))
+        .update('rooms', rooms => rooms.set(rooms.size, Immutable.Map(action.room)))
 
     case 'DELETE_ROOM_SUCCESS':
-      console.log("delete room success", action.roomNumber)
       return state
-        .update('rooms', rooms => rooms.filter(room => room.roomNumber !== action.roomNumber))
+        .update('rooms', rooms => rooms.filter(room => room.get('roomNumber') !== action.roomNumber))
 
     case 'MAKE_AVAILABLE_ERROR':
       return
 
     case 'MAKE_AVAILABLE_SUCCESS':
       return state
-        .setIn(['rooms', action.key], {
+        .setIn(['rooms', action.key], Immutable.Map({
           roomNumber: action.roomNumber,
           employeeId: 123,
           status: 'Available',
           guestName: '( empty )'
-        })
+        }))
 
     case 'CHECK_IN_SUCCESS':
       const { roomNumber, status, checkInTime } = action.roomData;

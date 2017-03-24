@@ -60,7 +60,6 @@ class RoomEntryRow extends React.Component {
   }
 
   render() {
-    console.log('this props room:', this.props.room)
     const { roomNumber, customerName, status, checkInTime } = this.props.room;
     const TD = styled.td`
       padding-left: 1.2em!important;
