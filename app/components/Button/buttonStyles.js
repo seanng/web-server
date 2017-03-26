@@ -14,11 +14,15 @@ const buttonStyles = css`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
-  border: 2px solid #41addd;
-  color: #41addd;
+  color: #fff;
+  text-align: center;
 
   &:active {
-    background: #41addd;
+    color: #fff;
+  }
+
+  &:hover {
+    text-decoration: none;
     color: #fff;
   }
 `;

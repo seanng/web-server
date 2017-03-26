@@ -16,7 +16,7 @@ export default defineMessages({
   },
   makeAvailable: {
     id: 'app.components.RoomEntry.makeAvailable',
-    defaultMessage: 'Make Available',
+    defaultMessage: 'Ready',
   },
   checkIn: {
     id: 'app.components.RoomEntry.checkIn',

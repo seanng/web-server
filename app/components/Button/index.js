@@ -10,12 +10,12 @@ import React, { PropTypes, Children } from 'react';
 
 import A from './A';
 import StyledButton from './StyledButton';
-// import Wrapper from './Wrapper';
+import Wrapper from './Wrapper';
 
 function Button(props) {
   // Render an anchor tag
   let button = (
-    <A href={props.href} onClick={props.onClick}>
+    <A href={props.href} onClick={props.onClick} bgColor={props.bgColor} wide={props.wide}>
       {Children.toArray(props.children)}
     </A>
   );
@@ -29,7 +29,11 @@ function Button(props) {
     );
   }
 
-  return button
+  return (
+    <Wrapper>
+      {button}
+    </Wrapper>
+  );
 }
 
 Button.propTypes = {

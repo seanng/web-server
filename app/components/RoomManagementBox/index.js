@@ -66,7 +66,7 @@ const RoomManagementBox = (props) => {
       <Div>
         { RoomEntryList }
         <ButtonWrapper>
-          <Button onClick={props.showAddRoomModal}>
+          <Button onClick={props.showAddRoomModal} bgColor={'#2dc937'}>
             <FormattedMessage {...messages.addRoom} />
           </Button>
         </ButtonWrapper>
