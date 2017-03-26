@@ -34,6 +34,10 @@ injectGlobal`
     line-height: 1.5em;
   }
 
+  .navbar {
+    margin-bottom: 0px;
+  }
+
   .overviewBox {
     border: 1px solid black;
     text-align: left;

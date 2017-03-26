@@ -13,9 +13,20 @@ import messages from './messages';
 function Tab({view, active, clickTab}) {
 
   const Span = active ? styled.span`
-    color: red;
+    color: black;
+    font-weight: 600;
+    margin-left: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
   ` : styled.span`
-    color: gray;
+    color: grey;
+    margin-left: 40px;
+    
+    &:hover {
+      cursor: pointer;
+    }
   `
 
   return (

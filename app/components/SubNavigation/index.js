@@ -13,15 +13,21 @@ import messages from './messages';
 import Tab from '../Tab';
 
 const Div = styled.div`
-  background-color: silver;
+  background-color: #eeeeee;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `
 
 const Title = styled.div`
   color: black;
-  font-weight: 600;
 `
 
-const TabsList = styled.div``
+const TabsList = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
 
 function SubNavigation({title, clickTab, activeView}) {
   let Tabs;
