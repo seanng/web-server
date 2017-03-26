@@ -26,7 +26,6 @@ class ReviewEntryRow extends React.Component {
   }
 
   render () {
-    console.log(this.props.stay)
     const { customerName, roomNumber, checkInTime, checkOutTime, totalCharge } = this.props.stay
     return (
       <tr>

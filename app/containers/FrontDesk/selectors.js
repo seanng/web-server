@@ -43,9 +43,14 @@ const getDisplayAddRoom = () => createSelector(
   (substate) => substate.get('displayAddRoom')
 )
 
-const getViewCharges = () => createSelector(
+const displayChargesModal = () => createSelector(
   selectFrontDeskDomain(),
   (substate) => !!substate.get('viewCharges')
+)
+
+const getCharges = () => createSelector(
+  selectFrontDeskDomain(),
+  (substate) => substate.get('viewCharges') ? substate.get('viewCharges') : {}
 )
 
 const getReviewLoadingState = () => createSelector(
@@ -70,7 +75,8 @@ export {
   getRoomsByStatus,
   getFilter,
   getDisplayAddRoom,
-  getViewCharges,
+  displayChargesModal,
+  getCharges,
   getStays,
   getReviewLoadingState,
 };

@@ -75,6 +75,7 @@ export class Review extends React.Component {
           <tbody>
             { this.props.stays.map((stay, key)=> (
               <ReviewEntryRow
+                key={key}
                 showChargesModal={this.props.showChargesModal}
                 stay={stay}
               />

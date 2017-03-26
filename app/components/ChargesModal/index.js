@@ -30,6 +30,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   body() {
+    console.log('the charges are here', this.props.data)
     return (
       <Modal.Body>
         this is the body.
@@ -41,18 +42,17 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   footer() {
     const ModalFooter = styled.div`
       padding: 15px;
-      text-align: center;
     `
     return (
       <ModalFooter>
         <div className="row">
           <div className="col-xs-6">
-            <Button onClick={this.hide.bind(this)}>
+            <Button onClick={this.hide.bind(this)} wide>
               <FormattedMessage {...messages.cancel} />
             </Button>
           </div>
           <div className="col-xs-6">
-            <Button>
+            <Button wide>
               <FormattedMessage {...messages.submit} />
             </Button>
           </div>
@@ -66,6 +66,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
       <Modal
         show={this.props.show}
         onHide={this.hide.bind(this)}
+        bsSize={'lg'}
       >
         {this.header()}
         {this.body()}

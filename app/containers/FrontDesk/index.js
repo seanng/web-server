@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
-import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, getViewCharges, getStays, getReviewLoadingState } from './selectors';
+import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, displayChargesModal, getCharges, getStays, getReviewLoadingState } from './selectors';
 import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, selectViewCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
@@ -87,7 +87,8 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
           showChargesModal={this.showChargesModal.bind(this)}
         />
         <ChargesModal
-          show={this.props.getViewCharges}
+          data={this.props.getCharges}
+          show={this.props.displayChargesModal}
           hide={this.hideChargesModal.bind(this)}
         />
       </div>
@@ -120,7 +121,8 @@ FrontDesk.propTypes = {
   rooms: PropTypes.object.isRequired,
   view: PropTypes.string.isRequired,
   displayAddRoom: PropTypes.bool.isRequired,
-  getViewCharges: PropTypes.bool.isRequired,
+  displayChargesModal: PropTypes.bool.isRequired,
+  getCharges: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -128,7 +130,8 @@ const mapStateToProps = createStructuredSelector({
   view: getView(),
   rooms: getRoomsByStatus(),
   displayAddRoom: getDisplayAddRoom(),
-  getViewCharges: getViewCharges(),
+  displayChargesModal: displayChargesModal(),
+  getCharges: getCharges(),
   stays: getStays(),
   isReviewLoading: getReviewLoadingState(),
 });
