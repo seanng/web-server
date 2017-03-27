@@ -10,8 +10,8 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
-import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, displayChargesModal, getCharges, getStays, getReviewLoadingState } from './selectors';
-import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, selectViewCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
+import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, displayChargesModal, getCharges, getStay, getStays, getReviewLoadingState } from './selectors';
+import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, fetchCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -47,8 +47,8 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
     this.props.selectAddRoom(false)
   }
 
-  showChargesModal(stay) {
-    this.props.selectViewCharges(stay);
+  showChargesModal(stayId) {
+    this.props.selectViewCharges(stayId);
   }
 
   hideChargesModal() {
@@ -87,7 +87,8 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
           showChargesModal={this.showChargesModal.bind(this)}
         />
         <ChargesModal
-          data={this.props.getCharges}
+          stay={this.props.stay}
+          charges={this.props.charges}
           show={this.props.displayChargesModal}
           hide={this.hideChargesModal.bind(this)}
         />
@@ -131,7 +132,8 @@ const mapStateToProps = createStructuredSelector({
   rooms: getRoomsByStatus(),
   displayAddRoom: getDisplayAddRoom(),
   displayChargesModal: displayChargesModal(),
-  getCharges: getCharges(),
+  charges: getCharges(),
+  stay: getStay(),
   stays: getStays(),
   isReviewLoading: getReviewLoadingState(),
 });
@@ -152,8 +154,8 @@ const mapDispatchToProps = (dispatch) => ({
   selectAddRoom: (display) => {
     dispatch(selectAddRoom(display));
   },
-  selectViewCharges: (stay) => {
-    dispatch(selectViewCharges(stay))
+  selectViewCharges: (stayId) => {
+    dispatch(fetchCharges(stayId))
   },
   createRoom: (roomNumber) => {
     dispatch(createRoom(roomNumber));

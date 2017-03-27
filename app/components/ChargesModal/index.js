@@ -30,7 +30,6 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   body() {
-    console.log('the charges are here', this.props.data)
     return (
       <Modal.Body>
         this is the body.
@@ -62,6 +61,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   render() {
+    console.log('the props in charges modal:', this.props)
     return (
       <Modal
         show={this.props.show}
