@@ -1,8 +1,9 @@
-const { Hotel, Stay, Customer, Employee, sequelize } = require('../../db/config');
+const { Stay, Customer } = require('../../db/config');
 const { reply } = require('../helpers');
 
 const fetchStays = (hotelId, respond) => {
   Stay.findAll({
+    attributes: ['id', 'bookingTime', 'checkInTime', 'checkOutTime', 'roomNumber', 'totalCharge'],
     where: { hotelId },
     include: [ Customer ]
   })
@@ -10,6 +11,7 @@ const fetchStays = (hotelId, respond) => {
     console.log("mamama stays", stays)
     newStays = stays.map(stay => {
       return {
+        id: stay.id,
         bookingTime: stay.bookingTime,
         checkInTime: stay.checkInTime,
         checkOutTime: stay.checkOutTime,
@@ -25,7 +27,6 @@ const fetchStays = (hotelId, respond) => {
 }
 
 module.exports = (client, action) => {
-  console.log('fetching stays.')
   return fetchStays(1, (err, stays) => {
     if (err) {
       console.log('error!', err)
@@ -33,7 +34,6 @@ module.exports = (client, action) => {
         type: 'FETCH_STAYS_ERROR'
       })
     }
-    console.log('fetched stays!', stays)
     return reply(client, {
       type: 'FETCH_STAYS_SUCCESS',
       stays

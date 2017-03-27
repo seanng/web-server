@@ -8,4 +8,5 @@ module.exports = {
   deleteRoom: require('./deleteRoom'),
   checkIn: require('./checkIn'),
   makeAvailable: require('./makeAvailable'),
+  fetchCharges: require('./fetchCharges'),
 }

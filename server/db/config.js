@@ -35,6 +35,11 @@ const Hotel = sequelize.define('hotel', {
 });
 
 const Stay = sequelize.define('stay', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   status: Sequelize.STRING,
   bookingTime: Sequelize.DATE,
   checkInTime: Sequelize.DATE, // Update on check in
@@ -68,7 +73,7 @@ Stay.belongsTo(Customer);
 Hotel.hasMany(Stay);
 Stay.belongsTo(Hotel);
 
-Stay.hasMany(surcharge);
+Stay.hasMany(Surcharge);
 Surcharge.belongsTo(Stay);
 
 const Employee = sequelize.define('employee', {
