@@ -41,23 +41,22 @@ const Stay = sequelize.define('stay', {
   checkOutTime: Sequelize.DATE, // Update on check out
   roomNumber: Sequelize.STRING, // Update on create Room
   roomType: Sequelize.STRING,
-  surcharges: Sequelize.ARRAY(Sequelize.JSON),
-  /* example: [{
-      description: string
-      status: string
-      amount: decimal
-      dateOfCharge: date
-      currency: string
-    }] // Update on adding surcharge */
   roomCharge: Sequelize.JSON,
-  /* example: {
+  /* example roomCharge: {
     status: string
     amount: decimal
     currency: string
   } // Update on check out */
-  totalCharge: Sequelize.DECIMAL, // Update on any charge change
+  totalCharge: Sequelize.DECIMAL(10,2), // Update on any charge change
+  currency: Sequelize.STRING,
 });
 
+const Surcharge = sequelize.define('surcharge', {
+  service: Sequelize.STRING,
+  status: Sequelize.STRING,
+  cost: Sequelize.DECIMAL(10,2),
+  currency: Sequelize.STRING,
+})
 // many-to-many relationship between customers and hotels
 
 Customer.belongsToMany(Hotel, { through: Stay });
@@ -68,6 +67,9 @@ Stay.belongsTo(Customer);
 
 Hotel.hasMany(Stay);
 Stay.belongsTo(Hotel);
+
+Stay.hasMany(surcharge);
+Surcharge.belongsTo(Stay);
 
 const Employee = sequelize.define('employee', {
   regDate: Sequelize.DATE,
@@ -94,4 +96,5 @@ module.exports = {
   Hotel,
   Stay,
   Employee,
+  Surcharge,
 };
