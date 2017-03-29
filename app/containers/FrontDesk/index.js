@@ -78,6 +78,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
   }
 
   renderReview() {
+    console.log('review props:', this.props)
     return (
       <div>
         <FrontDeskReview

@@ -7,9 +7,10 @@
 import React from 'react';
 import { Modal, Form, FormControl } from 'react-bootstrap';
 import Button from '../Button';
+import ChargesList from '../ChargesList';
 import styled from 'styled-components';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from './messages';
 
 class ChargesModal extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -59,8 +60,8 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   body() {
-    return (
-      <Modal.Body>
+    const UpperBody = (
+      <div>
         <div className="row">
           <div className="col-xs-4">
             <FormattedMessage {...messages.client}/>:
@@ -82,7 +83,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
             <FormControl
               id="serviceInput"
               type="text"
-              placeholder="Service"
+              placeholder={ this.props.intl.formatMessage(messages.service) }
               onChange={ this.changeServiceInput.bind(this) }
             />
           </div>
@@ -91,7 +92,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
             <FormControl
               type="number"
               id="priceInput"
-              placeholder="Price"
+              placeholder={ this.props.intl.formatMessage(messages.price) }
               onChange={ this.changePriceInput.bind(this) }
             />
           </div>
@@ -101,10 +102,29 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
             </Button>
           </div>
         </div>
-        this is the body.
-      </Modal.Body>
+      </div>
     )
 
+    const LowerBody = (
+      <div>
+        <div className="row">
+          <div className="col-sm-10">
+            <FormattedMessage {...messages.service} />
+          </div>
+          <div className="col-sm-2">
+            <FormattedMessage {...messages.price} />
+          </div>
+        </div>
+        <ChargesList charges={this.props.charges} />
+      </div>  
+    )
+
+    return (
+      <Modal.Body>
+        { UpperBody }
+        { LowerBody }
+      </Modal.Body>
+    )
   }
 
   footer() {
@@ -137,9 +157,9 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
         onHide={this.hide.bind(this)}
         bsSize={'lg'}
       >
-        {this.header()}
-        {this.body()}
-        {this.footer()}
+        { this.header() }
+        { this.body() }
+        { this.footer() }
       </Modal>
     );
   }
@@ -149,4 +169,4 @@ ChargesModal.propTypes = {
 
 };
 
-export default ChargesModal;
+export default injectIntl(ChargesModal);

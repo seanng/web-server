@@ -30,4 +30,12 @@ export default defineMessages({
     id: 'app.components.ChargesModal.save',
     defaultMessage: 'Update Changes',
   },
+  service: {
+    id: 'app.components.ChargesModal.service',
+    defaultMessage: 'Service',
+  },
+  price: {
+    id: 'app.components.ChargesModal.price',
+    defaultMessage: 'Price',
+  },
 });

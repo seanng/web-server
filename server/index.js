@@ -83,7 +83,7 @@ const server = app.listen(port, host, (err) => {
   }
 
   // preload with fake data
-  preloadData();
+  // preloadData();
 
 });
 
