@@ -39,6 +39,7 @@ fakeData = {
     name: 'W Hotel'
   }],
   stays: [{
+    id: 1,
     hotelId: 1,
     customerId: 1,
     status: 'Checked Out',
@@ -49,6 +50,7 @@ fakeData = {
     totalCharge: 102.59,
     currency: 'HKD',
   }, {
+    id: 2,
     hotelId: 1,
     customerId: 2,
     status: 'Checked Out',
@@ -59,6 +61,7 @@ fakeData = {
     totalCharge: 1203.18,
     currency: 'HKD',
   }, {
+    id: 3, 
     hotelId: 1,
     customerId: 3,
     status: 'Checked Out',
@@ -74,37 +77,31 @@ fakeData = {
     service: 'Massage',
     status: 'Unsettled',
     cost: 30.05,
-    currency: 'HKD',
   }, {
     stayId: 1,
     service: 'Room Service',
     status: 'Unsettled',
     cost: 20.00,
-    currency: 'HKD',
   }, {
     stayId: 2,
     service: 'Room Service',
     status: 'Unsettled',
     cost: 25.50,
-    currency: 'HKD',
   }, {
     stayId: 2,
     service: 'Room Service',
     status: 'Unsettled',
     cost: 102.50,
-    currency: 'HKD',
   }, {
     stayId: 2,
     service: 'Pay TV',
     status: 'Unsettled',
     cost: 10.00,
-    currency: 'HKD',
   }, {
     stayId: 3,
     service: 'Pay TV',
     status: 'Unsettled',
     cost: 100.18,
-    currency: 'HKD',
   }]
 }
 

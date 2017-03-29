@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Form, FormControl } from 'react-bootstrap';
 import Button from '../Button';
 import styled from 'styled-components';
 
@@ -13,6 +13,14 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 class ChargesModal extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  constructor(props) {
+    super(props);
+    this.state = { 
+      serviceInput: '', 
+      priceInput: '',
+    };
+  }
 
   hide() {
     this.props.hide();
@@ -29,9 +37,70 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
     )
   }
 
+  changeServiceInput(e) {
+    this.setState({ serviceInput: e.target.value })
+  }
+
+  changePriceInput(e) {
+    this.setState({ priceInput: e.target.value })
+  }
+
+  addCharge(e) {
+    let charge = {
+      stayId: this.props.stay.id,
+      service: this.state.serviceInput,
+      cost: this.state.priceInput,
+      status: 'Unsettled',
+      updated: false,
+    }
+    this.props.addCharge(charge);
+    document.getElementById('serviceInput').value = '';
+    document.getElementById('priceInput').value = '';
+  }
+
   body() {
     return (
       <Modal.Body>
+        <div className="row">
+          <div className="col-xs-4">
+            <FormattedMessage {...messages.client}/>:
+          </div>
+          <div className="col-xs-8">
+            { this.props.stay.customerName }
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-4">
+            <FormattedMessage {...messages.date} />:
+          </div>
+          <div className="col-xs-8">
+            { this.props.stay.checkInTime }
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-6">
+            <FormControl
+              id="serviceInput"
+              type="text"
+              placeholder="Service"
+              onChange={ this.changeServiceInput.bind(this) }
+            />
+          </div>
+          <div className="col-sm-3">
+            { this.props.stay.currency }
+            <FormControl
+              type="number"
+              id="priceInput"
+              placeholder="Price"
+              onChange={ this.changePriceInput.bind(this) }
+            />
+          </div>
+          <div className="col-sm-3">
+            <Button onClick={this.addCharge.bind(this)}>
+              <FormattedMessage {...messages.add} />
+            </Button>
+          </div>
+        </div>
         this is the body.
       </Modal.Body>
     )
@@ -52,7 +121,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
           </div>
           <div className="col-xs-6">
             <Button wide>
-              <FormattedMessage {...messages.submit} />
+              <FormattedMessage {...messages.save} />
             </Button>
           </div>
         </div>

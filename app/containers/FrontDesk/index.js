@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
 import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, displayChargesModal, getCharges, getStay, getStays, getReviewLoadingState } from './selectors';
-import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, fetchCharges, checkIn, makeAvailable, createRoom, deleteRoom } from './actions';
+import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, fetchCharges, checkIn, makeAvailable, createRoom, deleteRoom, addCharge } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -91,6 +91,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
           charges={this.props.charges}
           show={this.props.displayChargesModal}
           hide={this.hideChargesModal.bind(this)}
+          addCharge={this.props.addCharge.bind(this)}
         />
       </div>
     )
@@ -108,8 +109,8 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
           <SubHeader
             title={this.props.view}
           />
-          {this.props.view === 'overview' && this.renderOverview()}
-          {this.props.view === 'review' && this.renderReview()}
+          { this.props.view === 'overview' && this.renderOverview() }
+          { this.props.view === 'review' && this.renderReview() }
         </div>
       </div>
     );
@@ -123,7 +124,7 @@ FrontDesk.propTypes = {
   view: PropTypes.string.isRequired,
   displayAddRoom: PropTypes.bool.isRequired,
   displayChargesModal: PropTypes.bool.isRequired,
-  getCharges: PropTypes.object.isRequired,
+  getCharges: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -139,6 +140,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  addCharge: (charge) => {
+    dispatch(addCharge(charge));
+  },
   fetchRooms: () => {
     dispatch(fetchRooms());
   },

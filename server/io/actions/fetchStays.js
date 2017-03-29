@@ -12,6 +12,7 @@ const fetchStays = (hotelId, respond) => {
     newStays = stays.map(stay => {
       return {
         id: stay.id,
+        currency: stay.currency,
         bookingTime: stay.bookingTime,
         checkInTime: stay.checkInTime,
         checkOutTime: stay.checkOutTime,

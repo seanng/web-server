@@ -60,7 +60,6 @@ const Surcharge = sequelize.define('surcharge', {
   service: Sequelize.STRING,
   status: Sequelize.STRING,
   cost: Sequelize.DECIMAL(10,2),
-  currency: Sequelize.STRING,
 })
 // many-to-many relationship between customers and hotels
 

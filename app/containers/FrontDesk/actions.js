@@ -5,6 +5,7 @@
  */
 
 import {
+  ADD_CHARGE,
   SET_VIEW,
   SET_FILTER,
   SELECT_ADD_ROOM,
@@ -92,7 +93,12 @@ function fetchStays() {
   }
 }
 
-
+function addCharge(charge) {
+  return {
+    type: ADD_CHARGE,
+    charge
+  }
+}
 
 export {
   setView,
@@ -105,4 +111,5 @@ export {
   deleteRoom,
   fetchStays,
   fetchRooms,
+  addCharge,
 }

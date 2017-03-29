@@ -6,6 +6,7 @@
 
 import Immutable, { fromJS, isImmutable } from 'immutable';
 import {
+  ADD_CHARGE,
   SET_VIEW,
   SELECT_ADD_ROOM,
   SET_FILTER,
@@ -73,7 +74,10 @@ function frontDeskReducer(state = initialState, action) {
         .set('stay', stays.get(stayIndex))
 
     case 'FETCH_CHARGES_SUCCESS':
-      let charges = action.charges.map(charge => Immutable.Map(charge))
+      let charges = action.charges.map(charge => {
+        charge.updated = true;
+        return Immutable.Map(charge);
+      })
       console.log('charges success.', state.get('viewCharges'))
       return state
         .set('charges', Immutable.List(charges))
@@ -132,6 +136,10 @@ function frontDeskReducer(state = initialState, action) {
     case SET_FILTER:
       return state
         .set('filter', action.filter)
+
+    case ADD_CHARGE: 
+      return state
+        .update('charges', charges => charges.set(charges.size, Immutable.Map(action.charge)))
 
     default:
       return state;
