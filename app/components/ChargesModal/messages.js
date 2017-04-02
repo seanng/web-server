@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.ChargesModal.header',
-    defaultMessage: 'Surcharges',
+    defaultMessage: 'Surcharges for {name} on {date}',
   },
   client: {
     id: 'app.components.ChargesModal.client',
@@ -30,12 +30,12 @@ export default defineMessages({
     id: 'app.components.ChargesModal.save',
     defaultMessage: 'Update Changes',
   },
-  service: {
-    id: 'app.components.ChargesModal.service',
-    defaultMessage: 'Service',
-  },
   price: {
     id: 'app.components.ChargesModal.price',
-    defaultMessage: 'Price',
+    defaultMessage: 'Price ({currency})',
+  },
+  service: {
+    id: 'app.components.ChargesList.service',
+    defaultMessage: 'Service',
   },
 });

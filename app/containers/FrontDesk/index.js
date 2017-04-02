@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 
 import { getFilter, getRoomsByStatus, getView, getDisplayAddRoom, displayChargesModal, getCharges, getStay, getStays, getReviewLoadingState } from './selectors';
-import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, fetchCharges, checkIn, makeAvailable, createRoom, deleteRoom, addCharge } from './actions';
+import { fetchRooms, fetchStays, setView, setFilter, selectAddRoom, fetchCharges, checkIn, makeAvailable, createRoom, deleteRoom, addCharge, saveCharges } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
@@ -93,6 +93,7 @@ export class FrontDesk extends React.Component { // eslint-disable-line react/pr
           show={this.props.displayChargesModal}
           hide={this.hideChargesModal.bind(this)}
           addCharge={this.props.addCharge.bind(this)}
+          saveCharges={this.props.saveCharges.bind(this)}
         />
       </div>
     )
@@ -143,6 +144,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   addCharge: (charge) => {
     dispatch(addCharge(charge));
+  },
+  saveCharges: (newCharges) => {
+    dispatch(saveCharges(newCharges))
   },
   fetchRooms: () => {
     dispatch(fetchRooms());

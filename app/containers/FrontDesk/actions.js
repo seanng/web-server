@@ -6,6 +6,7 @@
 
 import {
   ADD_CHARGE,
+  SAVE_CHARGES,
   SET_VIEW,
   SET_FILTER,
   SELECT_ADD_ROOM,
@@ -100,6 +101,13 @@ function addCharge(charge) {
   }
 }
 
+function saveCharges(charges) {
+  return {
+    type: SAVE_CHARGES,
+    charges
+  }
+}
+
 export {
   setView,
   setFilter,
@@ -112,4 +120,5 @@ export {
   fetchStays,
   fetchRooms,
   addCharge,
+  saveCharges,
 }

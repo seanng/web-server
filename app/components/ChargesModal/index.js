@@ -14,43 +14,30 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from './messages';
 
 class ChargesModal extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-
-  constructor(props) {
-    super(props);
-    this.state = { 
-      serviceInput: '', 
-      priceInput: '',
-    };
-  }
-
-  hide() {
-    this.props.hide();
-  }
-
   header() {
     const H4 = styled.h4`
       font-size: 1.5em;
     `
     return (
       <Modal.Header closeButton>
-        <H4><FormattedMessage {...messages.header} /></H4>
+        <H4>
+          <FormattedMessage 
+            {...messages.header} 
+            values={{
+              name: this.props.stay.customerName, 
+              date: this.props.stay.checkInTime
+            }} 
+          />&nbsp;
+        </H4>
       </Modal.Header>
     )
-  }
-
-  changeServiceInput(e) {
-    this.setState({ serviceInput: e.target.value })
-  }
-
-  changePriceInput(e) {
-    this.setState({ priceInput: e.target.value })
   }
 
   addCharge(e) {
     let charge = {
       stayId: this.props.stay.id,
-      service: this.state.serviceInput,
-      cost: this.state.priceInput,
+      service: document.getElementById('serviceInput').value,
+      cost: document.getElementById('priceInput').value,
       status: 'Unsettled',
       updated: false,
     }
@@ -59,70 +46,47 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
     document.getElementById('priceInput').value = '';
   }
 
+  saveCharges(e) {
+    let newCharges = this.props.charges.filter(charge => charges.updated === false)
+    this.props.saveCharges(newCharges);
+  }
+
   body() {
+    const Upper = styled.div`
+      padding-bottom: 20px;
+      border-bottom: 1px dotted silver;
+    `
+
     const UpperBody = (
-      <div>
+      <Upper>
         <div className="row">
-          <div className="col-xs-4">
-            <FormattedMessage {...messages.client}/>:
-          </div>
-          <div className="col-xs-8">
-            { this.props.stay.customerName }
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-4">
-            <FormattedMessage {...messages.date} />:
-          </div>
-          <div className="col-xs-8">
-            { this.props.stay.checkInTime }
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-6">
+          <div className="col-sm-7">
             <FormControl
               id="serviceInput"
               type="text"
               placeholder={ this.props.intl.formatMessage(messages.service) }
-              onChange={ this.changeServiceInput.bind(this) }
             />
           </div>
           <div className="col-sm-3">
-            { this.props.stay.currency }
             <FormControl
               type="number"
               id="priceInput"
-              placeholder={ this.props.intl.formatMessage(messages.price) }
-              onChange={ this.changePriceInput.bind(this) }
+              placeholder={ this.props.intl.formatMessage(messages.price, { currency: this.props.stay.currency }) }
             />
           </div>
-          <div className="col-sm-3">
-            <Button onClick={this.addCharge.bind(this)}>
+          <div className="col-sm-2">
+            <Button onClick={this.addCharge.bind(this)} wide>
               <FormattedMessage {...messages.add} />
             </Button>
           </div>
         </div>
-      </div>
+      </Upper>
     )
-
-    const LowerBody = (
-      <div>
-        <div className="row">
-          <div className="col-sm-10">
-            <FormattedMessage {...messages.service} />
-          </div>
-          <div className="col-sm-2">
-            <FormattedMessage {...messages.price} />
-          </div>
-        </div>
-        <ChargesList charges={this.props.charges} />
-      </div>  
-    )
-
+    
     return (
       <Modal.Body>
         { UpperBody }
-        { LowerBody }
+        <ChargesList charges={this.props.charges} currency={this.props.stay.currency} />
       </Modal.Body>
     )
   }
@@ -135,12 +99,12 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
       <ModalFooter>
         <div className="row">
           <div className="col-xs-6">
-            <Button onClick={this.hide.bind(this)} wide>
+            <Button onClick={this.props.hide.bind(this)} wide>
               <FormattedMessage {...messages.cancel} />
             </Button>
           </div>
           <div className="col-xs-6">
-            <Button wide>
+            <Button onClick={this.props.saveCharges.bind(this)} wide>
               <FormattedMessage {...messages.save} />
             </Button>
           </div>
@@ -150,11 +114,10 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   render() {
-    console.log('the props in charges modal:', this.props)
     return (
       <Modal
         show={this.props.show}
-        onHide={this.hide.bind(this)}
+        onHide={this.props.hide.bind(this)}
         bsSize={'lg'}
       >
         { this.header() }

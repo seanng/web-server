@@ -10,6 +10,7 @@ export const SELECT_ADD_ROOM = 'app/FrontDesk/SELECT_ADD_ROOM';
 export const FILTER_ROOMS = 'app/FrontDesk/FILTER_ROOMS';
 export const HIDE_CHARGES_MODAL = 'app/FrontDesk/HIDE_CHARGES_MODAL';
 export const ADD_CHARGE = 'app/FrontDesk/ADD_CHARGE';
+export const SAVE_CHARGES = 'app/FrontDesk/SAVE_CHARGES';
 
 export const CREATE_ROOM = 'server/CREATE_ROOM';
 export const DELETE_ROOM = 'server/DELETE_ROOM';

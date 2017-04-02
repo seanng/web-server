@@ -3,12 +3,11 @@ const { reply } = require('../helpers');
 
 const fetchStays = (hotelId, respond) => {
   Stay.findAll({
-    attributes: ['id', 'bookingTime', 'checkInTime', 'checkOutTime', 'roomNumber', 'totalCharge'],
+    attributes: ['id', 'bookingTime', 'checkInTime', 'checkOutTime', 'roomNumber', 'totalCharge', 'currency'],
     where: { hotelId },
     include: [ Customer ]
   })
   .then(stays => {
-    console.log("mamama stays", stays)
     newStays = stays.map(stay => {
       return {
         id: stay.id,
