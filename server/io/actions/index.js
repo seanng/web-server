@@ -8,4 +8,5 @@ module.exports = {
   checkIn: require('./checkIn'),
   makeAvailable: require('./makeAvailable'),
   fetchCharges: require('./fetchCharges'),
+  saveCharges: require('./saveCharges'),
 }

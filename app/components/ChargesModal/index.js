@@ -37,7 +37,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
     let charge = {
       stayId: this.props.stay.id,
       service: document.getElementById('serviceInput').value,
-      cost: document.getElementById('priceInput').value,
+      charge: (document.getElementById('priceInput').value*1).toFixed(2),
       status: 'Unsettled',
       updated: false,
     }
@@ -47,8 +47,10 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   saveCharges(e) {
-    let newCharges = this.props.charges.filter(charge => charges.updated === false)
-    this.props.saveCharges(newCharges);
+    let newCharges = this.props.charges.filter(charge => charge.updated === false);
+    let newTotal = newCharges.reduce((prev, current) => (prev*1 + current.charge*1).toFixed(2), this.props.stay.totalCharge*1)
+    let stayId = this.props.stay.id;
+    this.props.saveCharges(newCharges, newTotal, stayId);
   }
 
   body() {
@@ -104,7 +106,7 @@ class ChargesModal extends React.PureComponent { // eslint-disable-line react/pr
             </Button>
           </div>
           <div className="col-xs-6">
-            <Button onClick={this.props.saveCharges.bind(this)} wide>
+            <Button onClick={this.saveCharges.bind(this)} wide>
               <FormattedMessage {...messages.save} />
             </Button>
           </div>

@@ -145,8 +145,8 @@ const mapDispatchToProps = (dispatch) => ({
   addCharge: (charge) => {
     dispatch(addCharge(charge));
   },
-  saveCharges: (newCharges) => {
-    dispatch(saveCharges(newCharges))
+  saveCharges: (newCharges, newTotal, stayId) => {
+    dispatch(saveCharges(newCharges, newTotal, stayId))
   },
   fetchRooms: () => {
     dispatch(fetchRooms());

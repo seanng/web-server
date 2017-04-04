@@ -74,13 +74,12 @@ function frontDeskReducer(state = initialState, action) {
         .set('stay', stays.get(stayIndex))
 
     case 'FETCH_CHARGES_SUCCESS':
-      let charges = action.charges.map(charge => {
+      let newCharges = action.charges.map(charge => {
         charge.updated = true;
         return Immutable.Map(charge);
       })
-      console.log('charges success.', state.get('viewCharges'))
       return state
-        .set('charges', Immutable.List(charges))
+        .set('charges', Immutable.List(newCharges))
         .set('fetchChargesError', false)
         .set('viewCharges', true)
 
@@ -121,7 +120,7 @@ function frontDeskReducer(state = initialState, action) {
         }))
 
     case 'CHECK_IN_SUCCESS':
-      const { roomNumber, status, checkInTime } = action.roomData;
+      let { roomNumber, status, checkInTime } = action.roomData;
       return state
       .update('rooms', rooms =>
         rooms
@@ -140,6 +139,22 @@ function frontDeskReducer(state = initialState, action) {
     case ADD_CHARGE: 
       return state
         .update('charges', charges => charges.set(charges.size, Immutable.Map(action.charge)))
+
+    case 'SAVE_CHARGES_SUCCESS':
+      let updatedCharges = action.charges.map(charge => {
+        charge.updated = true;
+        return Immutable.Map(charge);
+      })
+      return state
+        .set('charges', Immutable.List(updatedCharges))
+        .set('fetchChargesError', false)
+        .set('viewCharges', false)
+        .update('stays', stays => 
+          stays.update(stays.findIndex(stay => 
+            stay.get('id') == action.stayId
+          ), stay =>
+            stay.set('totalCharge', action.newTotal)
+          ))
 
     default:
       return state;

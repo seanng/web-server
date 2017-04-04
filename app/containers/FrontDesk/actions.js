@@ -101,10 +101,12 @@ function addCharge(charge) {
   }
 }
 
-function saveCharges(charges) {
+function saveCharges(charges, newTotal, stayId) {
   return {
     type: SAVE_CHARGES,
-    charges
+    charges,
+    newTotal,
+    stayId
   }
 }
 

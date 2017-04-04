@@ -33,7 +33,7 @@ const BottomRow = ({ charges }) => (
       <b><FormattedMessage {...messages.total} /></b>            
     </div>
     <div className="col-sm-2">
-      <b>{ charges.reduce((prev, current) => (prev*1 + current.cost*1).toFixed(2), 0) }</b>
+      <b>{ charges.reduce((prev, current) => (prev*1 + current.charge*1).toFixed(2), 0) }</b>
     </div>
   </div>
 )
@@ -50,7 +50,7 @@ const ChargeRow = ({ charge }) => (
       { charge.status === 'Settled' ? 'Yes' : 'No' }
     </div>
     <div className="col-sm-2">
-      {charge.cost}
+      {charge.charge}
     </div>
   </div>
 )

@@ -29,14 +29,24 @@ fakeData = {
   }],
   hotels: [{
     name: 'Regal Hotel Wanchai',
+    rate: 400.00,
+    currency: 'HKD',
   }, {
     name: 'Sheraton Hotel Kowloon',
+    rate: 400.00,
+    currency: 'HKD',
   }, {
     name: 'Stevenage Hotel',
+    rate: 400.00,
+    currency: 'HKD',
   }, {
     name: 'Westin Hotel',
+    rate: 400.00,
+    currency: 'HKD',
   }, {
-    name: 'W Hotel'
+    name: 'W Hotel',
+    rate: 400.00,
+    currency: 'HKD',
   }],
   stays: [{
     id: 1,
@@ -44,64 +54,64 @@ fakeData = {
     customerId: 1,
     status: 'Checked Out',
     roomNumber: 410,
-    bookingTime: 1469381804189,
-    checkInTime: 1470381804189,
-    checkOutTime: 1470381904189,
-    totalCharge: 102.59,
-    currency: 'HKD',
+    bookingTime: 1491015600000,
+    checkInTime: 1491019200000,
+    checkOutTime: 1491026400000,
+    roomCharge: 800.00,
+    totalCharge: 850.05,
   }, {
     id: 2,
     hotelId: 1,
     customerId: 2,
     status: 'Checked Out',
     roomNumber: 1029,
-    bookingTime: 1469381804189,
-    checkInTime: 1470381804189,
-    checkOutTime: 1470381904189,
-    totalCharge: 1203.18,
-    currency: 'HKD',
+    bookingTime: 1491026400000,
+    checkInTime: 1491031800000,
+    checkOutTime: 1491042600000,
+    roomCharge: 1200.00,
+    totalCharge: 1338.00,
   }, {
     id: 3, 
     hotelId: 1,
     customerId: 3,
     status: 'Checked Out',
     roomNumber: 1023,
-    bookingTime: 1469381804189,
-    checkInTime: 1470381804189,
-    checkOutTime: 1470381904189,
-    totalCharge: 1603.30,
-    currency: 'HKD',
+    bookingTime: 1491129000000,
+    checkInTime: 1491131700000,
+    checkOutTime: 1491138900000,
+    roomCharge: 800.00,
+    totalCharge: 900.18,
   }],
   surcharges: [{
     stayId: 1,
     service: 'Massage',
     status: 'Unsettled',
-    cost: 30.05,
+    charge: 30.05,
   }, {
     stayId: 1,
     service: 'Room Service',
     status: 'Unsettled',
-    cost: 20.00,
+    charge: 20.00,
   }, {
     stayId: 2,
     service: 'Room Service',
     status: 'Unsettled',
-    cost: 25.50,
+    charge: 25.50,
   }, {
     stayId: 2,
     service: 'Room Service',
     status: 'Unsettled',
-    cost: 102.50,
+    charge: 102.50,
   }, {
     stayId: 2,
     service: 'Pay TV',
     status: 'Unsettled',
-    cost: 10.00,
+    charge: 10.00,
   }, {
     stayId: 3,
     service: 'Pay TV',
     status: 'Unsettled',
-    cost: 100.18,
+    charge: 100.18,
   }]
 }
 
@@ -118,20 +128,20 @@ module.exports = {
     })
     .then(function() {
       fakeData.hotels.forEach(hotel => {
-        const { name } = hotel;
-        return Hotel.create({ name });
+        const { name, rate, currency } = hotel;
+        return Hotel.create({ name, rate, currency });
       })
     })
     .then(function() {
       fakeData.stays.forEach(stay => {
-        const { hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, currency } = stay;
-        return Stay.create({ hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, currency });
+        const { hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, roomCharge } = stay;
+        return Stay.create({ hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, roomCharge });
       })
     })
     .then(function() {
       fakeData.surcharges.forEach(surcharge => {
-        const { stayId, service, status, cost, currency } = surcharge;
-        return Surcharge.create({ stayId, service, status, cost, currency });
+        const { stayId, service, status, charge } = surcharge;
+        return Surcharge.create({ stayId, service, status, charge });
       })
     })
     .then(function() {

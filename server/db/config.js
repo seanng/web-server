@@ -29,8 +29,8 @@ const Hotel = sequelize.define('hotel', {
   long: Sequelize.DECIMAL,
   address: Sequelize.STRING,
   paymentInfo: Sequelize.JSON, // <-- this needs to be looked into further
-  rate: Sequelize.DECIMAL, // <-- hourly? or per minute?
-  rateCurrency: Sequelize.STRING,
+  rate: Sequelize.DECIMAL(10,2), // <-- hourly? or per minute?
+  currency: Sequelize.STRING,
   rating: Sequelize.DECIMAL,
 });
 
@@ -46,20 +46,14 @@ const Stay = sequelize.define('stay', {
   checkOutTime: Sequelize.DATE, // Update on check out
   roomNumber: Sequelize.STRING, // Update on create Room
   roomType: Sequelize.STRING,
-  roomCharge: Sequelize.JSON,
-  /* example roomCharge: {
-    status: string
-    amount: decimal
-    currency: string
-  } // Update on check out */
-  totalCharge: Sequelize.DECIMAL(10,2), // Update on any charge change
-  currency: Sequelize.STRING,
+  roomCharge: Sequelize.DECIMAL(10,2),
+  totalCharge: Sequelize.DECIMAL(10,2),
 });
 
 const Surcharge = sequelize.define('surcharge', {
   service: Sequelize.STRING,
   status: Sequelize.STRING,
-  cost: Sequelize.DECIMAL(10,2),
+  charge: Sequelize.DECIMAL(10,2),
 })
 // many-to-many relationship between customers and hotels
 

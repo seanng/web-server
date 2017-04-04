@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   date: {
     id: 'app.components.FrontDeskReview.date',
-    defaultMessage: 'Date',
+    defaultMessage: 'Date(s)',
   },
   guest: {
     id: 'app.components.FrontDeskReview.guest',
@@ -30,12 +30,16 @@ export default defineMessages({
     id: 'app.components.FrontDeskReview.duration',
     defaultMessage: 'Duration',
   },
-  earnings: {
-    id: 'app.components.FrontDeskReview.earnings',
-    defaultMessage: 'Earnings',
+  roomCharge: {
+    id: 'app.components.FrontDeskReview.roomCharge',
+    defaultMessage: 'Room Charge',
   },
   surcharges: {
     id: 'app.components.FrontDeskReview.surcharges',
     defaultMessage: 'Surcharges',
+  },
+  total: {
+    id: 'app.components.FrontDeskReview.total',
+    defaultMessage: 'Total',
   },
 });

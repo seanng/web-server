@@ -65,10 +65,13 @@ export class Review extends React.Component {
                 <FormattedMessage {...messages.duration} />
               </th>
               <th>
-                <FormattedMessage {...messages.earnings} />
+                <FormattedMessage {...messages.roomCharge} />
               </th>
               <th>
                 <FormattedMessage {...messages.surcharges} />
+              </th>
+              <th>
+                <FormattedMessage {...messages.total} />
               </th>
             </tr>
           </thead>

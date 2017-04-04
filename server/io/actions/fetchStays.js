@@ -1,23 +1,25 @@
-const { Stay, Customer } = require('../../db/config');
+const { Stay, Customer, Hotel } = require('../../db/config');
 const { reply } = require('../helpers');
 
 const fetchStays = (hotelId, respond) => {
   Stay.findAll({
-    attributes: ['id', 'bookingTime', 'checkInTime', 'checkOutTime', 'roomNumber', 'totalCharge', 'currency'],
+    attributes: ['id', 'bookingTime', 'checkInTime', 'checkOutTime', 'roomNumber', 'roomCharge', 'totalCharge'],
     where: { hotelId },
-    include: [ Customer ]
+    include: [ Customer, Hotel ]
   })
   .then(stays => {
+    console.log('stays!!!', stays)
     newStays = stays.map(stay => {
       return {
         id: stay.id,
-        currency: stay.currency,
         bookingTime: stay.bookingTime,
         checkInTime: stay.checkInTime,
         checkOutTime: stay.checkOutTime,
+        currency: stay.hotel.currency,
         customerName: `${stay.customer.firstName} ${stay.customer.lastName}`,
         roomNumber: stay.roomNumber,
-        totalCharge: stay.totalCharge
+        roomCharge: stay.roomCharge,
+        totalCharge: stay.totalCharge,
       }
     })
     console.log('newStays', newStays)
