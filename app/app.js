@@ -34,6 +34,9 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
+// Import vendor files
+import '!!style-loader!css-loader!../vendor/css/bootstrap.min.css'; // bootstrap
+
 import configureStore from './store';
 
 // Import i18n messages
