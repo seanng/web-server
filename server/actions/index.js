@@ -1,5 +1,10 @@
 // Export route actions here!
+const auth = require('./auth');
+const customer = require('./customer');
+const stays = require('./stays');
+
 module.exports = {
-  //i.e.: login: require('./login')
-  stays: require('./stays'),
+  auth,
+  stays,
+  Customer,
 }
