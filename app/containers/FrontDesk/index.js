@@ -142,43 +142,30 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addCharge: (charge) => {
-    dispatch(addCharge(charge));
-  },
-  saveCharges: (newCharges, newTotal, stayId) => {
-    dispatch(saveCharges(newCharges, newTotal, stayId))
-  },
-  fetchRooms: () => {
-    dispatch(fetchRooms());
-  },
-  fetchStays: () => {
-    dispatch(fetchStays());
-  },
-  setView: (view) => {
-    dispatch(setView(view));
-  },
-  setFilter: (filter) => {
-    dispatch(setFilter(filter));
-  },
-  selectAddRoom: (display) => {
-    dispatch(selectAddRoom(display));
-  },
-  selectViewCharges: (stayId) => {
-    dispatch(fetchCharges(stayId))
-  },
-  createRoom: (roomNumber) => {
-    dispatch(createRoom(roomNumber));
-  },
-  checkIn: (roomNumber) => {
-    dispatch(checkIn(roomNumber));
-  },
-  makeAvailable: (roomNumber, key) => {
-    dispatch(makeAvailable(roomNumber, key));
-  },
-  deleteRoom: (roomNumber) => {
-    dispatch(deleteRoom(roomNumber));
-  },
+  addCharge: (charge) => 
+    dispatch(addCharge(charge)),
+  saveCharges: (newCharges, newTotal, stayId) => 
+    dispatch(saveCharges(newCharges, newTotal, stayId)),
+  fetchRooms: () => 
+    dispatch(fetchRooms()),
+  fetchStays: () => 
+    dispatch(fetchStays()),
+  setView: (view) => 
+    dispatch(setView(view)),
+  setFilter: (filter) => 
+    dispatch(setFilter(filter)),
+  selectAddRoom: (display) =>
+    dispatch(selectAddRoom(display)),
+  selectViewCharges: (stayId) =>
+    dispatch(fetchCharges(stayId)),
+  createRoom: (roomNumber) =>
+    dispatch(createRoom(roomNumber)),
+  checkIn: (roomNumber) =>
+    dispatch(checkIn(roomNumber)),
+  makeAvailable: (roomNumber, key) =>
+    dispatch(makeAvailable(roomNumber, key)),
+  deleteRoom: (roomNumber) =>
+    dispatch(deleteRoom(roomNumber)),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(FrontDesk);

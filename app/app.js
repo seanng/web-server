@@ -16,6 +16,9 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
+// Import vendor files
+import '!!style-loader!css-loader!../vendor/css/bootstrap.min.css'; // bootstrap
+
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -34,8 +37,6 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
-// Import vendor files
-import '!!style-loader!css-loader!../vendor/css/bootstrap.min.css'; // bootstrap
 
 import configureStore from './store';
 
