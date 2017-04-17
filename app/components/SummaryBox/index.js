@@ -68,7 +68,9 @@ const SummaryBox = ({summary}) => {
 };
 
 const Wrapper = styled.div`
+  height: calc(50% - 2em);
   margin-bottom: 2em;
+  overflow: auto;
 `
 
 const Div = styled.div`

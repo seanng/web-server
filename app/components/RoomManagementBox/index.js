@@ -50,7 +50,7 @@ const RoomManagementBox = (props) => {
   );
 
   return (
-    <div className="overviewBox">
+    <Wrapper className="overviewBox">
       <div className="overviewBoxHeader">
         <div className="row">
           <div className="col-xs-6">
@@ -71,9 +71,13 @@ const RoomManagementBox = (props) => {
           </Button>
         </ButtonWrapper>
       </Div>
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  height: 100%
+`
 
 const H3 = styled.h3`
   padding-top: 8px;

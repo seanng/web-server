@@ -13,14 +13,14 @@ export class Overview extends React.Component { // eslint-disable-line react/pre
 
   render() {
     return (
-      <div className="row">
-        <div className="col-sm-5">
+      <div className="row body-wrapper">
+        <div className="col-sm-5 column-wrapper">
           <SummaryBox
             summary={this.props.summary}
           />
           <ActivityFeedBox />
         </div>
-        <div className="col-sm-7">
+        <div className="col-sm-7 column-wrapper">
           <RoomManagementBox
             setFilter={this.props.setFilter}
             rooms={this.props.rooms}

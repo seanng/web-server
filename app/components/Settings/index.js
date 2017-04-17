@@ -26,6 +26,7 @@ class Settings extends React.PureComponent { // eslint-disable-line react/prefer
       display: block;
       fontSize: 16px;
       marginBottom: 15px;
+      cursor: pointer;
     `;
 
     return (

@@ -11,10 +11,6 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import ReviewEntryRow from '../ReviewEntryRow';
 
-const Wrapper = styled.div`
-
-`
-
 export class Review extends React.Component {
 
   constructor(props) {
@@ -42,7 +38,7 @@ export class Review extends React.Component {
   hasLoaded() {
     console.log('hasloaded.');
     return (
-      <Wrapper>
+      <div className="body-wrapper">
         <table className="table">
           <thead>
             <tr>
@@ -85,7 +81,7 @@ export class Review extends React.Component {
             )) }
           </tbody>
         </table>
-      </Wrapper>
+      </div>
     )
   }
 
