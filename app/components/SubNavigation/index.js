@@ -45,6 +45,7 @@ function SubNavigation({title, clickTab, activeView}) {
       <span>
         <Tab view={'earnings'} clickTab={clickTab} active={activeView === 'earnings'} />
         <Tab view={'hotelProfile'} clickTab={clickTab} active={activeView === 'hotelProfile'} />
+        <Tab view={'teamManagement'} clickTab={clickTab} active={activeView === 'teamManagement'} />
         <Tab view={'settings'} clickTab={clickTab} active={activeView === 'settings'} />
       </span>
     )
@@ -54,10 +55,10 @@ function SubNavigation({title, clickTab, activeView}) {
     <Div>
       <div className="container">
         <div className="row">
-          <Title className="col-xs-7">
+          <Title className="col-xs-4">
             <FormattedMessage {...messages[title]} />
           </Title>
-          <TabsList className="col-xs-5" title={title}>
+          <TabsList className="col-xs-8" title={title}>
             { Tabs }
           </TabsList>
         </div>

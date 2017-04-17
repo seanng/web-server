@@ -30,4 +30,8 @@ export default defineMessages({
     id: 'app.components.SubHeader.settings',
     defaultMessage: 'Settings',
   },
+  teamManagement: {
+    id: 'app.components.SubHeader.teamManagement',
+    defaultMessage: 'Team Management',
+  },
 });

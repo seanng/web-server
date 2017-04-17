@@ -22,6 +22,10 @@ export default defineMessages({
     id: 'app.components.Tab.hotelProfile',
     defaultMessage: 'Hotel Profile',
   },
+  teamManagement: {
+    id: 'app.components.Tab.teamManagement',
+    defaultMessage: 'Team Management',
+  },
   settings: {
     id: 'app.components.Tab.settings',
     defaultMessage: 'Settings',
