@@ -6,7 +6,7 @@ const sequelize = new Sequelize('haven', 'root', 'Ca$hmere1', {
   dialect: 'postgres',
 });
 
-const Customer = sequelize.define('Customer', {
+const Customer = sequelize.define('customer', {
   regDate: Sequelize.DATE,
   username: Sequelize.STRING,
   password: Sequelize.STRING,
@@ -20,7 +20,7 @@ const Customer = sequelize.define('Customer', {
   rating: Sequelize.DECIMAL,
 });
 
-const Hotel = sequelize.define('Hotel', {
+const Hotel = sequelize.define('hotel', {
   regDate: Sequelize.DATE,
   name: Sequelize.STRING,
   description: Sequelize.TEXT,
@@ -29,40 +29,47 @@ const Hotel = sequelize.define('Hotel', {
   long: Sequelize.DECIMAL,
   address: Sequelize.STRING,
   paymentInfo: Sequelize.JSON, // <-- this needs to be looked into further
-  rate: Sequelize.DECIMAL, // <-- hourly? or per minute?
-  rateCurrency: Sequelize.STRING,
+  rate: Sequelize.DECIMAL(10,2), // <-- hourly? or per minute?
+  currency: Sequelize.STRING,
   rating: Sequelize.DECIMAL,
 });
 
-const Stay = sequelize.define('Stay', {
+const Stay = sequelize.define('stay', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   status: Sequelize.STRING,
   bookingTime: Sequelize.DATE,
   checkInTime: Sequelize.DATE, // Update on check in
   checkOutTime: Sequelize.DATE, // Update on check out
   roomNumber: Sequelize.STRING, // Update on create Room
   roomType: Sequelize.STRING,
-  surcharges: Sequelize.ARRAY(Sequelize.JSON),
-  /* example: [{
-      description: string
-      status: string
-      amount: decimal
-      dateOfCharge: date
-      currency: string
-    }] // Update on adding surcharge */
-  roomCharge: Sequelize.JSON,
-  /* example: {
-    status: string
-    amount: decimal
-    currency: string
-  } // Update on check out */
-  totalCharge: Sequelize.DECIMAL, // Update on any charge change
+  roomCharge: Sequelize.DECIMAL(10,2),
+  totalCharge: Sequelize.DECIMAL(10,2),
 });
 
+const Surcharge = sequelize.define('surcharge', {
+  service: Sequelize.STRING,
+  status: Sequelize.STRING,
+  charge: Sequelize.DECIMAL(10,2),
+})
 // many-to-many relationship between customers and hotels
+
 Customer.belongsToMany(Hotel, { through: Stay });
 Hotel.belongsToMany(Customer, { through: Stay });
 
-const Employee = sequelize.define('Employee', {
+Customer.hasMany(Stay);
+Stay.belongsTo(Customer);
+
+Hotel.hasMany(Stay);
+Stay.belongsTo(Hotel);
+
+Stay.hasMany(Surcharge);
+Surcharge.belongsTo(Stay);
+
+const Employee = sequelize.define('employee', {
   regDate: Sequelize.DATE,
   username: Sequelize.STRING,
   password: Sequelize.STRING,
@@ -76,10 +83,10 @@ const Employee = sequelize.define('Employee', {
 // one-to-many relationship
 Hotel.hasMany(Employee);
 
-Customer.sync();
-Hotel.sync();
-Stay.sync();
-Employee.sync();
+// Customer.sync();
+// Hotel.sync();
+// Stay.sync();
+// Employee.sync();
 
 module.exports = {
   sequelize,
@@ -87,4 +94,5 @@ module.exports = {
   Hotel,
   Stay,
   Employee,
+  Surcharge,
 };

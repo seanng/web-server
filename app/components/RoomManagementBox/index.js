@@ -11,10 +11,11 @@ import styled from 'styled-components';
 import messages from './messages';
 
 import Filter from '../RoomManagementFilter';
-import RoomEntry from '../RoomEntry';
+import RoomEntryRow from '../RoomEntryRow';
 import Button from '../Button';
 
 const RoomManagementBox = (props) => {
+  console.log('props in roommgmtbox', props)
   const RoomEntryList = (
     <table className="table">
       <thead>
@@ -34,9 +35,10 @@ const RoomManagementBox = (props) => {
         </tr>
       </thead>
       <tbody>
-        { props.rooms.map((room, key) => (
-          <RoomEntry
-            key={key}
+        { props.rooms.map((room, index) => (
+          <RoomEntryRow
+            key={index}
+            index={index}
             makeAvailable={props.makeAvailable}
             checkIn={props.checkIn}
             remove={props.remove}
@@ -48,7 +50,7 @@ const RoomManagementBox = (props) => {
   );
 
   return (
-    <div className="overviewBox">
+    <Wrapper className="overviewBox">
       <div className="overviewBoxHeader">
         <div className="row">
           <div className="col-xs-6">
@@ -64,14 +66,18 @@ const RoomManagementBox = (props) => {
       <Div>
         { RoomEntryList }
         <ButtonWrapper>
-          <Button onClick={props.showAddRoomModal}>
+          <Button onClick={props.showAddRoomModal} bgColor={'#2dc937'}>
             <FormattedMessage {...messages.addRoom} />
           </Button>
         </ButtonWrapper>
       </Div>
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  height: 100%
+`
 
 const H3 = styled.h3`
   padding-top: 8px;
@@ -95,7 +101,7 @@ RoomManagementBox.propTypes = {
   rooms: PropTypes.array.isRequired,
   setFilter: PropTypes.func.isRequired,
   showAddRoomModal: PropTypes.func.isRequired,
-
+  makeAvailable: PropTypes.func.isRequired,
 };
 
 export default RoomManagementBox;

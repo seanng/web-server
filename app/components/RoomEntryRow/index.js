@@ -1,6 +1,6 @@
 /**
 *
-* RoomEntry
+* RoomEntryRow
 *
 */
 
@@ -12,15 +12,15 @@ import styled from 'styled-components';
 import Button from '../Button';
 import messages from './messages';
 
-class RoomEntry extends React.Component {
+class RoomEntryRow extends React.Component {
   checkIn() {
     const { roomNumber } = this.props.room;
     this.props.checkIn(roomNumber);
   }
 
   makeAvailable() {
-    const { roomNumber } = this.props.room;
-    this.props.makeAvailable(roomNumber);
+    const { room, index } = this.props;
+    this.props.makeAvailable(room.roomNumber, index);
   }
 
   remove() {
@@ -31,21 +31,21 @@ class RoomEntry extends React.Component {
   renderAction() {
     if (this.props.room.status === 'Available') {
       return (
-        <Button onClick={this.remove.bind(this)}>
+        <Button onClick={this.remove.bind(this)} bgColor={'#cc3232'} wide>
           <FormattedMessage {...messages.remove} />
         </Button>
       );
     }
     if (this.props.room.status === 'Checked Out') {
       return (
-        <Button onClick={this.makeAvailable.bind(this)}>
+        <Button onClick={this.makeAvailable.bind(this)} bgColor={'#2dc937'} wide>
           <FormattedMessage {...messages.makeAvailable} />
         </Button>
       );
     }
     if (this.props.room.status === 'Inbound') {
       return (
-        <Button onClick={this.checkIn.bind(this)}>
+        <Button onClick={this.checkIn.bind(this)} bgColor={'#04247a'} wide>
           <FormattedMessage {...messages.checkIn} />
         </Button>
       );
@@ -53,14 +53,14 @@ class RoomEntry extends React.Component {
     if (this.props.room.status === 'Checked In') {
       return (
         <span>
-          { moment(this.props.room.checkInTime).fromNow() }
+          { moment(this.props.room.checkInTime*1).calendar() }
         </span>
       );
     }
   }
 
   render() {
-    const { roomNumber, guestName, status, checkInTime } = this.props.room;
+    const { roomNumber, customerName, status, checkInTime } = this.props.room;
     const TD = styled.td`
       padding-left: 1.2em!important;
     `;
@@ -71,7 +71,7 @@ class RoomEntry extends React.Component {
           { roomNumber }
         </TD>
         <td className="col-xs-3">
-          { guestName }
+          { customerName }
         </td>
         <td className="col-xs-3">
           { status }
@@ -85,7 +85,7 @@ class RoomEntry extends React.Component {
 
 }
 
-RoomEntry.propTypes = {
+RoomEntryRow.propTypes = {
   checkIn: PropTypes.func.isRequired,
   makeAvailable: PropTypes.func.isRequired,
   room: PropTypes.object.isRequired,
@@ -93,4 +93,4 @@ RoomEntry.propTypes = {
 
 };
 
-export default RoomEntry;
+export default RoomEntryRow;

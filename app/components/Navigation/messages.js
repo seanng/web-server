@@ -12,10 +12,10 @@ export default defineMessages({
   },
   logout: {
     id: 'app.components.Navigation.logout',
-    defaultMessage: 'Logout',
+    defaultMessage: 'LOGOUT',
   },
   frontdesk: {
     id: 'app.components.Navigation.frontdesk',
-    defaultMessage: 'Front Desk',
+    defaultMessage: 'FRONT DESK',
   }
 });

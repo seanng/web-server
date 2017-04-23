@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import { Modal, FormGroup, Form, FormControl, Col, ControlLabel } from 'react-bootstrap'
+import { Modal, FormGroup, Form, FormControl, Col, ControlLabel } from 'react-bootstrap';
 import Button from '../Button';
 import styled from 'styled-components';
 
@@ -44,48 +44,59 @@ class AddRoomModal extends React.Component {
     )
   }
 
-  render() {
+  body() {
+    return (
+      <Modal.Body>
+        <Form horizontal>
+          <FormGroup controlId="roomNumberInput">
+            <Col componentClass={ControlLabel} sm={4}>
+              <FormattedMessage {...messages.roomNumber}/>
+            </Col>
+            <Col sm={8}>
+              <FormControl
+                onChange={this.editRoomNumber.bind(this)}
+                type="text"
+                autoFocus
+              />
+            </Col>
+          </FormGroup>
+        </Form>
+      </Modal.Body>
+    )
+  }
+
+  footer() {
     const ModalFooter = styled.div`
       padding: 15px;
       text-align: center;
     `
+    return (
+      <ModalFooter>
+        <div className="row">
+          <div className="col-xs-6">
+            <Button onClick={this.hide.bind(this)}>
+              <FormattedMessage {...messages.cancel} />
+            </Button>
+          </div>
+          <div className="col-xs-6">
+            <Button onClick={this.createRoom.bind(this)}>
+              <FormattedMessage {...messages.createRoom} />
+            </Button>
+          </div>
+        </div>
+      </ModalFooter>
+    )
+  }
 
+  render() {
     return (
       <Modal
         show={this.props.show}
         onHide={this.hide.bind(this)}
       >
         {this.header()}
-        <Modal.Body>
-          <Form horizontal>
-            <FormGroup controlId="roomNumberInput">
-              <Col componentClass={ControlLabel} sm={4}>
-                <FormattedMessage {...messages.roomNumber}/>
-              </Col>
-              <Col sm={8}>
-                <FormControl
-                  onChange={this.editRoomNumber.bind(this)}
-                  type="text"
-                  autoFocus
-                />
-              </Col>
-            </FormGroup>
-          </Form>
-        </Modal.Body>
-        <ModalFooter>
-          <div className="row">
-            <div className="col-xs-6">
-              <Button onClick={this.hide.bind(this)}>
-                <FormattedMessage {...messages.cancel} />
-              </Button>
-            </div>
-            <div className="col-xs-6">
-              <Button onClick={this.createRoom.bind(this)}>
-                <FormattedMessage {...messages.createRoom} />
-              </Button>
-            </div>
-          </div>
-        </ModalFooter>
+        {this.body()}
+        {this.footer()}
       </Modal>
     )
   }

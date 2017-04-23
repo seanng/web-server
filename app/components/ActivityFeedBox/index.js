@@ -13,11 +13,9 @@ import messages from './messages';
 
 function ActivityFeedBox() {
   return (
-    <div className="overviewBox">
+    <Wrapper className="overviewBox">
       <div className="overviewBoxHeader">
-        <h3>
-          <FormattedMessage {...messages.header} />
-        </h3>
+        <h3><FormattedMessage {...messages.header} /></h3>
       </div>
       <TableWrapper>
         <table className="table">
@@ -41,16 +39,19 @@ function ActivityFeedBox() {
           </tbody>
         </table>
       </TableWrapper>
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  height: 50%;
+`
 
 const TH = styled.th`
   padding-left: 15px!important;
 `
 
 const TableWrapper = styled.div`
-  height: 217px;
   overflow: auto;
 `
 

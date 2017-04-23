@@ -22,6 +22,10 @@ injectGlobal`
     display: inline-block;
   }
 
+  .overviewBoxHeader > h3 {
+    padding-top: 8px;
+  }
+
   #app {
     background-color: #fafafa;
     min-height: 100%;
@@ -34,14 +38,27 @@ injectGlobal`
     line-height: 1.5em;
   }
 
+  .navbar {
+    margin-bottom: 0px;
+  }
+
+  .body-wrapper {
+    height: calc(100vh - 200px);
+  }
+
+  .column-wrapper {
+    height: 100%;
+  }
+
   .overviewBox {
     border: 1px solid black;
     text-align: left;
   }
 
   .overviewBoxHeader {
-    border-bottom: 1px solid
-    padding: 15px
+    border-bottom: 1px solid;
+    padding: 15px;
+    height: 66px;
   }
 
   .modal-header {

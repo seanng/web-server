@@ -17,6 +17,8 @@ import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
 
 import EarningsView from 'components/EarningsView';
+import TeamManagement from 'components/TeamManagement';
+import Settings from 'components/Settings';
 
 let data = [{
   id: 1,
@@ -49,6 +51,8 @@ export class Account extends React.Component { // eslint-disable-line react/pref
         <div className='container'>
           <SubHeader title={this.props.view} />
           {this.props.view === 'earnings' && <EarningsView data={data} clickEarningsFilter={this.props.clickEarningsFilter.bind(this)} activeEarningsFilter={this.props.earningsFilter} />}
+          {this.props.view === 'teamManagement' && <TeamManagement />}
+          {this.props.view === 'settings' && <Settings />}
         </div>
       </div>
     );
