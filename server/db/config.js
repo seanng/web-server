@@ -9,17 +9,27 @@ const sequelize = new Sequelize('haven', 'root', 'Ca$hmere1', {
 
 const Customer = sequelize.define('customer', {
   regDate: Sequelize.DATE,
-  username: Sequelize.STRING,
+  username: { type: Sequelize.STRING, unique: true },
   password: Sequelize.STRING,
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
-  email: Sequelize.STRING,
+  email: { type: Sequelize.STRING, unique: true },
   phoneNo: Sequelize.STRING,
   accountStatus: Sequelize.INTEGER,
   paymentAuthStatus: Sequelize.INTEGER,
   stripeKey: Sequelize.STRING, // <-- this needs to be looked into further
   rating: Sequelize.DECIMAL,
 }, {
+  classMethods: {
+    comparePassword: (candidatePassword, cb) => {
+      bcrypt.compare(candidatePassword, this.getDataValue('password'), (err, isMatch) => {
+        if (err) {
+          return cb(err);
+        }
+        return cb(null, isMatch);
+      });
+    },
+  },
   instanceMethods: {
     comparePassword: (candidatePassword, cb) => {
       bcrypt.compare(candidatePassword, this.getDataValue('password'), (err, isMatch) => {
