@@ -18,7 +18,7 @@ class Settings extends React.PureComponent { // eslint-disable-line react/prefer
       padding: 10px;
     `;
     return (
-      <Div> 
+      <Div className="body-wrapper"> 
         Settings.
       </Div>
     );
