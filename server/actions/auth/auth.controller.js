@@ -8,18 +8,17 @@ controller.postAuth = (res, rej, req, params) => {
     password,
   } = req.body;
 
-  return Customer.findAll({ where: { username } })
+  return Customer.findOne({ where: { username } })
     .then((user) => {
-      console.log(user.comparePassword);
-      // return user[0].comparePassword(password, (err, isMatch) => {
-      //   if (err) {
-      //     res({ data: { error: 'DB error' } });
-      //   } else if (isMatch) {
-      //     res({ data: { token: signToken(user.id), user } });
-      //   } else {
-      //     res({ data: { error: 'Invalid password' } });
-      //   }
-      // });
+      return user.comparePassword(password, (err, isMatch) => {
+        if (err) {
+          res({ data: { error: 'DB error' } });
+        } else if (isMatch) {
+          res({ data: { token: signToken(user.id), user } });
+        } else {
+          res({ data: { error: 'Invalid password' } });
+        }
+      });
     });
 };
 

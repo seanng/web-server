@@ -10,4 +10,13 @@ Customer.beforeCreate((user, options) => {
   });
 });
 
+Customer.Instance.prototype.comparePassword = function comparePassword(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.getDataValue('password'), (err, isMatch) => {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, isMatch);
+  });
+};
+
 module.exports = Customer;
