@@ -8,11 +8,11 @@ const sequelize = new Sequelize('haven', 'root', 'Ca$hmere1', {
 
 const Customer = sequelize.define('customer', {
   regDate: Sequelize.DATE,
-  username: Sequelize.STRING,
+  username: { type: Sequelize.STRING, unique: true },
   password: Sequelize.STRING,
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
-  email: Sequelize.STRING,
+  email: { type: Sequelize.STRING, unique: true },
   phoneNo: Sequelize.STRING,
   accountStatus: Sequelize.INTEGER,
   paymentAuthStatus: Sequelize.INTEGER,
