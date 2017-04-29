@@ -6,5 +6,5 @@ const stays = require('./stays');
 module.exports = {
   auth,
   stays,
-  Customer,
-}
+  customer,
+};

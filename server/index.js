@@ -22,18 +22,18 @@ app.use(bodyParser.json());
 
 app.use('/api', (req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
-
   const {action, params} = mapUrl(actions, splittedUrlPath);
-
+  
+  console.log('req body:', req.body);
   if (action) {
-    console.log('action:', action)
+    console.log('action', action);
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {
           console.log('here1')
           result(res);
         } else {
-          console.log('here2')
+          console.log('here2');
           res.json(result);
         }
       }, (reason) => {

@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const bcrypt = require('bcrypt-nodejs');
 
 // placeholder username and password
 // TODO: move pw and username to a separate settings file
@@ -18,6 +19,17 @@ const Customer = sequelize.define('customer', {
   paymentAuthStatus: Sequelize.INTEGER,
   stripeKey: Sequelize.STRING, // <-- this needs to be looked into further
   rating: Sequelize.DECIMAL,
+}, {
+  instanceMethods: {
+    comparePassword: (candidatePassword, cb) => {
+      bcrypt.compare(candidatePassword, this.getDataValue('password'), (err, isMatch) => {
+        if (err) {
+          return cb(err);
+        }
+        return cb(null, isMatch);
+      });
+    },
+  },
 });
 
 const Hotel = sequelize.define('hotel', {
