@@ -4,7 +4,7 @@
  *
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { FormattedMessage } from 'react-intl';
@@ -12,12 +12,12 @@ import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { login } from './actions';
 import { makeSelectNextPath } from './selectors';
-import { makeSelectCurrentUser } from '../App/selectors'
+import { makeSelectCurrentUser } from '../App/selectors';
 import messages from './messages';
 import Button from 'components/Button'
 
 export class Login extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  
+
   constructor (props) {
     super(props);
     this.state = {
@@ -27,10 +27,11 @@ export class Login extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   componentWillUpdate (nextProps) {
-    // const { currentUser } = nextProps;
-    // if (currentUser) {
-    //   return this.props.nextPath ? push(nextPath) : push('/')
-    // }
+    const { currentUser } = nextProps;
+    const { nextPath } = this.props
+    if (currentUser && window.sessionStorage.accessToken) {
+      return nextPath ? push(nextPath) : push('/');
+    }
   }
 
   handleLogin = () => {
