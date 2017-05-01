@@ -15,7 +15,6 @@ import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
   min-height: 100%;
-  padding-bottom: 30px;
 `;
 
 export function App(props) {
