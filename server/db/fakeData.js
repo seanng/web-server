@@ -1,4 +1,4 @@
-const { sequelize, Surcharge, Stay, Hotel, Customer } = require('./config');
+const { sequelize, Surcharge, Stay, Hotel, Customer, Employee } = require('./config');
 
 const fakeData = {
   customers: [{
@@ -47,6 +47,25 @@ const fakeData = {
     name: 'W Hotel',
     rate: 400.00,
     currency: 'HKD',
+  }],
+  employees: [{
+    hotelId: 1,
+    firstName: 'BigFat',
+    lastName: 'Loser',
+    email: 'tester@testhotel.com',
+    password: 'asdfasdf',
+  }, {
+    hotelId: 1,
+    firstName: 'BigFat',
+    lastName: 'Winner',
+    email: 'tester2@testhotel.com',
+    password: 'asdfasdf',
+  }, {
+    hotelId: 2,
+    firstName: 'Meow',
+    lastName: 'Wolfcat',
+    email: 'test@sheraton.com',
+    password: 'asdfasdf',
   }],
   stays: [{
     id: 1,
@@ -140,7 +159,12 @@ module.exports = {
               const { stayId, service, status, charge } = surcharge;
               return Surcharge.create({ stayId, service, status, charge });
             }, Promise.resolve())
-            .then(() => console.log('created fake db data!'))
+            .then(() =>
+              fakeData.employees.reduce((promiseChain, employee) => {
+                const { hotelId, email, firstName, lastName, password } = employee;
+                return Employee.create({ hotelId, email, firstName, lastName, password });
+              }, Promise.resolve())
+            )
           )
         )
       )
