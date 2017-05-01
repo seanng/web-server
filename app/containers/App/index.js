@@ -10,8 +10,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import Navigation from 'components/Navigation'
-import Header from 'components/Header';
+import Navigation from 'components/Navigation';
 import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
@@ -29,7 +28,7 @@ export function App(props) {
           { name: 'description', content: 'Haven Web Application' },
         ]}
       />
-      <Navigation />
+      { props.location.pathname !== '/login' && <Navigation />}
       {React.Children.toArray(props.children)}
     </AppWrapper>
   );
