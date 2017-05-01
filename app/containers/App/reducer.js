@@ -14,6 +14,7 @@ import { fromJS } from 'immutable';
 
 // The initial state of the App
 const initialState = fromJS({
+  currentUser: null,
 });
 
 function appReducer(state = initialState, action) {

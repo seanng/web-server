@@ -21,7 +21,6 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 // Initial routing state
 const routeInitialState = fromJS({
   locationBeforeTransitions: null,
-  currentUser: null,
 });
 
 /**

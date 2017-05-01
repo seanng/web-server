@@ -1,7 +1,6 @@
 module.exports = {
   webAuthenticate: require('./webAuthenticate'),
   fetchRooms: require('./fetchRooms'),
-  webLogin: require('./webLogin'),
   fetchStays: require('./fetchStays'),
   createRoom: require('./createRoom'),
   deleteRoom: require('./deleteRoom'),
@@ -9,4 +8,5 @@ module.exports = {
   makeAvailable: require('./makeAvailable'),
   fetchCharges: require('./fetchCharges'),
   saveCharges: require('./saveCharges'),
+  employeeLogin: require('./employeeLogin'),
 }

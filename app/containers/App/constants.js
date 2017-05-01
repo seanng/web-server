@@ -10,4 +10,5 @@
  */
 
 export const TEST_SOCKET = 'server/test_socket';
+export const GET_CURRENT_USER = 'server/GET_CURRENT_USER';
 export const DEFAULT_LOCALE = 'en';

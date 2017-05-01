@@ -6,11 +6,13 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { login } from './actions';
-import makeSelectLogin from './selectors';
+import { makeSelectNextPath } from './selectors';
+import { makeSelectCurrentUser } from '../App/selectors'
 import messages from './messages';
 import Button from 'components/Button'
 
@@ -22,6 +24,13 @@ export class Login extends React.PureComponent { // eslint-disable-line react/pr
       email: '',
       password: ''
     }
+  }
+
+  componentWillUpdate (nextProps) {
+    // const { currentUser } = nextProps;
+    // if (currentUser) {
+    //   return this.props.nextPath ? push(nextPath) : push('/')
+    // }
   }
 
   handleLogin = () => {
@@ -87,12 +96,9 @@ const Input = styled.input`
   font-size: 16px;
 `
 
-Login.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = createStructuredSelector({
-  Login: makeSelectLogin(),
+  nextPath: makeSelectNextPath(),
+  currentUser: makeSelectCurrentUser()
 });
 
 const mapDispatchToProps = (dispatch) => ({

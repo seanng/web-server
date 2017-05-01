@@ -71,14 +71,14 @@ export function injectAsyncSagas(store, isValid) {
  */
 
 const currentUser = (store) =>
-  store.getState().get('route').get('currentUser');
+  store.getState().get('global').get('currentUser');
 
 function redirectToLogin(store) {
   return (nextState, replace) => {
     if (!currentUser(store)) {
       replace({
         pathname: '/login',
-        // state: { nextPathname: nextState.location.pathname }
+        state: { nextPathname: nextState.location.pathname }
       });
     }
   }

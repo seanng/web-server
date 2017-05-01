@@ -19,7 +19,13 @@ const makeSelectLogin = () => createSelector(
   (substate) => substate.toJS()
 );
 
+const makeSelectNextPath = () => createSelector(
+  selectLoginDomain(),
+  (substate) => substate.get('nextPathName')
+)
+
 export default makeSelectLogin;
 export {
   selectLoginDomain,
+  makeSelectNextPath,
 };

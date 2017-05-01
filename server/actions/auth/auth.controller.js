@@ -1,6 +1,5 @@
 const Customer = require('../customer/customer.model');
-const Employee = require('../employee/employee.model');
-const signToken = require('./auth.service').signToken;
+const { signToken } = require('../../db/helpers');
 const controller = {};
 
 controller.postAuth = (res, rej, req, params) => {
@@ -10,24 +9,18 @@ controller.postAuth = (res, rej, req, params) => {
     password,
   } = req.body;
 
-  if (params[0] === 'employee') {
-    return Employee.findOne({ where: { email } })
-      .then(validateUser)
-  }
-
   return Customer.findOne({ where: { username } })
-    .then(validateUser);
+    .then((user) => {
+      return user.comparePassword(password, (err, isMatch) => {
+        if (err) {
+          res({ data: { error: 'DB error' } });
+        } else if (isMatch) {
+          res({ data: { token: signToken(user.id), user } });
+        } else {
+          res({ data: { error: 'Invalid password' } });
+        }
+      });
+    });
 };
-
-const validateUser = (user) =>
-  user.comparePassword(password, (err, isMatch) => {
-    if (err) {
-      res({ data: { error: 'DB error' } });
-    } else if (isMatch) {
-      res({ data: { token: signToken(user.id), user } });
-    } else {
-      res({ data: { error: 'Invalid password' } });
-    }
-  });
 
 module.exports = controller;
