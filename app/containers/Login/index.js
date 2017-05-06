@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { login } from './actions';
-import { makeSelectNextPath } from './selectors';
+import { selectNextPathName } from './selectors';
 import { makeSelectCurrentUser } from '../App/selectors';
 import messages from './messages';
 import Button from 'components/Button'
@@ -98,7 +98,7 @@ const Input = styled.input`
 `
 
 const mapStateToProps = createStructuredSelector({
-  nextPath: makeSelectNextPath(),
+  nextPath: selectNextPathName(),
   currentUser: makeSelectCurrentUser()
 });
 

@@ -42,5 +42,6 @@ function getHotelInfo(id) {
 export {
 	switchSettingsView,
 	switchView,
-	setEarningsFilter
+	setEarningsFilter,
+	getHotelInfo
 }

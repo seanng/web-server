@@ -31,5 +31,4 @@ const signToken = function signToken(id) {
 module.exports = {
   retrieveStays,
   signToken,
-  validateUser
 }

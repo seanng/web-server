@@ -7,7 +7,6 @@
 import { fromJS } from 'immutable';
 import { push } from 'react-router-redux';
 import {
-  DEFAULT_ACTION,
   LOGIN,
   SUCCESS,
   ERROR
@@ -20,11 +19,12 @@ const initialState = fromJS({
 
 function loginReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    
     case SUCCESS:
+      console.log('successfully passing from server', action)
       return state.set('error', null);
     case ERROR: 
+      console.log('action error', action.err)
       return state.set('error', action.err);
 
     default:

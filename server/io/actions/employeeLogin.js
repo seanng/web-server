@@ -1,11 +1,14 @@
 const Employee = require('../../db/Employee');
-const { reply, validateUser } = require('../../db/helpers');
+const { validateUser } = require('../../db/helpers');
+const { reply } = require('../helpers')
 
 module.exports = (client, action) => {
   const { email, password } = action.info;
+
   Employee.findOne({ where: { email } })
   .then((user) => {
     return user.comparePassword(password, (err, isMatch) => {
+      console.log('ismatch?', user, isMatch, err)
       if (err) {
         return reply(client, {
           type: 'app/Login/EMPLOYEE_LOGIN_ERROR',
@@ -24,5 +27,5 @@ module.exports = (client, action) => {
         })
       }
     })
-  }
+  })
 }
