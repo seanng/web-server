@@ -6,6 +6,11 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = (state) => state.get('global');
 
+const makeSelectCurrentUser = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('currentUser')
+);
+
 const makeSelectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
@@ -25,4 +30,5 @@ const makeSelectLocationState = () => {
 export {
   selectGlobal,
   makeSelectLocationState,
+  makeSelectCurrentUser
 };

@@ -1,12 +1,12 @@
-const { sequelize, Surcharge, Stay, Hotel, Customer } = require('./config');
+const { sequelize, Surcharge, Stay, Hotel, Customer, Employee } = require('./config');
 
-fakeData = {
+const fakeData = {
   customers: [{
     firstName: 'Sean',
     lastName: 'Ng',
     email: 'shonum@gmail.com',
     phoneNo: '96968828',
-  },{
+  }, {
     firstName: 'Reggie',
     lastName: 'Miller',
     email: 'shonum2@gmail.com',
@@ -48,6 +48,25 @@ fakeData = {
     rate: 400.00,
     currency: 'HKD',
   }],
+  employees: [{
+    hotelId: 1,
+    firstName: 'BigFat',
+    lastName: 'Loser',
+    email: 'tester@testhotel.com',
+    password: 'asdfasdf',
+  }, {
+    hotelId: 1,
+    firstName: 'BigFat',
+    lastName: 'Winner',
+    email: 'tester2@testhotel.com',
+    password: 'asdfasdf',
+  }, {
+    hotelId: 2,
+    firstName: 'Meow',
+    lastName: 'Wolfcat',
+    email: 'test@sheraton.com',
+    password: 'asdfasdf',
+  }],
   stays: [{
     id: 1,
     hotelId: 1,
@@ -71,7 +90,7 @@ fakeData = {
     roomCharge: 1200.00,
     totalCharge: 1338.00,
   }, {
-    id: 3, 
+    id: 3,
     hotelId: 1,
     customerId: 3,
     status: 'Checked Out',
@@ -112,40 +131,43 @@ fakeData = {
     service: 'Pay TV',
     status: 'Unsettled',
     charge: 100.18,
-  }]
-}
+  }],
+};
 
 module.exports = {
   preloadData: () => {
     sequelize.sync(
       { force: true }
     )
-    .then(function() {
-      fakeData.customers.forEach(customer => {
+    .then(() =>
+      fakeData.customers.reduce((promiseChain, customer) => {
         const { firstName, lastName, email, phoneNo } = customer;
         return Customer.create({ firstName, lastName, email, phoneNo });
-      })
-    })
-    .then(function() {
-      fakeData.hotels.forEach(hotel => {
-        const { name, rate, currency } = hotel;
-        return Hotel.create({ name, rate, currency });
-      })
-    })
-    .then(function() {
-      fakeData.stays.forEach(stay => {
-        const { hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, roomCharge } = stay;
-        return Stay.create({ hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, roomCharge });
-      })
-    })
-    .then(function() {
-      fakeData.surcharges.forEach(surcharge => {
-        const { stayId, service, status, charge } = surcharge;
-        return Surcharge.create({ stayId, service, status, charge });
-      })
-    })
-    .then(function() {
-      console.log('created fake db data!')
-    })
-  }
-}
+      }, Promise.resolve())
+      .then(() =>
+        fakeData.hotels.reduce((promiseChain, hotel) => {
+          const { name, rate, currency } = hotel;
+          return Hotel.create({ name, rate, currency });
+        }, Promise.resolve())
+        .then(() =>
+          fakeData.stays.reduce((promiseChain, stay) => {
+            const { hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, roomCharge } = stay;
+            return Stay.create({ hotelId, customerId, status, roomNumber, bookingTime, checkInTime, checkOutTime, totalCharge, roomCharge });
+          }, Promise.resolve())
+          .then(() =>
+            fakeData.surcharges.reduce((promiseChain, surcharge) => {
+              const { stayId, service, status, charge } = surcharge;
+              return Surcharge.create({ stayId, service, status, charge });
+            }, Promise.resolve())
+            .then(() =>
+              fakeData.employees.reduce((promiseChain, employee) => {
+                const { hotelId, email, firstName, lastName, password } = employee;
+                return Employee.create({ hotelId, email, firstName, lastName, password });
+              }, Promise.resolve())
+            )
+          )
+        )
+      )
+    );
+  },
+};

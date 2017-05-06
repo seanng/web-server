@@ -7,36 +7,56 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import Navigation from 'components/Navigation'
-import Header from 'components/Header';
+import Navigation from 'components/Navigation';
 import withProgressBar from 'components/ProgressBar';
+import { getCurrentUser } from './actions';
+import { makeSelectCurrentUser } from './selectors';
 
 const AppWrapper = styled.div`
   min-height: 100%;
-  padding-bottom: 30px;
 `;
 
-export function App(props) {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="Haven Web Application"
-        meta={[
-          { name: 'description', content: 'Haven Web Application' },
-        ]}
-      />
-      <Navigation />
-      {React.Children.toArray(props.children)}
-    </AppWrapper>
-  );
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    // if token, this.props.validateToken(token)
+  }
+
+  render () {
+    const { location, children } = this.props
+    return (
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - React.js Boilerplate"
+          defaultTitle="Haven Web Application"
+          meta={[
+            { name: 'description', content: 'Haven Web Application' },
+          ]}
+        />
+        { location.pathname !== '/login' && <Navigation />}
+        {React.Children.toArray(children)}
+      </AppWrapper>
+    );
+  }
 }
 
 App.propTypes = {
   children: React.PropTypes.node,
 };
 
-export default withProgressBar(App);
+const mapStateToProps = () => ({
+
+})
+
+const mapDispatchToProps = () => ({
+  validateToken: (token) => getCurrentUser(token)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withProgressBar(App));

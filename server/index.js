@@ -1,8 +1,8 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
-const bodyParser = require('body-parser')
-const pretty = new require('pretty-error')();
+const bodyParser = require('body-parser');
+const pretty = require('pretty-error')();
 const logger = require('./logger');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
@@ -22,6 +22,8 @@ app.use(bodyParser.json());
 
 app.use('/api', (req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
+  const { action, params } = mapUrl(actions, splittedUrlPath);
+  if (action) {
   const {action, params} = mapUrl(actions, splittedUrlPath);
   
   console.log('req body:', req.body);
@@ -30,14 +32,11 @@ app.use('/api', (req, res) => {
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {
-          console.log('here1')
           result(res);
         } else {
-          console.log('here2');
           res.json(result);
         }
       }, (reason) => {
-          console.log('here3', reason)
         if (reason && reason.redirect) {
           res.redirect(reason.redirect);
         } else {
@@ -83,8 +82,7 @@ const server = app.listen(port, host, (err) => {
   }
 
   // preload with fake data
-  preloadData();
-
+  // preloadData();
 });
 
 // initialize server-side sockets

@@ -20,6 +20,17 @@ const Customer = sequelize.define('customer', {
   rating: Sequelize.DECIMAL,
 });
 
+const Employee = sequelize.define('employee', {
+  regDate: Sequelize.DATE,
+  username: { type: Sequelize.STRING, unique: true },
+  password: Sequelize.STRING,
+  firstName: Sequelize.STRING,
+  lastName: Sequelize.STRING,
+  email: { type: Sequelize.STRING, unique: true },
+  phoneNo: Sequelize.STRING,
+  admin: Sequelize.INTEGER, // level 1: staff, level 2: admin, level 3: super-user? (i.e. customer service)
+});
+
 const Hotel = sequelize.define('hotel', {
   regDate: Sequelize.DATE,
   name: Sequelize.STRING,
@@ -29,7 +40,7 @@ const Hotel = sequelize.define('hotel', {
   long: Sequelize.DECIMAL,
   address: Sequelize.STRING,
   paymentInfo: Sequelize.JSON, // <-- this needs to be looked into further
-  rate: Sequelize.DECIMAL(10,2), // <-- hourly? or per minute?
+  rate: Sequelize.DECIMAL(10, 2), // <-- hourly? or per minute?
   currency: Sequelize.STRING,
   rating: Sequelize.DECIMAL,
 });
@@ -38,7 +49,7 @@ const Stay = sequelize.define('stay', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   status: Sequelize.STRING,
   bookingTime: Sequelize.DATE,
@@ -46,15 +57,15 @@ const Stay = sequelize.define('stay', {
   checkOutTime: Sequelize.DATE, // Update on check out
   roomNumber: Sequelize.STRING, // Update on create Room
   roomType: Sequelize.STRING,
-  roomCharge: Sequelize.DECIMAL(10,2),
-  totalCharge: Sequelize.DECIMAL(10,2),
+  roomCharge: Sequelize.DECIMAL(10, 2),
+  totalCharge: Sequelize.DECIMAL(10, 2),
 });
 
 const Surcharge = sequelize.define('surcharge', {
   service: Sequelize.STRING,
   status: Sequelize.STRING,
-  charge: Sequelize.DECIMAL(10,2),
-})
+  charge: Sequelize.DECIMAL(10, 2),
+});
 // many-to-many relationship between customers and hotels
 
 Customer.belongsToMany(Hotel, { through: Stay });
@@ -69,19 +80,9 @@ Stay.belongsTo(Hotel);
 Stay.hasMany(Surcharge);
 Surcharge.belongsTo(Stay);
 
-const Employee = sequelize.define('employee', {
-  regDate: Sequelize.DATE,
-  username: Sequelize.STRING,
-  password: Sequelize.STRING,
-  firstName: Sequelize.STRING,
-  lastName: Sequelize.STRING,
-  email: Sequelize.STRING,
-  phoneNo: Sequelize.STRING,
-  admin: Sequelize.INTEGER, // level 1: staff, level 2: admin, level 3: super-user? (i.e. customer service)
-});
-
 // one-to-many relationship
 Hotel.hasMany(Employee);
+Employee.belongsTo(Hotel);
 
 // Customer.sync();
 // Hotel.sync();

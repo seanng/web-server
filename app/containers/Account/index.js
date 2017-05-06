@@ -11,12 +11,13 @@ import makeSelectAccount from './selectors';
 import messages from './messages';
 
 import { getView, getEarningsFilter } from './selectors';
-import { switchView, setEarningsFilter } from './actions';
+import { switchView, setEarningsFilter, getHotelInfo } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
 import SubHeader from 'components/SubHeader';
 
 import EarningsView from 'components/EarningsView';
+import HotelProfile from 'components/HotelProfile';
 import TeamManagement from 'components/TeamManagement';
 import Settings from 'components/Settings';
 
@@ -44,13 +45,20 @@ let data = [{
 }];
 
 export class Account extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  fetchHotelInfo () {
+    const hotelId = 1;
+    this.props.fetchHotelInfo(hotelId);
+  }
+
   render() {
     return (
       <div>
       <SubNavigation title='account' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
         <div className='container'>
-          <SubHeader title={this.props.view} />
+          <SubHeader title={this.props.view} hotelName='Hotel G' />
           {this.props.view === 'earnings' && <EarningsView data={data} clickEarningsFilter={this.props.clickEarningsFilter.bind(this)} activeEarningsFilter={this.props.earningsFilter} />}
+          {this.props.view === 'hotelProfile' && <HotelProfile fetchHotelInfo={this.fetchHotelInfo} value={3} />}
           {this.props.view === 'teamManagement' && <TeamManagement />}
           {this.props.view === 'settings' && <Settings />}
         </div>
@@ -76,6 +84,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   clickEarningsFilter: (filter) => {
     dispatch(setEarningsFilter(filter));
+  },
+  fetchHotelInfo: (id) => {
+    dispatch(getHotelInfo(id))
   }
 });
 

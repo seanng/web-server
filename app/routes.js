@@ -14,12 +14,13 @@ const loadModule = (cb) => (componentModule) => {
 
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer, injectSagas } = getAsyncInjectors(store);
+  const { injectReducer, injectSagas, redirectToLogin, redirectToDashboard } = getAsyncInjectors(store);
 
   return [
     {
       path: '/',
       name: 'frontDesk',
+      onEnter: redirectToLogin,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/FrontDesk/reducer'),
@@ -40,6 +41,7 @@ export default function createRoutes(store) {
     }, {
       path: 'account',
       name: 'account',
+      onEnter: redirectToLogin,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/Account/reducer'),
@@ -51,6 +53,27 @@ export default function createRoutes(store) {
 
         importModules.then(([reducer, sagas, component]) => {
           injectReducer('account', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: 'login',
+      name: 'login',
+      onEnter: redirectToDashboard,
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Login/reducer'),
+          import('containers/Login/sagas'),
+          import('containers/Login'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('login', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });

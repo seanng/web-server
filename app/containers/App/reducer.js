@@ -11,13 +11,18 @@
  */
 
 import { fromJS } from 'immutable';
+import { SUCCESS } from '../Login/constants';
 
 // The initial state of the App
 const initialState = fromJS({
+  currentUser: null,
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case SUCCESS:
+      window.sessionStorage.accessToken = action.token;
+      return state.set('currentUser', action.user);
 
     default:
       return state;

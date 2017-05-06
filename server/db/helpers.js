@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const { Hotel, Stay, Customer, Employee, sequelize } = require('./config');
 
 const retrieveStays = (hotelId, respond) => {
@@ -23,6 +24,11 @@ const retrieveStays = (hotelId, respond) => {
   .catch(err => respond(err))
 }
 
+const signToken = function signToken(id) {
+  return jwt.sign({ userId: id }, 'random_Secret', { expiresIn: 36000 });
+};
+
 module.exports = {
-  retrieveStays
+  retrieveStays,
+  signToken,
 }

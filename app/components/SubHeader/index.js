@@ -16,11 +16,20 @@ const Title = styled.div`
   margin-bottom: 0.9em;
 `
 
-const SubHeader = ({title}) => (
-  <Title>
-    <FormattedMessage {...messages[title]} />
-  </Title>
-);
+const SubHeader = ({ title, hotelName }) => {
+  if (title !== 'hotelProfile') {
+    return (
+      <Title>
+        <FormattedMessage {...messages[title]} />
+      </Title>
+    )
+  }
+  return (
+    <Title>
+      { hotelName }
+    </Title>
+  )
+}
 
 
 SubHeader.propTypes = {

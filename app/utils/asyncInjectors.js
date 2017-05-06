@@ -67,6 +67,32 @@ export function injectAsyncSagas(store, isValid) {
 }
 
 /**
+ * Check auths
+ */
+
+const currentUser = (store) =>
+  store.getState().get('global').get('currentUser');
+
+function redirectToLogin(store) {
+  return (nextState, replace) => {
+    if (!currentUser(store)) {
+      replace({
+        pathname: '/login',
+        state: { nextPathname: nextState.location.pathname }
+      });
+    }
+  }
+}
+
+function redirectToDashboard(store) {
+  return (nextState, replace) => {
+    if (currentUser(store)) {
+      replace('/');
+    }
+  };
+}
+
+/**
  * Helper for creating injectors
  */
 export function getAsyncInjectors(store) {
@@ -75,5 +101,7 @@ export function getAsyncInjectors(store) {
   return {
     injectReducer: injectAsyncReducer(store, true),
     injectSagas: injectAsyncSagas(store, true),
+    redirectToLogin: redirectToLogin(store),
+    redirectToDashboard: redirectToDashboard(store),
   };
 }
