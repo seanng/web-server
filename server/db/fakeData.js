@@ -4,26 +4,32 @@ const fakeData = {
   customers: [{
     firstName: 'Sean',
     lastName: 'Ng',
+    password: 'abc',
     email: 'shonum@gmail.com',
     phoneNo: '96968828',
+    rating: 1,
   }, {
     firstName: 'Reggie',
     lastName: 'Miller',
+    password: 'abc',
     email: 'shonum2@gmail.com',
     phoneNo: '91910404',
   }, {
     firstName: 'Michael',
     lastName: 'Wong',
+    password: 'abc',
     email: 'michaelwong@gmail.com',
     phoneNo: '91280102',
   }, {
     firstName: 'Gigi',
     lastName: 'Wings',
+    password: 'abc',
     email: 'chickenwings@gmail.com',
     phoneNo: '99830203',
   }, {
     firstName: 'Fucking',
     lastName: 'Legend',
+    password: 'abc',
     email: 'afuckinglegend@gmail.com',
     phoneNo: '12345678',
   }],
@@ -141,8 +147,8 @@ module.exports = {
     )
     .then(() =>
       fakeData.customers.reduce((promiseChain, customer) => {
-        const { firstName, lastName, email, phoneNo } = customer;
-        return Customer.create({ firstName, lastName, email, phoneNo });
+        const { firstName, lastName, email, phoneNo, password } = customer;
+        return Customer.create({ firstName, lastName, email, phoneNo, password });
       }, Promise.resolve())
       .then(() =>
         fakeData.hotels.reduce((promiseChain, hotel) => {
