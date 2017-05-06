@@ -10,7 +10,7 @@ controller.postAuth = (res, rej, req, params) => {
     password,
   } = req.body;
 
-  return Customer.findOne({ where: { username } })
+  return Customer.findOne({ where: { email } })
     .then((user) => {
       return user.comparePassword(password, (err, isMatch) => {
         if (err) {

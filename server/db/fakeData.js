@@ -7,6 +7,7 @@ const fakeData = {
     password: 'abc',
     email: 'shonum@gmail.com',
     phoneNo: '96968828',
+    rating: 1,
   }, {
     firstName: 'Reggie',
     lastName: 'Miller',
@@ -146,8 +147,8 @@ module.exports = {
     )
     .then(() =>
       fakeData.customers.reduce((promiseChain, customer) => {
-        const { firstName, lastName, email, phoneNo } = customer;
-        return Customer.create({ firstName, lastName, email, phoneNo });
+        const { firstName, lastName, email, phoneNo, password } = customer;
+        return Customer.create({ firstName, lastName, email, phoneNo, password });
       }, Promise.resolve())
       .then(() =>
         fakeData.hotels.reduce((promiseChain, hotel) => {
