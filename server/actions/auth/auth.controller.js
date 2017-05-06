@@ -35,7 +35,7 @@ controller.validateToken = function validate(res, rej, req, params) {
       return Customer.findOne({ where: { id: decoded.userId } })
         .then((user) => {
           if (user) {
-            res({ data: { user } });
+            res({ data: { token, user } });
           } else {
             res({ error: 'User does not exist' });
           }
