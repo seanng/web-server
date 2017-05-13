@@ -1,5 +1,5 @@
 const Customer = require('./customer.model');
-const signToken = require('../auth/auth.service').signToken;
+const { signToken } = require('../../db/helpers');
 const controller = {};
 
 controller.createNewCustomer = (res, rej, req, params) => {

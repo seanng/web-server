@@ -6,7 +6,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
@@ -28,9 +27,9 @@ export class Login extends React.PureComponent { // eslint-disable-line react/pr
 
   componentWillUpdate (nextProps) {
     const { currentUser } = nextProps;
-    const { nextPath } = this.props
+    const { nextPath, router } = this.props
     if (currentUser && window.sessionStorage.accessToken) {
-      return nextPath ? push(nextPath) : push('/');
+      return nextPath ? router.push(nextPath) : router.push('/');
     }
   }
 

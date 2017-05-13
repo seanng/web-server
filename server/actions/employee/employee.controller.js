@@ -1,5 +1,5 @@
 const Employee = require('./employee.model');
-const signToken = require('../auth/auth.service').signToken;
+const { signToken } = require('../../db/helpers');
 const controller = {};
 
 controller.createNewEmployee = (res, rej, req, params) => {

@@ -12,3 +12,5 @@
 export const TEST_SOCKET = 'server/test_socket';
 export const GET_CURRENT_USER = 'server/GET_CURRENT_USER';
 export const DEFAULT_LOCALE = 'en';
+export const TOKEN_VALIDATED = 'app/TOKEN_VALIDATED'
+export const TOKEN_INVALID = 'app/TOKEN_INVALID'

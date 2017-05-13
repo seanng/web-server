@@ -27,8 +27,15 @@ const makeSelectLocationState = () => {
   };
 };
 
+const isLoaded = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('loaded')
+)
+
+
 export {
   selectGlobal,
   makeSelectLocationState,
-  makeSelectCurrentUser
+  makeSelectCurrentUser,
+  isLoaded
 };
