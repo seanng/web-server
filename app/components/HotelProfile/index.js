@@ -36,7 +36,7 @@ class HotelProfile extends React.Component { // eslint-disable-line react/prefer
 
   editValue (e) {
     this.setState({ value: e.target.value })
-    // this.refs.hourlyRateInput.getInputDOMNode().focus(); 
+    // this.refs.hourlyRateInput.getInputDOMNode().focus();
     document.getElementById('testr').focus()
     // console.log(this.refs.hourlyRateInput.props.ref)
   }
@@ -46,10 +46,10 @@ class HotelProfile extends React.Component { // eslint-disable-line react/prefer
       <RightContainer title='hourlyRate'>
         <CenteredDiv>
           <span onClick={() => this.decreaseInput()} className="glyphicon glyphicon-minus-sign" />
-          <Input 
-            type="number" 
-            value={this.state.value} 
-            onChange={(e) => this.editValue(e)} 
+          <Input
+            type="number"
+            value={this.state.value}
+            onChange={(e) => this.editValue(e)}
             id='testr'
           />
           <span onClick={() => this.increaseInput()} className="glyphicon glyphicon-plus-sign" />
@@ -83,25 +83,18 @@ class HotelProfile extends React.Component { // eslint-disable-line react/prefer
 
   render () {
     return (
-      <div>
-        <ButtonWrapper>
-          <Button bgColor='#2dc937' >
-            <FormattedMessage {...messages.saveHotelProfile} />
-          </Button>
-        </ButtonWrapper>
-        <div className="row body-wrapper">
-          <div className="col-sm-6 column-wrapper">
-            <LeftContainer>
-              <HotelPhotos />
-              <HotelDescription />
-            </LeftContainer>
-          </div>
-          <Right className="col-sm-6 column-wrapper">
-            { this._hourlyRate() }
-            { this._amenities() }
-            { this._location() }
-          </Right>
+      <div className="row body-wrapper">
+        <div className="col-sm-6 column-wrapper">
+          <LeftContainer>
+            <HotelPhotos />
+            <HotelDescription />
+          </LeftContainer>
         </div>
+        <Right className="col-sm-6 column-wrapper">
+          { this._hourlyRate() }
+          { this._amenities() }
+          { this._location() }
+        </Right>
       </div>
     );
   }
@@ -127,12 +120,6 @@ const CenteredDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 15px;
-`
-
-const ButtonWrapper = styled.div`
-  position: absolute;
-  top: 120px;
-  right: 70px;
 `
 
 export default HotelProfile;

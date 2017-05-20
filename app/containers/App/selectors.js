@@ -6,7 +6,6 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = (state) => state.get('global');
 
-
 const makeSelectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
@@ -28,6 +27,11 @@ const currentUser = () => createSelector(
   (globalState) => globalState.get('currentUser')
 );
 
+const hotelId = () => createSelector(
+  currentUser(),
+  (user) => user.hotelId
+)
+
 const checkedToken = () => createSelector(
   selectGlobal,
   (globalState) => globalState.get('checkedToken')
@@ -37,5 +41,6 @@ export {
   selectGlobal,
   makeSelectLocationState,
   currentUser,
-  checkedToken
+  checkedToken,
+  hotelId
 };

@@ -30,6 +30,10 @@ export default defineMessages({
     id: 'app.components.SubHeader.settings',
     defaultMessage: 'Settings',
   },
+  saveHotelProfile: {
+    id: 'app.components.SubHeader.saveHotelProfile',
+    defaultMessage: 'Save Hotel Profile',
+  },
   teamManagement: {
     id: 'app.components.SubHeader.teamManagement',
     defaultMessage: 'Team Management',

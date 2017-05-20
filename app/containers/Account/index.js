@@ -10,6 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import makeSelectAccount from './selectors';
 import messages from './messages';
 
+import { hotelId } from 'containers/App/selectors'
 import { getView, getEarningsFilter } from './selectors';
 import { switchView, setEarningsFilter, getHotelInfo } from './actions';
 
@@ -47,8 +48,8 @@ let data = [{
 export class Account extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   fetchHotelInfo () {
-    const hotelId = 1;
-    this.props.fetchHotelInfo(hotelId);
+    const { fetchHotelInfo, hotelId } = this.props
+    fetchHotelInfo(hotelId);
   }
 
   render() {
@@ -58,7 +59,7 @@ export class Account extends React.Component { // eslint-disable-line react/pref
         <div className='container'>
           <SubHeader title={this.props.view} hotelName='Hotel G' />
           {this.props.view === 'earnings' && <EarningsView data={data} clickEarningsFilter={this.props.clickEarningsFilter.bind(this)} activeEarningsFilter={this.props.earningsFilter} />}
-          {this.props.view === 'hotelProfile' && <HotelProfile fetchHotelInfo={this.fetchHotelInfo} value={3} />}
+          {this.props.view === 'hotelProfile' && <HotelProfile fetchHotelInfo={this.fetchHotelInfo.bind(this)} value={3} />}
           {this.props.view === 'teamManagement' && <TeamManagement />}
           {this.props.view === 'settings' && <Settings />}
         </div>
@@ -75,6 +76,7 @@ const mapStateToProps = createStructuredSelector({
   view: getView(),
   earningsFilter: getEarningsFilter(),
   Account: makeSelectAccount(),
+  hotelId: hotelId()
 });
 
 const mapDispatchToProps = (dispatch) => ({

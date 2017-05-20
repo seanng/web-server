@@ -10,10 +10,6 @@ export default defineMessages({
     id: 'app.components.HotelProfile.header',
     defaultMessage: 'This is the HotelProfile component !',
   },
-  saveHotelProfile: {
-    id: 'app.components.HotelProfile.saveHotelProfile',
-    defaultMessage: 'Save Hotel Profile',
-  },
   hourlyRate: {
     id: 'app.components.HotelProfile.hourlyRate',
     defaultMessage: 'Hourly Rate',
