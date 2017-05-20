@@ -12,24 +12,29 @@
 
 import { fromJS } from 'immutable';
 import { SUCCESS } from '../Login/constants';
-import { TOKEN_VALIDATED, TOKEN_INVALID } from './constants'
+import { TOKEN_VALIDATED, TOKEN_INVALID, LOGOUT } from './constants'
 
 // The initial state of the App
 const initialState = fromJS({
   currentUser: null,
-  loaded: false
+  checkedToken: false
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case TOKEN_INVALID:
-      console.log('token invalid;')
-      return state.set('loaded', true);
-
     case SUCCESS:
-      window.sessionStorage.accessToken = action.token
-      return state.set('currentUser', action.user);
-    
+      console.log('successfully authenticated. the token returned is: ', action.token)
+      window.localStorage.accessToken = action.token
+      return state
+        .set('currentUser', action.user)
+        .set('checkedToken', true);
+
+    case TOKEN_INVALID:
+      console.log('the token is invalid:', action.token, 'err:', action.err)
+      return state.set('checkedToken', true);
+
+    case LOGOUT:
+      return state.set('currentUser', null);
 
     default:
       return state;

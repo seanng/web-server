@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { login } from './actions';
 import { selectNextPathName } from './selectors';
-import { makeSelectCurrentUser } from '../App/selectors';
+import { currentUser } from '../App/selectors';
 import messages from './messages';
 import Button from 'components/Button'
 
@@ -28,8 +28,8 @@ export class Login extends React.PureComponent { // eslint-disable-line react/pr
   componentWillUpdate (nextProps) {
     const { currentUser } = nextProps;
     const { nextPath, router } = this.props
-    if (currentUser && window.sessionStorage.accessToken) {
-      return nextPath ? router.push(nextPath) : router.push('/');
+    if (currentUser && window.localStorage.accessToken) {
+      return nextPath ? router.push(nextPath) : router.push('home');
     }
   }
 
@@ -98,7 +98,7 @@ const Input = styled.input`
 
 const mapStateToProps = createStructuredSelector({
   nextPath: selectNextPathName(),
-  currentUser: makeSelectCurrentUser()
+  currentUser: currentUser()
 });
 
 const mapDispatchToProps = (dispatch) => ({

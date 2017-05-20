@@ -18,21 +18,21 @@ export default function createRoutes(store) {
 
   return [
     {
-      path: '/',
-      name: 'frontDesk',
+      path: 'home',
+      name: 'home',
       onEnter: redirectToLogin,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/FrontDesk/reducer'),
-          import('containers/FrontDesk/sagas'),
+          // import('containers/FrontDesk/sagas'),
           import('containers/FrontDesk'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([reducer, component]) => {
           injectReducer('frontDesk', reducer.default);
-          injectSagas(sagas.default);
+          // injectSagas(sagas.default);
           renderRoute(component);
         });
 
@@ -66,19 +66,33 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/Login/reducer'),
-          import('containers/Login/sagas'),
           import('containers/Login'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([reducer, component]) => {
           injectReducer('login', reducer.default);
-          injectSagas(sagas.default);
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/',
+      name: 'splash',
+      getComponent(nextState, cb) {
+        import ('containers/Splash')
+          .then(loadModule(cb))
+          .catch(errorLoading)
+      },
+    }, {
+      path: 'logout',
+      name: 'logout',
+      getComponent(location, cb) {
+        import('containers/Logout')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     }, {
       path: '*',

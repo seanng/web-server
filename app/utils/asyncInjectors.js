@@ -7,6 +7,7 @@ import invariant from 'invariant';
 import warning from 'warning';
 
 import createReducer from '../reducers';
+import { checkAuth } from 'containers/App/actions'
 
 /**
  * Validate the shape of redux store
@@ -87,7 +88,7 @@ function redirectToLogin(store) {
 function redirectToDashboard(store) {
   return (nextState, replace) => {
     if (currentUser(store)) {
-      replace('/');
+      replace('home');
     }
   };
 }

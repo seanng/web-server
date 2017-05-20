@@ -10,7 +10,8 @@
  */
 
 export const TEST_SOCKET = 'server/test_socket';
-export const GET_CURRENT_USER = 'server/GET_CURRENT_USER';
+export const CHECK_AUTH = 'server/CHECK_AUTH';
 export const DEFAULT_LOCALE = 'en';
-export const TOKEN_VALIDATED = 'app/TOKEN_VALIDATED'
-export const TOKEN_INVALID = 'app/TOKEN_INVALID'
+export const TOKEN_VALIDATED = 'app/app/TOKEN_VALIDATED'
+export const TOKEN_INVALID = 'app/app/INVALIDATE_CURRENT_USER'
+export const LOGOUT = 'app/app/LOGOUT'

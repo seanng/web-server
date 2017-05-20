@@ -2,8 +2,8 @@ import io from 'socket.io-client';
 
 import {
   TEST_SOCKET,
-  GET_CURRENT_USER,
-  TOKEN_INVALID
+  CHECK_AUTH,
+  LOGOUT
 } from './constants';
 
 export function testSocket() {
@@ -13,16 +13,15 @@ export function testSocket() {
   }
 }
 
-export function getCurrentUser (token) {
+export function checkAuth (token) {
   return {
-    type: GET_CURRENT_USER,
+    type: CHECK_AUTH,
     token
   }
 }
 
-export function tokenNotValid () {
-  console.log('dispatching token invalid')
+export function logout () {
   return {
-    type: TOKEN_INVALID
+    type: LOGOUT
   }
 }

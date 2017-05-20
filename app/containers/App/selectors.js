@@ -6,10 +6,6 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = (state) => state.get('global');
 
-const makeSelectCurrentUser = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('currentUser')
-);
 
 const makeSelectLocationState = () => {
   let prevRoutingState;
@@ -27,15 +23,19 @@ const makeSelectLocationState = () => {
   };
 };
 
-const isLoaded = () => createSelector(
+const currentUser = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('loaded')
-)
+  (globalState) => globalState.get('currentUser')
+);
 
+const checkedToken = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('checkedToken')
+)
 
 export {
   selectGlobal,
   makeSelectLocationState,
-  makeSelectCurrentUser,
-  isLoaded
+  currentUser,
+  checkedToken
 };

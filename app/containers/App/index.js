@@ -7,46 +7,22 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
-
 import Navigation from 'components/Navigation';
 import withProgressBar from 'components/ProgressBar';
-import { getCurrentUser, tokenNotValid } from './actions';
-import { makeSelectCurrentUser, isLoaded } from './selectors';
 
 const AppWrapper = styled.div`
   min-height: 100%;
 `;
 
 export class App extends React.Component {
-  constructor(props) {
-    super(props);
+  showNavigation () {
+    return location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/logout'
   }
-
-  componentDidMount() {
-    if (!window.sessionStorage.accessToken) {
-      console.log('none.', this.props)
-      return this.props.tokenNotValid()
-    }
-    return this.props.tokenNotValid()
-    // if token, this.props.validateToken(token)
-  }
-
-  componentWillReceiveProps (next) {
-    console.log('the next props:', next.isLoaded)
-  }
-
   render () {
-    const { location, children, isLoaded } = this.props
-    console.log('isloaded?', isLoaded)
-    if (!isLoaded) {
-      return (
-        <div>hellloooooo</div>
-      )
-    }
+    const { location, children } = this.props
     return (
       <AppWrapper>
         <Helmet
@@ -56,24 +32,11 @@ export class App extends React.Component {
             { name: 'description', content: 'Haven Web Application' },
           ]}
         />
-        { location.pathname !== '/login' && <Navigation />}
+        { this.showNavigation() && <Navigation />}
         {React.Children.toArray(children)}
       </AppWrapper>
     );
   }
 }
 
-App.propTypes = {
-  children: React.PropTypes.node,
-};
-
-const mapStateToProps = createStructuredSelector({
-  isLoaded: isLoaded()
-});
-
-const mapDispatchToProps = () => ({
-  validateToken: (token) => getCurrentUser(token),
-  tokenNotValid: () => tokenNotValid()
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(withProgressBar(App));
+export default withProgressBar(App);
