@@ -37,22 +37,62 @@ const fakeData = {
     name: 'Regal Hotel Wanchai',
     rate: 400.00,
     currency: 'HKD',
+    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+
+    Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
+
+    Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
+
+    Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
   }, {
     name: 'Sheraton Hotel Kowloon',
     rate: 400.00,
     currency: 'HKD',
+    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+
+Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
+
+Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
+
+Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
   }, {
     name: 'Stevenage Hotel',
     rate: 400.00,
     currency: 'HKD',
+    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+
+    Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
+
+    Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
+
+    Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
   }, {
     name: 'Westin Hotel',
     rate: 400.00,
     currency: 'HKD',
+    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+
+    Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
+
+    Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
+
+    Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
   }, {
     name: 'W Hotel',
     rate: 400.00,
     currency: 'HKD',
+    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+
+    Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
+
+    Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
+
+    Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
   }],
   employees: [{
     hotelId: 1,
@@ -152,8 +192,8 @@ module.exports = {
       }, Promise.resolve())
       .then(() =>
         fakeData.hotels.reduce((promiseChain, hotel) => {
-          const { name, rate, currency } = hotel;
-          return Hotel.create({ name, rate, currency });
+          const { name, rate, currency, description, photos } = hotel;
+          return Hotel.create({ name, rate, currency, description, photos });
         }, Promise.resolve())
         .then(() =>
           fakeData.stays.reduce((promiseChain, stay) => {

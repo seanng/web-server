@@ -10,8 +10,8 @@ import { createStructuredSelector } from 'reselect';
 import makeSelectAccount from './selectors';
 import messages from './messages';
 
-import { hotelId } from 'containers/App/selectors'
-import { getView, getEarningsFilter } from './selectors';
+import { selectHotelId } from 'containers/App/selectors'
+import { getView, getEarningsFilter, selectHotelInfo } from './selectors';
 import { switchView, setEarningsFilter, getHotelInfo } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
@@ -48,8 +48,8 @@ let data = [{
 export class Account extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   fetchHotelInfo () {
-    const { fetchHotelInfo, hotelId } = this.props
-    fetchHotelInfo(hotelId);
+    const { getHotelInfo, hotelId, hotel } = this.props
+    getHotelInfo(hotelId)
   }
 
   render() {
@@ -59,7 +59,12 @@ export class Account extends React.Component { // eslint-disable-line react/pref
         <div className='container'>
           <SubHeader title={this.props.view} hotelName='Hotel G' />
           {this.props.view === 'earnings' && <EarningsView data={data} clickEarningsFilter={this.props.clickEarningsFilter.bind(this)} activeEarningsFilter={this.props.earningsFilter} />}
-          {this.props.view === 'hotelProfile' && <HotelProfile fetchHotelInfo={this.fetchHotelInfo.bind(this)} value={3} />}
+          {this.props.view === 'hotelProfile' && (
+            <HotelProfile
+              fetchHotelInfo={this.fetchHotelInfo.bind(this)}
+              hotel={this.props.hotel}
+              value={3}
+            />)}
           {this.props.view === 'teamManagement' && <TeamManagement />}
           {this.props.view === 'settings' && <Settings />}
         </div>
@@ -76,7 +81,8 @@ const mapStateToProps = createStructuredSelector({
   view: getView(),
   earningsFilter: getEarningsFilter(),
   Account: makeSelectAccount(),
-  hotelId: hotelId()
+  hotelId: selectHotelId(),
+  hotel: selectHotelInfo()
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -87,7 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
   clickEarningsFilter: (filter) => {
     dispatch(setEarningsFilter(filter));
   },
-  fetchHotelInfo: (id) => {
+  getHotelInfo: (id) => {
     dispatch(getHotelInfo(id))
   }
 });

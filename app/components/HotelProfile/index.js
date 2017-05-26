@@ -22,8 +22,17 @@ class HotelProfile extends React.Component { // eslint-disable-line react/prefer
     this.state = { value: this.props.value*1 }
   }
 
-  componentWillMount () {
-    this.props.fetchHotelInfo()
+  componentDidMount () {
+    if (!this.props.hotel) {
+      this.props.fetchHotelInfo()
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (!this.props.hotel && nextProps.hotel) {
+      console.log('receiving hotel info in HotelProfile! ', nextProps.hotel)
+    }
+
   }
 
   decreaseInput () {
@@ -84,13 +93,13 @@ class HotelProfile extends React.Component { // eslint-disable-line react/prefer
   render () {
     return (
       <div className="row body-wrapper">
-        <div className="col-sm-6 column-wrapper">
+        <div className="col-sm-7 column-wrapper">
           <LeftContainer>
             <HotelPhotos />
             <HotelDescription />
           </LeftContainer>
         </div>
-        <Right className="col-sm-6 column-wrapper">
+        <Right className="col-sm-5 column-wrapper">
           { this._hourlyRate() }
           { this._amenities() }
           { this._location() }

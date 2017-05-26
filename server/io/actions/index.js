@@ -9,4 +9,5 @@ module.exports = {
   fetchCharges: require('./fetchCharges'),
   saveCharges: require('./saveCharges'),
   employeeLogin: require('./employeeLogin'),
+  getHotelInfo: require('./getHotelInfo'),
 }

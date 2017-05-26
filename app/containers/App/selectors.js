@@ -27,7 +27,7 @@ const currentUser = () => createSelector(
   (globalState) => globalState.get('currentUser')
 );
 
-const hotelId = () => createSelector(
+const selectHotelId = () => createSelector(
   currentUser(),
   (user) => user.hotelId
 )
@@ -42,5 +42,5 @@ export {
   makeSelectLocationState,
   currentUser,
   checkedToken,
-  hotelId
+  selectHotelId
 };

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
- 
+
 /**
  * Direct selector to the account state domain
  */
@@ -24,6 +24,16 @@ const getEarningsFilter = () => createSelector(
   (substate) => substate.get('earningsFilter')
 );
 
+const getHotelDescriptionMode = () => createSelector(
+  selectAccountDomain(),
+  substate => substate.get('isEditingHotelDescription')
+)
+
+const selectHotelInfo = () => createSelector(
+  selectAccountDomain(),
+  substate => substate.get('hotelInfo')
+)
+
 /**
  * Default selector used by Account
  */
@@ -39,5 +49,7 @@ export {
   selectAccountDomain,
   getView,
   getSettingsView,
-  getEarningsFilter
+  getEarningsFilter,
+  selectHotelInfo,
+  getHotelDescriptionMode,
 };

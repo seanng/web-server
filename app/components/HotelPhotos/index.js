@@ -7,6 +7,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Container = styled.div`
+  padding-bottom: 15px
+`
+
 const Primary = styled.div`
   height: 300px;
   background-color: blue;
@@ -19,7 +23,7 @@ const Secondary = styled.div`
 
 function HotelPhotos() {
   return (
-    <div>
+    <Container>
       <div className="row">
         <div className="col-sm-9">
           <Primary />
@@ -44,7 +48,7 @@ function HotelPhotos() {
           <Secondary />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

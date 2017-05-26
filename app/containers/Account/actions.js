@@ -8,7 +8,8 @@ import {
   SWITCH_VIEW,
   SWITCH_SETTINGS_VIEW,
   SET_EARNINGS_FILTER,
-	GET_HOTEL_INFO
+	GET_HOTEL_INFO,
+	TOGGLE_HOTEL_DESCRIPTION_MODE
 } from './constants';
 
 function switchView(view) {
@@ -39,9 +40,16 @@ function getHotelInfo(id) {
 	}
 }
 
+function toggleHotelDescriptionMode () {
+  return {
+    type: TOGGLE_HOTEL_DESCRIPTION_MODE
+  }
+}
+
 export {
 	switchSettingsView,
 	switchView,
 	setEarningsFilter,
-	getHotelInfo
+	getHotelInfo,
+	toggleHotelDescriptionMode
 }
