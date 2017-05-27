@@ -8,6 +8,9 @@ import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
+import overviewReducer from 'containers/Overview/reducer'
+import reviewReducer from 'containers/Review/reducer'
+import hotelProfileReducer from 'containers/HotelProfile/reducer'
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*
@@ -46,6 +49,9 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
+    overview: overviewReducer,
+    review: reviewReducer,
+    hotelProfile: hotelProfileReducer,
     ...asyncReducers,
   });
 }

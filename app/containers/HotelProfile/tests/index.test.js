@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import OverviewView from '../index';
+// import { HotelProfile } from '../index';
 
-describe('<OverviewView />', () => {
+describe('<HotelProfile />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

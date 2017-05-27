@@ -16,7 +16,7 @@ module.exports = (client, action) => {
       })
     }
     return reply(client, {
-      type: 'app/Account/GOT_HOTEL_INFO',
+      type: 'app/HotelProfile/GOT_HOTEL_INFO',
       info
     })
   })

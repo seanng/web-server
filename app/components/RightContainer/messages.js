@@ -1,8 +1,3 @@
-/*
- * HotelProfile Messages
- *
- * This contains all the text for the HotelProfile component.
- */
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({

@@ -6,11 +6,10 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-import { connect } from 'react-redux';
 import { Glyphicon, FormControl } from  'react-bootstrap';
 import { createStructuredSelector } from 'reselect';
-import { toggleHotelDescriptionMode } from 'containers/Account/actions'
-import { getHotelDescriptionMode } from 'containers/Account/selectors'
+import { toggleHotelDescriptionMode } from 'containers/HotelProfile/actions'
+import { getHotelDescriptionMode } from 'containers/HotelProfile/selectors'
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -51,13 +50,4 @@ class HotelDescription extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  toggleEditMode: () => dispatch(toggleHotelDescriptionMode())
-})
-
-
-const mapStateToProps = createStructuredSelector({
-  isEditingMode: getHotelDescriptionMode()
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(HotelDescription);
+export default HotelDescription;

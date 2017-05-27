@@ -35,8 +35,8 @@ const WrapperChild2 = styled.div`
   text-align: right;
 `
 
-const SubHeader = ({ title, hotelName }) => {
-  if (title !== 'hotelProfile') {
+const SubHeader = ({ title, hotelName, isEditing }) => {
+  if (title !== 'hotelProfile' && !isEditing) {
     return (
       <Title>
         <FormattedMessage {...messages[title]} />
