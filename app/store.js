@@ -3,6 +3,7 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
+// import { autoRehydrate } from 'redux-persist';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSocketIoMiddleware from 'redux-socket.io';
@@ -24,7 +25,8 @@ export default function configureStore(initialState = {}, history) {
   ];
 
   const enhancers = [
-    applyMiddleware(...middlewares),
+    applyMiddleware(...middlewares)
+    // autoRehydrate()
   ];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
@@ -58,6 +60,8 @@ export default function configureStore(initialState = {}, history) {
       });
     });
   }
-
+    
+  // begin periodically persisting the store
+  
   return store;
 }

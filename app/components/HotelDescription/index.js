@@ -15,22 +15,35 @@ import messages from './messages';
 
 class HotelDescription extends React.Component {
 
-  _toggleEditMode = () => {
+  _editHotelProfile = (e) => {
+    console.log('editing.', e.target.value)
+    this.props.editHotelProfile({ description: e.target.value })
+  }
+
+  _toggleEditMode = (e) => {
     this.props.toggleEditMode();
   }
 
   _formattedDescription () {
+    const { description } = this.props
     return (
       <div>
-        _formattedDescription
+        { description }
       </div>
     )
   }
 
   _editingDescription () {
+    const { description } = this.props
     return (
       <div>
-        <FormControl componentClass="textarea" placeholder="textarea" onSubmit={this._toggleEditMode}/>
+        <FormControl 
+          componentClass="textarea" 
+          placeholder="Add a description for your hotel!"
+          value={description}
+          onChange={this._editHotelProfile}
+          id='hotelDescriptionInput'
+        />
       </div>
     )
   }

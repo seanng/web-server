@@ -35,8 +35,8 @@ const WrapperChild2 = styled.div`
   text-align: right;
 `
 
-const SubHeader = ({ title, hotelName, isEditing }) => {
-  if (title !== 'hotelProfile' && !isEditing) {
+const SubHeader = ({ title, hotelName, isEditing, saveHotelProfile }) => {
+  if (title !== 'hotelProfile') {
     return (
       <Title>
         <FormattedMessage {...messages[title]} />
@@ -48,11 +48,13 @@ const SubHeader = ({ title, hotelName, isEditing }) => {
       <WrapperChild>
         { hotelName }
       </WrapperChild>
-      <WrapperChild2>
-        <Button bgColor='#2dc937'>
-          <FormattedMessage {...messages.saveHotelProfile} />
-        </Button>
-      </WrapperChild2>
+      { isEditing && (
+        <WrapperChild2>
+          <Button bgColor='#2dc937' onClick={saveHotelProfile}>
+            <FormattedMessage {...messages.saveHotelProfile} />
+          </Button>
+        </WrapperChild2>
+      )}
     </Wrapper>
   )
 }

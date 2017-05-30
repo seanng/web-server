@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile } from './actions'
 import { selectHotelId } from 'containers/App/selectors'
 import { selectHotelInfo, selectHotelDescriptionMode } from './selectors';
 import styled from 'styled-components';
@@ -60,7 +60,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
         </div>
       )
     }
-    const { toggleEditMode, hotel, isEditingMode } = this.props
+    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile } = this.props
     return (
       <div className="row body-wrapper">
         <div className="col-sm-7 column-wrapper">
@@ -69,7 +69,8 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
             <HotelDescription
               description={hotel.description}
               toggleEditMode={toggleEditMode}
-              isEditingMode={isEditingMode}
+              isEditingMode={isEditingDescription}
+              editHotelProfile={editHotelProfile}
             />
           </LeftContainer>
         </div>
@@ -91,7 +92,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
 const mapStateToProps = createStructuredSelector({
   hotel: selectHotelInfo(),
   hotelId: selectHotelId(),
-  isEditingMode: selectHotelDescriptionMode(),
+  isEditingDescription: selectHotelDescriptionMode(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -99,6 +100,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getHotelInfo(id)),
   toggleEditMode: () =>
     dispatch(toggleHotelDescriptionMode()),
+  editHotelProfile: (config) => 
+    dispatch(editHotelProfile(config))
 })
 
 const LeftContainer = styled.div`

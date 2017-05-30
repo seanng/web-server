@@ -12,6 +12,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+// import { persistStore } from 'redux-persist';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
@@ -73,6 +74,10 @@ const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: makeSelectLocationState(),
 });
+
+// persistStore(store, {
+//   whitelist: ['global']
+// }, () => console.log('store persisted'))
 
 // Set up the router, wrapping all Routes in the App component
 const rootRoute = {

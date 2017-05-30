@@ -6,7 +6,9 @@
 
 import {
   TOGGLE_HOTEL_DESCRIPTION_MODE,
-  GET_HOTEL_INFO
+  GET_HOTEL_INFO,
+  EDIT_HOTEL_PROFILE,
+  SAVE_HOTEL_PROFILE
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -19,5 +21,19 @@ export function getHotelInfo(id) {
 export function toggleHotelDescriptionMode () {
   return {
     type: TOGGLE_HOTEL_DESCRIPTION_MODE
+  }
+}
+
+export function editHotelProfile (config) {
+  return {
+    type: EDIT_HOTEL_PROFILE,
+    config
+  }
+}
+
+export function saveHotelProfile (hotelInfo) {
+  return {
+    type: SAVE_HOTEL_PROFILE,
+    hotelInfo
   }
 }

@@ -11,6 +11,8 @@ import makeSelectAccount from './selectors';
 import messages from './messages';
 
 import { getView, getEarningsFilter } from './selectors';
+import { selectHotelInfo, isEditingHotelProfile } from 'containers/HotelProfile/selectors'
+import { saveHotelProfile } from 'containers/HotelProfile/actions'
 import { switchView, setEarningsFilter } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
@@ -46,21 +48,32 @@ let data = [{
 
 export class Account extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  saveHotelProfile = () => {
+    const { saveHotelProfile, hotel } = this.props
+    saveHotelProfile(hotel)
+  }
+
   render() {
+    const { view, clickTab, hotel, isEditing, clickEarningsFilter, earningsFilter } = this.props
     return (
       <div>
-      <SubNavigation title='account' activeView={this.props.view} clickTab={this.props.clickTab.bind(this)} />
+      <SubNavigation title='account' activeView={view} clickTab={clickTab.bind(this)} />
         <div className='container'>
-          <SubHeader title={this.props.view} hotelName='Hotel G' isEditing={this.props.isEditing} />
-          {this.props.view === 'earnings' && (
+          <SubHeader 
+            title={view} 
+            hotelName={hotel && hotel.name} 
+            isEditing={isEditing} 
+            saveHotelProfile={this.saveHotelProfile}
+          />
+          {view === 'earnings' && (
             <EarningsView
               data={data}
-              clickEarningsFilter={this.props.clickEarningsFilter.bind(this)}
-              activeEarningsFilter={this.props.earningsFilter}
+              clickEarningsFilter={clickEarningsFilter.bind(this)}
+              activeEarningsFilter={earningsFilter}
             />)}
-          {this.props.view === 'hotelProfile' && <HotelProfile />}
-          {this.props.view === 'teamManagement' && <TeamManagement />}
-          {this.props.view === 'settings' && <Settings />}
+          {view === 'hotelProfile' && <HotelProfile />}
+          {view === 'teamManagement' && <TeamManagement />}
+          {view === 'settings' && <Settings />}
         </div>
       </div>
     );
@@ -71,17 +84,20 @@ const mapStateToProps = createStructuredSelector({
   view: getView(),
   earningsFilter: getEarningsFilter(),
   Account: makeSelectAccount(),
+  hotel: selectHotelInfo(),
+  isEditing: isEditingHotelProfile()
 });
 
 const mapDispatchToProps = (dispatch) => ({
   clickTab: (view) => {
-    // dispatch(setParticipantList(null));
     dispatch(switchView(view));
   },
   clickEarningsFilter: (filter) => {
     dispatch(setEarningsFilter(filter));
   },
-
+  saveHotelProfile: (hotelInfo) => {
+    dispatch(saveHotelProfile(hotelInfo));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

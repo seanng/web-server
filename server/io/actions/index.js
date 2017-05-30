@@ -10,4 +10,5 @@ module.exports = {
   saveCharges: require('./saveCharges'),
   employeeLogin: require('./employeeLogin'),
   getHotelInfo: require('./getHotelInfo'),
+  saveHotelProfile: require('./saveHotelProfile')
 }
