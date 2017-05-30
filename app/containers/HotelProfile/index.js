@@ -52,6 +52,10 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
     document.getElementById('testr').focus()
   }
 
+  addPhoto = () => {
+    console.log('adding photo.')
+  }
+
   render () {
     if (this.state.loading) {
       return (
@@ -65,7 +69,10 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
       <div className="row body-wrapper">
         <div className="col-sm-7 column-wrapper">
           <LeftContainer>
-            <HotelPhotos />
+            <HotelPhotos 
+              addPhoto={this.addPhoto}
+              photos={hotel.photos}
+            />
             <HotelDescription
               description={hotel.description}
               toggleEditMode={toggleEditMode}
@@ -105,9 +112,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const LeftContainer = styled.div`
-  padding: 20px;
-  height: 100%;
-  border: 1px solid black;
+
 `
 
 const Right = styled.div`
