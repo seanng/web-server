@@ -11,7 +11,8 @@ const selectHotelProfileDomain = () => (state) => state.get('hotelProfile');
 
 const selectHotelInfo = () => createSelector(
   selectHotelProfileDomain(),
-  substate => substate.get('hotelInfo').toJS()
+  substate =>
+    substate.get('hotelInfo').toJS()
 )
 
 const selectHotelDescriptionMode = () => createSelector(

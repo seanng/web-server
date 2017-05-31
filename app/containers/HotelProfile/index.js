@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto } from './actions'
 import { selectHotelId } from 'containers/App/selectors'
 import { selectHotelInfo, selectHotelDescriptionMode } from './selectors';
 import styled from 'styled-components';
@@ -52,8 +52,15 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
     document.getElementById('testr').focus()
   }
 
-  addPhoto = () => {
-    console.log('adding photo.')
+  addPhoto = (e) => {
+    if (this.props.hotel.photos.length < 6) {
+      const file = e.target.files[0]
+      const reader = new FileReader()
+      const url = reader.readAsDataURL(file)
+      reader.onloadend = (e) => {
+        this.props.addPhoto(reader.result)
+      }
+    }
   }
 
   render () {
@@ -108,7 +115,9 @@ const mapDispatchToProps = (dispatch) => ({
   toggleEditMode: () =>
     dispatch(toggleHotelDescriptionMode()),
   editHotelProfile: (config) => 
-    dispatch(editHotelProfile(config))
+    dispatch(editHotelProfile(config)),
+  addPhoto: (photo) =>
+    dispatch(addPhoto(photo)),
 })
 
 const LeftContainer = styled.div`

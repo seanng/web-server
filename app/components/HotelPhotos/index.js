@@ -41,9 +41,9 @@ const GlyphWrapper = styled.div`
   width: 90px;
 `
 
-const glyphiconStyle = {
-  fontSize: 42
-};
+const fileLabelStyle = {
+  cursor: 'pointer'
+}
 
 class HotelPhotos extends React.Component {
 
@@ -61,9 +61,12 @@ class HotelPhotos extends React.Component {
             </Primary>
           </div>
           <div className="col-sm-3" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-            <GlyphWrapper onClick={ this.props.addPhoto }>
-              <Glyphicon glyph='glyphicon glyphicon-plus' style={glyphiconStyle} />
-            </GlyphWrapper>
+            <label style={fileLabelStyle}>
+              <input type="file" style={{ display: 'none' }} onChange={this.props.addPhoto} accept='image/png,image/jpeg' />
+              <GlyphWrapper>
+                <Glyphicon glyph='glyphicon glyphicon-plus' style={{ fontSize: 42 }} />
+              </GlyphWrapper>
+            </label>
             <Secondary>
               { this.props.photos[5] && <Img src={this.props.photos[5]} /> }
             </Secondary>

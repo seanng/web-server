@@ -8,7 +8,8 @@ import {
   TOGGLE_HOTEL_DESCRIPTION_MODE,
   GET_HOTEL_INFO,
   EDIT_HOTEL_PROFILE,
-  SAVE_HOTEL_PROFILE
+  SAVE_HOTEL_PROFILE,
+  ADD_PHOTO
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -35,5 +36,12 @@ export function saveHotelProfile (hotelInfo) {
   return {
     type: SAVE_HOTEL_PROFILE,
     hotelInfo
+  }
+}
+
+export function addPhoto (photo) {
+  return {
+    type: ADD_PHOTO,
+    photo
   }
 }

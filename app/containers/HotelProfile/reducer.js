@@ -4,7 +4,8 @@ import {
   GOT_HOTEL_INFO,
   EDIT_HOTEL_PROFILE,
   SAVED_HOTEL_PROFILE,
-  SAVED_HOTEL_PROFILE_ERROR
+  SAVED_HOTEL_PROFILE_ERROR,
+  ADD_PHOTO
 } from './constants';
 
 const initialState = fromJS({
@@ -42,6 +43,11 @@ function hotelProfileReducer(state = initialState, action) {
     case SAVED_HOTEL_PROFILE_ERROR:
       console.log('there was an error', action.err)
       return state;
+
+    case ADD_PHOTO: 
+      return state
+        .updateIn(['hotelInfo', 'photos'], photos => photos.concat(action.photo))
+        .set('isEditingHotelProfile', true)
 
     default:
       return state;
