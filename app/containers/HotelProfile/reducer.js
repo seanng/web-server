@@ -5,7 +5,8 @@ import {
   EDIT_HOTEL_PROFILE,
   SAVED_HOTEL_PROFILE,
   SAVED_HOTEL_PROFILE_ERROR,
-  ADD_PHOTO
+  ADD_PHOTO,
+  REARRANGE_PHOTOS
 } from './constants';
 
 const initialState = fromJS({
@@ -32,10 +33,9 @@ function hotelProfileReducer(state = initialState, action) {
       return state
         .set('isEditingHotelProfile', true)
         .merge({ hotelInfo: s });
-    
+
     case SAVED_HOTEL_PROFILE:
       const { hotelInfo } = action
-      console.log('the hotel info after saving :', hotelInfo)
       return state
         .set('isEditingHotelProfile', false)
         .merge({ hotelInfo })
@@ -44,10 +44,20 @@ function hotelProfileReducer(state = initialState, action) {
       console.log('there was an error', action.err)
       return state;
 
-    case ADD_PHOTO: 
+    case ADD_PHOTO:
       return state
         .updateIn(['hotelInfo', 'photos'], photos => photos.concat(action.photo))
         .set('isEditingHotelProfile', true)
+
+    case REARRANGE_PHOTOS:
+      const { dragIndex, hoverIndex, dragPhoto } = action
+      return state
+        .set('isEditingHotelProfile', true)
+        .updateIn(['hotelInfo', 'photos'], photos => {
+          photos = photos.splice(dragIndex, 1)
+          photos = photos.splice(hoverIndex, 0, dragPhoto)
+          return photos
+        })
 
     default:
       return state;

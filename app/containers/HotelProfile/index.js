@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos } from './actions'
 import { selectHotelId } from 'containers/App/selectors'
 import { selectHotelInfo, selectHotelDescriptionMode } from './selectors';
 import styled from 'styled-components';
@@ -71,14 +71,15 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
         </div>
       )
     }
-    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile } = this.props
+    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos } = this.props
     return (
       <div className="row body-wrapper">
         <div className="col-sm-7 column-wrapper">
           <LeftContainer>
-            <HotelPhotos 
+            <HotelPhotos
               addPhoto={this.addPhoto}
               photos={hotel.photos}
+              rearrangePhotos={rearrangePhotos}
             />
             <HotelDescription
               description={hotel.description}
@@ -114,10 +115,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getHotelInfo(id)),
   toggleEditMode: () =>
     dispatch(toggleHotelDescriptionMode()),
-  editHotelProfile: (config) => 
+  editHotelProfile: (config) =>
     dispatch(editHotelProfile(config)),
   addPhoto: (photo) =>
     dispatch(addPhoto(photo)),
+  rearrangePhotos: (dragIndex, hoverIndex, dragPhoto) =>
+    dispatch(rearrangePhotos(dragIndex, hoverIndex, dragPhoto))
 })
 
 const LeftContainer = styled.div`

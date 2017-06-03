@@ -7,6 +7,8 @@
 import React from 'react';
 import { Glyphicon } from 'react-bootstrap';
 import styled from 'styled-components';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import DraggablePhoto from '../DraggablePhoto'
 
 const Container = styled.div`
@@ -48,6 +50,7 @@ class HotelPhotos extends React.Component {
     const { photos, rearrangePhotos } = this.props
     const dragPhoto = photos[dragIndex]
     rearrangePhotos(dragIndex, hoverIndex, dragPhoto)
+    this.setState({ activeIndex: hoverIndex })
   }
 
   render () {
@@ -71,12 +74,14 @@ class HotelPhotos extends React.Component {
               index={5}
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
+              movePhoto={this.movePhoto.bind(this)}
             />
             <DraggablePhoto
               active={this.state.activeIndex}
               index={4}
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
+              movePhoto={this.movePhoto.bind(this)}
             />
           </div>
         </div>
@@ -87,6 +92,7 @@ class HotelPhotos extends React.Component {
               index={0}
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
+              movePhoto={this.movePhoto.bind(this)}
             />
           </div>
           <div className="col-sm-3">
@@ -95,6 +101,7 @@ class HotelPhotos extends React.Component {
               index={1}
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
+              movePhoto={this.movePhoto.bind(this)}
             />
           </div>
           <div className="col-sm-3">
@@ -103,6 +110,7 @@ class HotelPhotos extends React.Component {
               index={2}
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
+              movePhoto={this.movePhoto.bind(this)}
             />
           </div>
           <div className="col-sm-3">
@@ -111,6 +119,7 @@ class HotelPhotos extends React.Component {
               index={3}
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
+              movePhoto={this.movePhoto.bind(this)}
             />
           </div>
         </div>
@@ -119,4 +128,4 @@ class HotelPhotos extends React.Component {
   }
 }
 
-export default HotelPhotos;
+export default DragDropContext(HTML5Backend)(HotelPhotos);

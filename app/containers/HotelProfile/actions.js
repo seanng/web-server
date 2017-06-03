@@ -9,7 +9,8 @@ import {
   GET_HOTEL_INFO,
   EDIT_HOTEL_PROFILE,
   SAVE_HOTEL_PROFILE,
-  ADD_PHOTO
+  ADD_PHOTO,
+  REARRANGE_PHOTOS
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -29,6 +30,13 @@ export function editHotelProfile (config) {
   return {
     type: EDIT_HOTEL_PROFILE,
     config
+  }
+}
+
+export function rearrangePhotos (dragIndex, hoverIndex, dragPhoto) {
+  return {
+    type: REARRANGE_PHOTOS,
+    dragIndex, hoverIndex, dragPhoto
   }
 }
 
