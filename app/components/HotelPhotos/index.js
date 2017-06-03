@@ -53,6 +53,12 @@ class HotelPhotos extends React.Component {
     this.setState({ activeIndex: hoverIndex })
   }
 
+  deletePhoto (index) {
+    const { activeIndex } = this.state
+    this.props.deletePhoto(index);
+    this.setState({ activeIndex: activeIndex - 1 })
+  }
+
   render () {
     return (
       <Container>
@@ -75,6 +81,7 @@ class HotelPhotos extends React.Component {
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
               movePhoto={this.movePhoto.bind(this)}
+              deletePhoto={() => this.deletePhoto(5)}
             />
             <DraggablePhoto
               active={this.state.activeIndex}
@@ -82,6 +89,7 @@ class HotelPhotos extends React.Component {
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
               movePhoto={this.movePhoto.bind(this)}
+              deletePhoto={() => this.deletePhoto(4)}
             />
           </div>
         </div>
@@ -93,6 +101,7 @@ class HotelPhotos extends React.Component {
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
               movePhoto={this.movePhoto.bind(this)}
+              deletePhoto={() => this.deletePhoto(0)}
             />
           </div>
           <div className="col-sm-3">
@@ -102,6 +111,7 @@ class HotelPhotos extends React.Component {
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
               movePhoto={this.movePhoto.bind(this)}
+              deletePhoto={() => this.deletePhoto(1)}
             />
           </div>
           <div className="col-sm-3">
@@ -111,6 +121,7 @@ class HotelPhotos extends React.Component {
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
               movePhoto={this.movePhoto.bind(this)}
+              deletePhoto={() => this.deletePhoto(2)}
             />
           </div>
           <div className="col-sm-3">
@@ -120,6 +131,7 @@ class HotelPhotos extends React.Component {
               photos={this.props.photos}
               onClick={this.setPhotoAsActive}
               movePhoto={this.movePhoto.bind(this)}
+              deletePhoto={() => this.deletePhoto(3)}
             />
           </div>
         </div>

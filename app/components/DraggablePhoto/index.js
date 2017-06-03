@@ -7,8 +7,9 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-import { DRAGGABLE_PHOTO } from 'containers/HotelProfile/constants'
 import styled from 'styled-components';
+import { Glyphicon } from 'react-bootstrap';
+import { DRAGGABLE_PHOTO } from 'containers/HotelProfile/constants';
 
 const ItemTypes = {
   PHOTO: 'photo'
@@ -27,6 +28,15 @@ const Secondary = styled.div`
   cursor: pointer;
 `;
 
+const styles = {
+  glyphWrapper: {
+    position: 'absolute',
+    top: '3px',
+    right: '13%',
+    zIndex: 3,
+    color: 'red'
+  }
+}
 
 const photoSource = {
   beginDrag(props) {
@@ -76,7 +86,7 @@ const photoTarget = {
 
 class Photo extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { photos, isDragging, connectDragSource, connectDropTarget, index, active, onClick } = this.props
+    const { photos, isDragging, connectDragSource, connectDropTarget, index, active, onClick, deletePhoto } = this.props
     const opacity = isDragging ? 0: 1
     if (index >= photos.length) {
       return <Secondary active={false} />
@@ -84,6 +94,9 @@ class Photo extends React.PureComponent { // eslint-disable-line react/prefer-st
     return connectDragSource(connectDropTarget(
       <div>
         <Secondary index={index} active={active} onClick={onClick.bind(null, index)} style={{...opacity}}>
+          <span style={styles.glyphWrapper} onClick={deletePhoto}>
+            <Glyphicon glyph='glyphicon glyphicon-minus' />
+          </span>
           { photos[index] && <Img src={photos[index]} /> }
         </Secondary>
       </div>

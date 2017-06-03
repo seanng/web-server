@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto } from './actions'
 import { selectHotelId } from 'containers/App/selectors'
 import { selectHotelInfo, selectHotelDescriptionMode } from './selectors';
 import styled from 'styled-components';
@@ -80,6 +80,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
               addPhoto={this.addPhoto}
               photos={hotel.photos}
               rearrangePhotos={rearrangePhotos}
+              deletePhoto={this.props.deletePhoto}
             />
             <HotelDescription
               description={hotel.description}
@@ -120,7 +121,9 @@ const mapDispatchToProps = (dispatch) => ({
   addPhoto: (photo) =>
     dispatch(addPhoto(photo)),
   rearrangePhotos: (dragIndex, hoverIndex, dragPhoto) =>
-    dispatch(rearrangePhotos(dragIndex, hoverIndex, dragPhoto))
+    dispatch(rearrangePhotos(dragIndex, hoverIndex, dragPhoto)),
+  deletePhoto: (index) =>
+    dispatch(deletePhoto(index))
 })
 
 const LeftContainer = styled.div`

@@ -10,7 +10,8 @@ import {
   EDIT_HOTEL_PROFILE,
   SAVE_HOTEL_PROFILE,
   ADD_PHOTO,
-  REARRANGE_PHOTOS
+  REARRANGE_PHOTOS,
+  DELETE_PHOTO
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -51,5 +52,12 @@ export function addPhoto (photo) {
   return {
     type: ADD_PHOTO,
     photo
+  }
+}
+
+export function deletePhoto (index) {
+  return {
+    type: DELETE_PHOTO,
+    index
   }
 }

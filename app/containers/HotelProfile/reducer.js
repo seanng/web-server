@@ -6,7 +6,8 @@ import {
   SAVED_HOTEL_PROFILE,
   SAVED_HOTEL_PROFILE_ERROR,
   ADD_PHOTO,
-  REARRANGE_PHOTOS
+  REARRANGE_PHOTOS,
+  DELETE_PHOTO
 } from './constants';
 
 const initialState = fromJS({
@@ -58,6 +59,11 @@ function hotelProfileReducer(state = initialState, action) {
           photos = photos.splice(hoverIndex, 0, dragPhoto)
           return photos
         })
+
+    case DELETE_PHOTO:
+      return state
+        .set('isEditingHotelProfile', true)
+        .updateIn(['hotelInfo', 'photos'], photos => photos.splice(action.index, 1))
 
     default:
       return state;

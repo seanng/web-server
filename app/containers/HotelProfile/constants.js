@@ -13,6 +13,7 @@ export const SAVED_HOTEL_PROFILE_ERROR = 'app/HotelProfile/SAVED_HOTEL_PROFILE_E
 export const ADD_PHOTO = 'app/HotelProfile/ADD_PHOTO';
 export const DRAGGABLE_PHOTO = 'app/HotelProfile/DRAGGABLE_PHOTO'
 export const REARRANGE_PHOTOS = 'app/HotelProfile/REARRANGE_PHOTOS'
+export const DELETE_PHOTO = 'app/HotelProfile/DELETE_PHOTO'
 
 export const GET_HOTEL_INFO = 'server/GET_HOTEL_INFO';
 export const SAVE_HOTEL_PROFILE = 'server/SAVE_HOTEL_PROFILE';
