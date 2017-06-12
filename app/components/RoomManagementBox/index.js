@@ -15,7 +15,6 @@ import RoomEntryRow from '../RoomEntryRow';
 import Button from '../Button';
 
 const RoomManagementBox = (props) => {
-  console.log('props in roommgmtbox', props)
   const RoomEntryList = (
     <table className="table">
       <thead>

@@ -17,7 +17,6 @@ const getFilter = (status) => createSelector(
 const getRoomsByStatus = () => createSelector(
   selectOverviewDomain(),
   (substate) => {
-    console.log('hello we are here.', substate)
     const rooms = substate.get('rooms').toJS();
     return {
       all: rooms,

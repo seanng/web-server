@@ -20,7 +20,6 @@ const initialState = fromJS({
 function loginReducer(state = initialState, action) {
   switch (action.type) {
     case SUCCESS:
-      console.log('successfully passing from server', action)
       return state.set('error', null);
     case ERROR:
       console.log('action error', action.err)

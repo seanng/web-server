@@ -44,7 +44,8 @@ const fakeData = {
     Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
-    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
+    amenities: ['Mini Bar'],
   }, {
     name: 'Sheraton Hotel Kowloon',
     rate: 400.00,
@@ -56,7 +57,8 @@ Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id
 Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
 
 Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
-    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
+    amenities: [],
   }, {
     name: 'Stevenage Hotel',
     rate: 400.00,
@@ -68,7 +70,8 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
-    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
+    amenities: [],
   }, {
     name: 'Westin Hotel',
     rate: 400.00,
@@ -80,7 +83,8 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
-    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
+    amenities: [],
   }, {
     name: 'W Hotel',
     rate: 400.00,
@@ -92,7 +96,8 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salutandi disputando, ad ius assentior instructior. Vis elitr munere ex, at malorum gubergren sit, summo definitionem ei qui. Te sit virtute nominavi persequeris, vel cu idque essent denique, eum no case nobis. Modus scripserit cu his, cum quas dolore ei.
 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
-    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg']
+    photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
+    amenities: [],
   }],
   employees: [{
     hotelId: 1,
@@ -192,8 +197,8 @@ module.exports = {
       }, Promise.resolve())
       .then(() =>
         fakeData.hotels.reduce((promiseChain, hotel) => {
-          const { name, rate, currency, description, photos } = hotel;
-          return Hotel.create({ name, rate, currency, description, photos });
+          const { name, rate, currency, description, photos, amenities } = hotel;
+          return Hotel.create({ name, rate, currency, description, photos, amenities });
         }, Promise.resolve())
         .then(() =>
           fakeData.stays.reduce((promiseChain, stay) => {

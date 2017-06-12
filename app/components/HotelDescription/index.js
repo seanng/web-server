@@ -16,7 +16,6 @@ import messages from './messages';
 class HotelDescription extends React.Component {
 
   _editHotelProfile = (e) => {
-    console.log('editing.', e.target.value)
     this.props.editHotelProfile({ description: e.target.value })
   }
 

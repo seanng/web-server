@@ -23,7 +23,6 @@ const initialState = fromJS({
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case SUCCESS:
-      console.log('successfully authenticated. the token returned is: ', action.token)
       window.localStorage.accessToken = action.token
       return state
         .set('currentUser', action.user)

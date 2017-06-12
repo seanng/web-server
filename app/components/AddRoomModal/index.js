@@ -1,9 +1,3 @@
-/**
-*
-* AddRoomModal
-*
-*/
-
 import React from 'react';
 import { Modal, FormGroup, Form, FormControl, Col, ControlLabel } from 'react-bootstrap';
 import Button from '../Button';

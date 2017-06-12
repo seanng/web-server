@@ -11,7 +11,10 @@ import {
   SAVE_HOTEL_PROFILE,
   ADD_PHOTO,
   REARRANGE_PHOTOS,
-  DELETE_PHOTO
+  DELETE_PHOTO,
+  SHOW_AMENITIES_MODAL,
+  HIDE_AMENITIES_MODAL,
+  UPDATE_AMENITIES
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -59,5 +62,23 @@ export function deletePhoto (index) {
   return {
     type: DELETE_PHOTO,
     index
+  }
+}
+
+export function displayAmenitiesModal (tru) {
+  if (tru) {
+    return {
+      type: SHOW_AMENITIES_MODAL
+    }
+  }
+  return {
+    type: HIDE_AMENITIES_MODAL
+  }
+}
+
+export function updateAmenities (amenities) {
+  return {
+    type: UPDATE_AMENITIES,
+    amenities
   }
 }

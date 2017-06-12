@@ -7,13 +7,17 @@ import {
   SAVED_HOTEL_PROFILE_ERROR,
   ADD_PHOTO,
   REARRANGE_PHOTOS,
-  DELETE_PHOTO
+  DELETE_PHOTO,
+  SHOW_AMENITIES_MODAL,
+  HIDE_AMENITIES_MODAL,
+  UPDATE_AMENITIES
 } from './constants';
 
 const initialState = fromJS({
   isEditingHotelDescription: false,
   isEditingHotelProfile: false,
-  hotelInfo: Map()
+  hotelInfo: Map(),
+  displayAmenitiesModal: false
 });
 
 function hotelProfileReducer(state = initialState, action) {
@@ -64,6 +68,17 @@ function hotelProfileReducer(state = initialState, action) {
       return state
         .set('isEditingHotelProfile', true)
         .updateIn(['hotelInfo', 'photos'], photos => photos.splice(action.index, 1))
+
+    case SHOW_AMENITIES_MODAL:
+      return state.set('displayAmenitiesModal', true)
+
+    case HIDE_AMENITIES_MODAL:
+      return state.set('displayAmenitiesModal', false)
+
+    case UPDATE_AMENITIES:
+      return state
+        .set('isEditingHotelProfile', true)
+        .updateIn(['hotelInfo', 'amenities'], amenities => action.amenities )
 
     default:
       return state;

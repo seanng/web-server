@@ -7,16 +7,17 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto, displayAmenitiesModal, updateAmenities } from './actions'
 import { selectHotelId } from 'containers/App/selectors'
-import { selectHotelInfo, selectHotelDescriptionMode } from './selectors';
+import { selectHotelInfo, selectHotelDescriptionMode, selectDisplayAmenitiesModal, selectHotelAmenities } from './selectors';
 import styled from 'styled-components';
 
-import HotelPhotos from 'components/HotelPhotos'
-import HotelDescription from 'components/HotelDescription'
-import HotelLocation from 'components/HotelLocation'
-import HotelAmenities from 'components/HotelAmenities'
-import HotelHourlyRate from 'components/HotelHourlyRate'
+import HotelPhotos from 'components/HotelPhotos';
+import HotelDescription from 'components/HotelDescription';
+import HotelLocation from 'components/HotelLocation';
+import HotelAmenities from 'components/HotelAmenities';
+import HotelHourlyRate from 'components/HotelHourlyRate';
+import AddAmenitiesModal from 'components/AddAmenitiesModal';
 
 export class HotelProfile extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -71,7 +72,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
         </div>
       )
     }
-    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos } = this.props
+    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos, displayAmenitiesModal, isAmenitiesModalDisplayed, updateAmenities } = this.props
     return (
       <div className="row body-wrapper">
         <div className="col-sm-7 column-wrapper">
@@ -97,9 +98,18 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
             edit={this.editInput}
             value={this.state.value}
           />
-          <HotelAmenities />
+          <HotelAmenities 
+            displayAmenitiesModal={displayAmenitiesModal} 
+            amenities={hotel.amenities}
+          />
           <HotelLocation />
         </Right>
+        <AddAmenitiesModal 
+          displayAmenitiesModal={displayAmenitiesModal} 
+          isShown={isAmenitiesModalDisplayed}
+          amenities={hotel.amenities}
+          updateAmenities={updateAmenities}
+        />
       </div>
     );
   }
@@ -109,6 +119,7 @@ const mapStateToProps = createStructuredSelector({
   hotel: selectHotelInfo(),
   hotelId: selectHotelId(),
   isEditingDescription: selectHotelDescriptionMode(),
+  isAmenitiesModalDisplayed: selectDisplayAmenitiesModal()
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -123,7 +134,11 @@ const mapDispatchToProps = (dispatch) => ({
   rearrangePhotos: (dragIndex, hoverIndex, dragPhoto) =>
     dispatch(rearrangePhotos(dragIndex, hoverIndex, dragPhoto)),
   deletePhoto: (index) =>
-    dispatch(deletePhoto(index))
+    dispatch(deletePhoto(index)),
+  displayAmenitiesModal: (bool) =>
+    dispatch(displayAmenitiesModal(bool)),
+  updateAmenities: (listOfAmenities) =>
+    dispatch(updateAmenities(listOfAmenities))
 })
 
 const LeftContainer = styled.div`

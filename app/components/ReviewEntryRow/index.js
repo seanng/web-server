@@ -30,7 +30,6 @@ class ReviewEntryRow extends React.Component {
 
   showChargesModal() {
     const { showChargesModal, stay } = this.props;
-    console.log('stay!', stay)
     showChargesModal(stay.id);
   }
 
