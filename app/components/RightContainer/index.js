@@ -9,9 +9,9 @@ import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages'
 
-const RightContainer = ({ children, title, topRightIcon, onClick }) => {
+const RightContainer = ({ children, title, topRightIcon, onClick, style }) => {
   return (
-    <Wrapper>
+    <div style={style}>
       <Border>
         <Header>
           <h3><FormattedMessage {...messages[title]} /></h3>
@@ -19,18 +19,14 @@ const RightContainer = ({ children, title, topRightIcon, onClick }) => {
         </Header>
         { children }
       </Border>
-    </Wrapper>
+    </div>
   )
 }
 
-const Wrapper = styled.div`
-  height: 30%;
-`
 const Border = styled.div`
   border: 1px solid black;
   height: 100%;
   padding: 20px;
-  overflow: auto;
 `
 const Header = styled.div`
   display: flex;

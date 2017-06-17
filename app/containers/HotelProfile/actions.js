@@ -14,7 +14,8 @@ import {
   DELETE_PHOTO,
   SHOW_AMENITIES_MODAL,
   HIDE_AMENITIES_MODAL,
-  UPDATE_AMENITIES
+  UPDATE_AMENITIES,
+  EDIT_RATE
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -80,5 +81,12 @@ export function updateAmenities (amenities) {
   return {
     type: UPDATE_AMENITIES,
     amenities
+  }
+}
+
+export function editRate (rate) {
+  return {
+    type: EDIT_RATE,
+    rate
   }
 }

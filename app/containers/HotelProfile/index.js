@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto, displayAmenitiesModal, updateAmenities } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto, displayAmenitiesModal, updateAmenities, editRate } from './actions'
 import { selectHotelId } from 'containers/App/selectors'
 import { selectHotelInfo, selectHotelDescriptionMode, selectDisplayAmenitiesModal, selectHotelAmenities } from './selectors';
 import styled from 'styled-components';
@@ -24,7 +24,6 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
   constructor (props) {
     super(props)
     this.state = {
-      value: 4,
       loading: true
     }
   }
@@ -40,16 +39,18 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
     }
   }
 
-  decreaseInput = () => {
-    this.setState({ value: this.state.value - 1 })
+  decreaseRate = () => {
+    const { editRate, hotel } = this.props
+    editRate((hotel.rate * 1) - 10)
   }
 
-  increaseInput = () => {
-    this.setState({ value: this.state.value + 1 })
+  increaseRate = () => {
+    const { editRate, hotel } = this.props
+    editRate((hotel.rate * 1) + 10)
   }
 
-  editValue = (e) => {
-    this.setState({ value: e.target.value })
+  editRate = (e) => {
+    this.props.editRate(e.target.value)
     document.getElementById('testr').focus()
   }
 
@@ -72,7 +73,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
         </div>
       )
     }
-    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos, displayAmenitiesModal, isAmenitiesModalDisplayed, updateAmenities } = this.props
+    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos, displayAmenitiesModal, isAmenitiesModalDisplayed, updateAmenities, increaseRate, decreaseRate } = this.props
     return (
       <div className="row body-wrapper">
         <div className="col-sm-7 column-wrapper">
@@ -91,12 +92,12 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
             />
           </LeftContainer>
         </div>
-        <Right className="col-sm-5 column-wrapper">
+        <Right className="col-sm-5">
           <HotelHourlyRate
-            increase={this.increaseInput}
-            decrease={this.decreaseInput}
-            edit={this.editInput}
-            value={this.state.value}
+            increase={this.increaseRate}
+            decrease={this.decreaseRate}
+            edit={this.editRate}
+            value={hotel.rate}
           />
           <HotelAmenities 
             displayAmenitiesModal={displayAmenitiesModal} 
@@ -138,7 +139,9 @@ const mapDispatchToProps = (dispatch) => ({
   displayAmenitiesModal: (bool) =>
     dispatch(displayAmenitiesModal(bool)),
   updateAmenities: (listOfAmenities) =>
-    dispatch(updateAmenities(listOfAmenities))
+    dispatch(updateAmenities(listOfAmenities)),
+  editRate: (rate) =>
+    dispatch(editRate(rate))  
 })
 
 const LeftContainer = styled.div`

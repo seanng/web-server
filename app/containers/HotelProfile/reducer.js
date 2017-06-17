@@ -10,7 +10,8 @@ import {
   DELETE_PHOTO,
   SHOW_AMENITIES_MODAL,
   HIDE_AMENITIES_MODAL,
-  UPDATE_AMENITIES
+  UPDATE_AMENITIES,
+  EDIT_RATE
 } from './constants';
 
 const initialState = fromJS({
@@ -67,18 +68,23 @@ function hotelProfileReducer(state = initialState, action) {
     case DELETE_PHOTO:
       return state
         .set('isEditingHotelProfile', true)
-        .updateIn(['hotelInfo', 'photos'], photos => photos.splice(action.index, 1))
+        .updateIn(['hotelInfo', 'photos'], photos => photos.splice(action.index, 1));
 
     case SHOW_AMENITIES_MODAL:
-      return state.set('displayAmenitiesModal', true)
+      return state.set('displayAmenitiesModal', true);
 
     case HIDE_AMENITIES_MODAL:
-      return state.set('displayAmenitiesModal', false)
+      return state.set('displayAmenitiesModal', false);
 
     case UPDATE_AMENITIES:
       return state
         .set('isEditingHotelProfile', true)
-        .updateIn(['hotelInfo', 'amenities'], amenities => action.amenities )
+        .updateIn(['hotelInfo', 'amenities'], amenities => action.amenities);
+    
+    case EDIT_RATE:
+      return state
+        .set('isEditingHotelProfile', true)
+        .updateIn(['hotelInfo', 'rate'], rate => action.rate);
 
     default:
       return state;
