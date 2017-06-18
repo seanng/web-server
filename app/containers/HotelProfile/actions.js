@@ -14,6 +14,8 @@ import {
   DELETE_PHOTO,
   SHOW_AMENITIES_MODAL,
   HIDE_AMENITIES_MODAL,
+  SHOW_LOCATION_MODAL,
+  HIDE_LOCATION_MODAL,
   UPDATE_AMENITIES,
   EDIT_RATE
 } from './constants';
@@ -74,6 +76,17 @@ export function displayAmenitiesModal (tru) {
   }
   return {
     type: HIDE_AMENITIES_MODAL
+  }
+}
+
+export function displayLocationModal (tru) {
+  if (tru) {
+    return {
+      type: SHOW_LOCATION_MODAL
+    }
+  }
+  return {
+    type: HIDE_LOCATION_MODAL
   }
 }
 

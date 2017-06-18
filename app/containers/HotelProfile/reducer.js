@@ -10,6 +10,8 @@ import {
   DELETE_PHOTO,
   SHOW_AMENITIES_MODAL,
   HIDE_AMENITIES_MODAL,
+  SHOW_LOCATION_MODAL,
+  HIDE_LOCATION_MODAL,
   UPDATE_AMENITIES,
   EDIT_RATE
 } from './constants';
@@ -18,7 +20,8 @@ const initialState = fromJS({
   isEditingHotelDescription: false,
   isEditingHotelProfile: false,
   hotelInfo: Map(),
-  displayAmenitiesModal: false
+  displayAmenitiesModal: false,
+  displayLocationModal: false
 });
 
 function hotelProfileReducer(state = initialState, action) {
@@ -75,6 +78,12 @@ function hotelProfileReducer(state = initialState, action) {
 
     case HIDE_AMENITIES_MODAL:
       return state.set('displayAmenitiesModal', false);
+
+    case SHOW_LOCATION_MODAL:
+      return state.set('displayLocationModal', true);
+
+    case HIDE_LOCATION_MODAL:
+      return state.set('displayLocationModal', false);
 
     case UPDATE_AMENITIES:
       return state

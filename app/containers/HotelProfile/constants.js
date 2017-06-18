@@ -16,6 +16,8 @@ export const REARRANGE_PHOTOS = 'app/HotelProfile/REARRANGE_PHOTOS';
 export const DELETE_PHOTO = 'app/HotelProfile/DELETE_PHOTO';
 export const SHOW_AMENITIES_MODAL = 'app/HotelProfile/SHOW_AMENITIES_MODAL';
 export const HIDE_AMENITIES_MODAL = 'app/HotelProfile/HIDE_AMENITIES_MODAL';
+export const SHOW_LOCATION_MODAL = 'app/HotelProfile/SHOW_LOCATION_MODAL';
+export const HIDE_LOCATION_MODAL = 'app/HotelProfile/HIDE_LOCATION_MODAL';
 export const UPDATE_AMENITIES = 'app/HotelProfile/UPDATE_AMENITIES';
 export const EDIT_RATE = 'app/HotelProfile/EDIT_RATE';
 

@@ -46,6 +46,9 @@ const fakeData = {
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
     photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
     amenities: ['Mini Bar'],
+    lat: 22.279148,
+    long: 114.186829,
+    address: '88 Yee Wo St, Causeway Bay'
   }, {
     name: 'Sheraton Hotel Kowloon',
     rate: 400.00,
@@ -59,6 +62,9 @@ Usu eu alii lucilius dignissim. In iisque mediocritatem pro, ad vel labore salut
 Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
     photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
     amenities: [],
+    lat: 22.279148,
+    long: 114.186829,
+    address: '88 Yee Wo St, Causeway Bay'
   }, {
     name: 'Stevenage Hotel',
     rate: 400.00,
@@ -72,6 +78,9 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
     photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
     amenities: [],
+    lat: 22.279148,
+    long: 114.186829,
+    address: '88 Yee Wo St, Causeway Bay'
   }, {
     name: 'Westin Hotel',
     rate: 400.00,
@@ -85,6 +94,9 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
     photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
     amenities: [],
+    lat: 22.279148,
+    long: 114.186829,
+    address: '88 Yee Wo St, Causeway Bay'
   }, {
     name: 'W Hotel',
     rate: 400.00,
@@ -98,6 +110,9 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian comprehensam mediocritatem. Sale aperiri maiestatis pri eu, ea eam dolorem maiorum efficiendi, his te mentitum detraxit. Ferri laoreet deterruisset te sea. His nostro ceteros cu, et liber semper duo.`,
     photos: ['https://static.pexels.com/photos/97083/pexels-photo-97083.jpeg', 'https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg', 'https://static.pexels.com/photos/271672/pexels-photo-271672.jpeg', 'https://static.pexels.com/photos/189293/pexels-photo-189293.jpeg'],
     amenities: [],
+    lat: 22.279148,
+    long: 114.186829,
+    address: '88 Yee Wo St, Causeway Bay'
   }],
   employees: [{
     hotelId: 1,
@@ -197,8 +212,8 @@ module.exports = {
       }, Promise.resolve())
       .then(() =>
         fakeData.hotels.reduce((promiseChain, hotel) => {
-          const { name, rate, currency, description, photos, amenities } = hotel;
-          return Hotel.create({ name, rate, currency, description, photos, amenities });
+          const { name, rate, currency, description, photos, amenities, lat, long, address } = hotel;
+          return Hotel.create({ name, rate, currency, description, photos, amenities, lat, long, address });
         }, Promise.resolve())
         .then(() =>
           fakeData.stays.reduce((promiseChain, stay) => {
