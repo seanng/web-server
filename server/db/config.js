@@ -39,7 +39,7 @@ const Hotel = sequelize.define('hotel', {
   photos: Sequelize.ARRAY(Sequelize.STRING), // array[0] would be the primary photoURL
   amenities: Sequelize.ARRAY(Sequelize.STRING), // i.e. 'Free WiFi'
   lat: Sequelize.DECIMAL,
-  long: Sequelize.DECIMAL,
+  lng: Sequelize.DECIMAL,
   address: Sequelize.STRING,
   paymentInfo: Sequelize.JSON, // <-- this needs to be looked into further
   rate: Sequelize.DECIMAL(10, 2), // <-- hourly? or per minute?

@@ -10,8 +10,8 @@ export default defineMessages({
     id: 'app.components.EditLocationModal.header',
     defaultMessage: 'Edit Location',
   },
-  close: {
-    id: 'app.components.EditLocationModal.close',
-    defaultMessage: 'Close',
+  update: {
+    id: 'app.components.EditLocationModal.update',
+    defaultMessage: 'Update Location',
   },
 });

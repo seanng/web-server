@@ -17,7 +17,8 @@ import {
   SHOW_LOCATION_MODAL,
   HIDE_LOCATION_MODAL,
   UPDATE_AMENITIES,
-  EDIT_RATE
+  EDIT_RATE,
+  UPDATE_LOCATION
 } from './constants';
 
 export function getHotelInfo(id) {
@@ -53,6 +54,7 @@ export function saveHotelProfile (hotelInfo) {
     hotelInfo
   }
 }
+
 
 export function addPhoto (photo) {
   return {
@@ -101,5 +103,12 @@ export function editRate (rate) {
   return {
     type: EDIT_RATE,
     rate
+  }
+}
+
+export function updateLocation (location) {
+  return {
+    type: UPDATE_LOCATION,
+    location
   }
 }

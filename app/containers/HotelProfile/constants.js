@@ -20,8 +20,7 @@ export const SHOW_LOCATION_MODAL = 'app/HotelProfile/SHOW_LOCATION_MODAL';
 export const HIDE_LOCATION_MODAL = 'app/HotelProfile/HIDE_LOCATION_MODAL';
 export const UPDATE_AMENITIES = 'app/HotelProfile/UPDATE_AMENITIES';
 export const EDIT_RATE = 'app/HotelProfile/EDIT_RATE';
+export const UPDATE_LOCATION = 'app/HotelProfile/UPDATE_LOCATION';
 
 export const GET_HOTEL_INFO = 'server/GET_HOTEL_INFO';
 export const SAVE_HOTEL_PROFILE = 'server/SAVE_HOTEL_PROFILE';
-
-

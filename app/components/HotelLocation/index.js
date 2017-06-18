@@ -2,11 +2,6 @@
 *
 * HotelLocation
 *
-<FormControl 
-  type='text' 
-  placeholder='Enter Hotel Location'
-  style={inputStyle} 
-/>
 */
 
 import React from 'react';
@@ -21,7 +16,7 @@ import messages from './messages';
 import RightContainer from 'components/RightContainer'
 
 const containerStyle = {
-  height: '300px'
+  height: '350px'
 }
 
 const inputStyle = {
@@ -30,6 +25,7 @@ const inputStyle = {
 }
 
 class HotelLocation extends React.Component {
+
   loadingElement () {
     return (
       <div style={{ height: '100%' }}>
@@ -67,7 +63,7 @@ class HotelLocation extends React.Component {
             containerElement={<div style={{ height: '100%' }} />}
             mapElement={<div style={{ height: '100%' }} />}
             onMapLoad={this.handleMapLoad}
-          />   
+          />
         </MapWrapper>
       </RightContainer>
     )
@@ -77,7 +73,7 @@ class HotelLocation extends React.Component {
 const LocationGoogleMap = withGoogleMap(({ onMapLoad, lat, lng }) => (
   <GoogleMap
     ref={onMapLoad}
-    defaultZoom={16}
+    defaultZoom={17}
     defaultCenter={{ lat, lng }}
   >
     <Marker

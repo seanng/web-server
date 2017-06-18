@@ -13,7 +13,8 @@ import {
   SHOW_LOCATION_MODAL,
   HIDE_LOCATION_MODAL,
   UPDATE_AMENITIES,
-  EDIT_RATE
+  EDIT_RATE,
+  UPDATE_LOCATION
 } from './constants';
 
 const initialState = fromJS({
@@ -32,6 +33,7 @@ function hotelProfileReducer(state = initialState, action) {
 
     case GOT_HOTEL_INFO:
       return state
+        .set('isEditingHotelProfile', false)
         .merge({ hotelInfo: action.info });
 
     case EDIT_HOTEL_PROFILE:
@@ -44,10 +46,9 @@ function hotelProfileReducer(state = initialState, action) {
         .merge({ hotelInfo: s });
 
     case SAVED_HOTEL_PROFILE:
-      const { hotelInfo } = action
       return state
         .set('isEditingHotelProfile', false)
-        .merge({ hotelInfo })
+        .merge({ hotelInfo: action.hotelInfo })
 
     case SAVED_HOTEL_PROFILE_ERROR:
       console.log('there was an error', action.err)
@@ -94,6 +95,13 @@ function hotelProfileReducer(state = initialState, action) {
       return state
         .set('isEditingHotelProfile', true)
         .updateIn(['hotelInfo', 'rate'], rate => action.rate);
+    
+    case UPDATE_LOCATION:
+      return state
+        .set('isEditingHotelProfile', true)
+        .updateIn(['hotelInfo', 'lat'], lat => action.location.lat)
+        .updateIn(['hotelInfo', 'lng'], lng => action.location.lng)
+        .updateIn(['hotelInfo', 'address'], address => action.location.address)
 
     default:
       return state;

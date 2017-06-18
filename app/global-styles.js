@@ -72,4 +72,8 @@ injectGlobal`
   .table > tbody > tr > td {
     vertical-align: middle;
   }
+
+  .pac-container {
+    z-index: 10000;
+  }
 `;

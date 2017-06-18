@@ -12,7 +12,7 @@ import messages from './messages';
 
 import { getView, getEarningsFilter } from './selectors';
 import { selectHotelInfo, isEditingHotelProfile } from 'containers/HotelProfile/selectors'
-import { saveHotelProfile } from 'containers/HotelProfile/actions'
+import { saveHotelProfile, getHotelInfo } from 'containers/HotelProfile/actions'
 import { switchView, setEarningsFilter } from './actions';
 
 import SubNavigation from 'components/SubNavigation';
@@ -53,6 +53,11 @@ export class Account extends React.Component { // eslint-disable-line react/pref
     saveHotelProfile(hotel)
   }
 
+  revertHotelProfile = () => {
+    const { revertHotelProfile, hotel } = this.props
+    revertHotelProfile(hotel.id)
+  }
+
   render() {
     const { view, clickTab, hotel, isEditing, clickEarningsFilter, earningsFilter } = this.props
     return (
@@ -64,6 +69,7 @@ export class Account extends React.Component { // eslint-disable-line react/pref
             hotelName={hotel && hotel.name} 
             isEditing={isEditing} 
             saveHotelProfile={this.saveHotelProfile}
+            revertHotelProfile={this.revertHotelProfile}
           />
           {view === 'earnings' && (
             <EarningsView
@@ -89,15 +95,14 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  clickTab: (view) => {
-    dispatch(switchView(view));
-  },
-  clickEarningsFilter: (filter) => {
-    dispatch(setEarningsFilter(filter));
-  },
-  saveHotelProfile: (hotelInfo) => {
-    dispatch(saveHotelProfile(hotelInfo));
-  }
+  clickTab: (view) =>
+    dispatch(switchView(view)),
+  clickEarningsFilter: (filter) =>
+    dispatch(setEarningsFilter(filter)),
+  saveHotelProfile: (hotelInfo) =>
+    dispatch(saveHotelProfile(hotelInfo)),
+  revertHotelProfile: (hotelId) =>
+    dispatch(getHotelInfo(hotelId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

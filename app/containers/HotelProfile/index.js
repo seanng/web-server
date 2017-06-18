@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto, displayAmenitiesModal, updateAmenities, editRate, displayLocationModal } from './actions'
+import { getHotelInfo, toggleHotelDescriptionMode, editHotelProfile, addPhoto, rearrangePhotos, deletePhoto, displayAmenitiesModal, updateAmenities, editRate, displayLocationModal, updateLocation } from './actions';
 import { selectHotelId } from 'containers/App/selectors'
 import { selectHotelInfo, selectHotelDescriptionMode, selectDisplayAmenitiesModal, selectHotelAmenities, selectDisplayLocationModal } from './selectors';
 import styled from 'styled-components';
@@ -74,7 +74,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
         </div>
       )
     }
-    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos, displayAmenitiesModal, isAmenitiesModalDisplayed, updateAmenities, increaseRate, decreaseRate, isLocationModalDisplayed, displayLocationModal } = this.props
+    const { toggleEditMode, hotel, isEditingDescription, editHotelProfile, rearrangePhotos, displayAmenitiesModal, isAmenitiesModalDisplayed, updateAmenities, increaseRate, decreaseRate, isLocationModalDisplayed, displayLocationModal, updateLocation } = this.props
     return (
       <div className="row body-wrapper">
         <div className="col-sm-7 column-wrapper">
@@ -107,7 +107,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
           <HotelLocation 
             displayLocationModal={displayLocationModal}
             lat={hotel.lat}
-            lng={hotel.long}
+            lng={hotel.lng}
           />
         </Right>
         <AddAmenitiesModal 
@@ -120,6 +120,7 @@ export class HotelProfile extends React.PureComponent { // eslint-disable-line r
           displayLocationModal={displayLocationModal}
           isShown={isLocationModalDisplayed}
           address={hotel.address}
+          updateLocation={updateLocation}
         />
       </div>
     );
@@ -154,7 +155,9 @@ const mapDispatchToProps = (dispatch) => ({
   editRate: (rate) =>
     dispatch(editRate(rate)),
   displayLocationModal: (bool) =>
-    dispatch(displayLocationModal(bool))
+    dispatch(displayLocationModal(bool)),
+  updateLocation: (location) =>
+    dispatch(updateLocation(location))
 })
 
 const LeftContainer = styled.div`

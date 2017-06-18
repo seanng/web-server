@@ -19,10 +19,37 @@ class EditLocationModal extends React.Component {
     location: null
   }
 
-  hide = () => {
-    if (this.state.edited) {
-      this.props.updateLocation(this.state.location)
+  componentDidUpdate (prevProps) {
+    if (!prevProps.isShown && this.props.isShown) {
+      console.log('the modal is showing.')
+      const input = document.getElementById('locationInput');
+      const autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        console.log('the place selected: ', place)
+        if (!place.geometry) {
+          return window.alert('No details available for input: "' + place.name + '"');
+        } else {
+          this.setState({
+            edited: true,
+            location: {
+              address: place.formatted_address,
+              lat: place.geometry.location.lat(),
+              lng: place.geometry.location.lng(),
+            }
+          })
+        }
+      })
     }
+  }
+
+  hide = () => {
+    this.setState({ edited: false });
+    this.props.displayLocationModal(false);
+  }
+
+  update = () => {
+    this.props.updateLocation(this.state.location)
     this.props.displayLocationModal(false)
   }
 
@@ -38,9 +65,6 @@ class EditLocationModal extends React.Component {
   }
 
   body () {
-    const inputStyle = {
-
-    }
     return (
       <Modal.Body>
         <FormGroup>
@@ -52,7 +76,7 @@ class EditLocationModal extends React.Component {
           <FormControl 
             type='text' 
             placeholder='Enter Hotel Location'
-            style={inputStyle} 
+            id='locationInput'
           />
         </FormGroup>
       </Modal.Body>
@@ -66,13 +90,15 @@ class EditLocationModal extends React.Component {
     `
     return (
       <ModalFooter>
-        <div className="row">
-          <div className="col-xs-12">
-            <Button onClick={this.hide}>
-              <FormattedMessage {...messages.close} />
-            </Button>
+        { this.state.edited && (
+          <div className="row">
+            <div className="col-xs-12">
+              <Button onClick={this.update}>
+                <FormattedMessage {...messages.update} />
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </ModalFooter>
     )
   }

@@ -34,6 +34,10 @@ export default defineMessages({
     id: 'app.components.SubHeader.saveHotelProfile',
     defaultMessage: 'Save Hotel Profile',
   },
+  revertHotelProfile: {
+    id: 'app.components.SubHeader.revertHotelProfile',
+    defaultMessage: 'Cancel Changes',
+  },
   teamManagement: {
     id: 'app.components.SubHeader.teamManagement',
     defaultMessage: 'Team Management',
