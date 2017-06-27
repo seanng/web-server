@@ -1,10 +1,5 @@
-/**
-*
-* HotelDescription
-*
-*/
-
 import React from 'react';
+import { Editor, EditorState } from 'draft-js';
 // import styled from 'styled-components';
 import { Glyphicon, FormControl } from  'react-bootstrap';
 import { createStructuredSelector } from 'reselect';
