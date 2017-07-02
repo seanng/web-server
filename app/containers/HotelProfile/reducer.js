@@ -1,6 +1,6 @@
 import { fromJS, Map } from 'immutable';
 import {
-  TOGGLE_HOTEL_DESCRIPTION_MODE,
+  TOGGLE_HOTEL_POLICIES_MODE,
   GOT_HOTEL_INFO,
   EDIT_HOTEL_PROFILE,
   SAVED_HOTEL_PROFILE,
@@ -18,7 +18,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  isEditingHotelDescription: false,
+  isEditingHotelPolicies: false,
   isEditingHotelProfile: false,
   hotelInfo: Map(),
   displayAmenitiesModal: false,
@@ -27,9 +27,9 @@ const initialState = fromJS({
 
 function hotelProfileReducer(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_HOTEL_DESCRIPTION_MODE:
-      const isEditingMode = state.get('isEditingHotelDescription')
-      return state.set('isEditingHotelDescription', !isEditingMode);
+    case TOGGLE_HOTEL_POLICIES_MODE:
+      const isEditingMode = state.get('isEditingHotelPolicies')
+      return state.set('isEditingHotelPolicies', !isEditingMode);
 
     case GOT_HOTEL_INFO:
       return state

@@ -15,9 +15,9 @@ const selectHotelInfo = () => createSelector(
     substate.get('hotelInfo').toJS()
 )
 
-const selectHotelDescriptionMode = () => createSelector(
+const selectHotelPoliciesMode = () => createSelector(
   selectHotelProfileDomain(),
-  substate => substate.get('isEditingHotelDescription')
+  substate => substate.get('isEditingHotelPolicies')
 )
 
 const isEditingHotelProfile = () => createSelector(
@@ -48,7 +48,7 @@ export default makeSelectHotelProfile;
 export {
   selectHotelProfileDomain,
   selectHotelInfo,
-  selectHotelDescriptionMode,
+  selectHotelPoliciesMode,
   isEditingHotelProfile,
   selectDisplayAmenitiesModal,
   selectDisplayLocationModal

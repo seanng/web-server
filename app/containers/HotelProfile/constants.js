@@ -5,7 +5,7 @@
  */
 
 export const DEFAULT_ACTION = 'app/HotelProfile/DEFAULT_ACTION';
-export const TOGGLE_HOTEL_DESCRIPTION_MODE = 'app/HotelProfile/TOGGLE_HOTEL_DESCRIPTION_MODE';
+export const TOGGLE_HOTEL_POLICIES_MODE = 'app/HotelProfile/TOGGLE_HOTEL_POLICIES_MODE';
 export const GOT_HOTEL_INFO = 'app/HotelProfile/GOT_HOTEL_INFO';
 export const EDIT_HOTEL_PROFILE = 'app/HotelProfile/EDIT_HOTEL_PROFILE';
 export const SAVED_HOTEL_PROFILE = 'app/HotelProfile/SAVED_HOTEL_PROFILE';

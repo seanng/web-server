@@ -35,7 +35,7 @@ const Employee = sequelize.define('employee', {
 const Hotel = sequelize.define('hotel', {
   regDate: Sequelize.DATE,
   name: Sequelize.STRING,
-  description: Sequelize.TEXT,
+  policies: Sequelize.TEXT,
   photos: Sequelize.ARRAY(Sequelize.STRING), // array[0] would be the primary photoURL
   amenities: Sequelize.ARRAY(Sequelize.STRING), // i.e. 'Free WiFi'
   lat: Sequelize.DECIMAL,

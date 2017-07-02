@@ -3,40 +3,41 @@ import { Editor, EditorState } from 'draft-js';
 // import styled from 'styled-components';
 import { Glyphicon, FormControl } from  'react-bootstrap';
 import { createStructuredSelector } from 'reselect';
-import { toggleHotelDescriptionMode } from 'containers/HotelProfile/actions'
-import { getHotelDescriptionMode } from 'containers/HotelProfile/selectors'
+import { toggleHotelPoliciesMode } from 'containers/HotelProfile/actions'
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-class HotelDescription extends React.Component {
+class HotelPolicies extends React.Component {
 
   _editHotelProfile = (e) => {
-    this.props.editHotelProfile({ description: e.target.value })
+    this.props.editHotelProfile({ policies: e.target.value })
   }
 
   _toggleEditMode = (e) => {
     this.props.toggleEditMode();
   }
 
-  _formattedDescription () {
-    const { description } = this.props
+  _formattedPolicies () {
+    const { policies } = this.props
+    console.log('the policies in this props. ', policies)
     return (
       <div>
-        { description }
+        { policies }
       </div>
     )
   }
 
-  _editingDescription () {
-    const { description } = this.props
+  _editingPolicies () {
+    const { policies } = this.props
     return (
       <div>
-        <FormControl 
+        <FormControl
           componentClass="textarea" 
-          placeholder="Add a description for your hotel!"
-          value={description}
+          rows='12'
+          placeholder="There are no policies set at the moment."
+          value={policies}
           onChange={this._editHotelProfile}
-          id='hotelDescriptionInput'
+          id='hotelPoliciesInput'
         />
       </div>
     )
@@ -47,7 +48,7 @@ class HotelDescription extends React.Component {
     return (
       <div className="row">
         <div className="col-xs-11">
-          { this.props.isEditingMode ? this._editingDescription() : this._formattedDescription() }
+          { this.props.isEditingMode ? this._editingPolicies() : this._formattedPolicies() }
         </div>
         <div className="col-xs-1">
           <Glyphicon glyph={glyphicon} onClick={this._toggleEditMode} />
@@ -57,4 +58,4 @@ class HotelDescription extends React.Component {
   }
 }
 
-export default HotelDescription;
+export default HotelPolicies;

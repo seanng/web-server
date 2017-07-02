@@ -37,7 +37,7 @@ const fakeData = {
     name: 'Regal Hotel Wanchai',
     rate: 400.00,
     currency: 'HKD',
-    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+    policies: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
 
     Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
 
@@ -53,7 +53,7 @@ const fakeData = {
     name: 'Sheraton Hotel Kowloon',
     rate: 400.00,
     currency: 'HKD',
-    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+    policies: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
 
 Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
 
@@ -69,7 +69,7 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     name: 'Stevenage Hotel',
     rate: 400.00,
     currency: 'HKD',
-    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+    policies: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
 
     Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
 
@@ -85,7 +85,7 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     name: 'Westin Hotel',
     rate: 400.00,
     currency: 'HKD',
-    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+    policies: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
 
     Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
 
@@ -101,7 +101,7 @@ Nec cu wisi errem. Eu ius reque nobis, nam commune epicurei no, ut sea apeirian 
     name: 'W Hotel',
     rate: 400.00,
     currency: 'HKD',
-    description: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
+    policies: `Lorem ipsum dolor sit amet, pro ut accusamus elaboraret. Ei quidam definitiones eum, ex eruditi tibique definiebas sed. Sed epicurei delicata consequat at. No habeo evertitur duo.
 
     Epicuri platonem moderatius his id. Pri audiam nominati signiferumque an, mel id mundi aliquam offendit. Ad audiam similique interesset cum, mei malis ubique epicurei ei, ei tota dignissim interpretaris vis. Corrumpit persecuti mel ne, ea eripuit denique argumentum sed, mel id quas noluisse. An aliquam graecis his, ei his malis utinam labores.
 
@@ -212,8 +212,8 @@ module.exports = {
       }, Promise.resolve())
       .then(() =>
         fakeData.hotels.reduce((promiseChain, hotel) => {
-          const { name, rate, currency, description, photos, amenities, lat, lng, address } = hotel;
-          return Hotel.create({ name, rate, currency, description, photos, amenities, lat, lng, address });
+          const { name, rate, currency, policies, photos, amenities, lat, lng, address } = hotel;
+          return Hotel.create({ name, rate, currency, policies, photos, amenities, lat, lng, address });
         }, Promise.resolve())
         .then(() =>
           fakeData.stays.reduce((promiseChain, stay) => {

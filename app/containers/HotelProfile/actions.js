@@ -5,7 +5,7 @@
  */
 
 import {
-  TOGGLE_HOTEL_DESCRIPTION_MODE,
+  TOGGLE_HOTEL_POLICIES_MODE,
   GET_HOTEL_INFO,
   EDIT_HOTEL_PROFILE,
   SAVE_HOTEL_PROFILE,
@@ -28,9 +28,9 @@ export function getHotelInfo(id) {
 	}
 }
 
-export function toggleHotelDescriptionMode () {
+export function toggleHotelPoliciesMode () {
   return {
-    type: TOGGLE_HOTEL_DESCRIPTION_MODE
+    type: TOGGLE_HOTEL_POLICIES_MODE
   }
 }
 
