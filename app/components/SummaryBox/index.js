@@ -9,88 +9,44 @@ import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import H3 from 'components/H3'
+import SectionWrapper from 'components/SectionWrapper';
 
-const SummaryBox = ({summary}) => {
+const SummaryBox = ({ summary }) => {
   const { inbound, checkedin, checkedout, available } = summary
   return (
-    <Wrapper className='overviewBox'>
-      <div className="overviewBoxHeader">
-        <h3>
-          <FormattedMessage {...messages.header} />
-        </h3>
-      </div>
-      <Summary>
-        <Div className="row">
-          <div className="col-xs-6">
-            <FormattedMessage {...messages.inbound} />
-          </div>
-          <Value className="col-xs-6">
-            { inbound }
-          </Value>
-        </Div>
-        <Div className="row">
-          <div className="col-xs-6">
-            <FormattedMessage {...messages.checkedin} />
-          </div>
-          <Value className="col-xs-6">
-            { checkedin }
-          </Value>
-        </Div>
-        <Div className="row">
-          <div className="col-xs-6">
-            <FormattedMessage {...messages.checkedout} />
-          </div>
-          <Value className="col-xs-6">
-            { checkedout }
-          </Value>
-        </Div>
-        <Div className="row">
-          <div className="col-xs-6">
-            <FormattedMessage {...messages.available} />
-          </div>
-          <Value className="col-xs-6">
-            { available }
-          </Value>
-        </Div>
-        <Div className="row">
-          <Total className="col-xs-6">
-            <FormattedMessage {...messages.total} />
-          </Total>
-          <Total className="col-xs-6">
-            <Value>
-              { inbound*1 + checkedin*1 + checkedout*1 + available*1 }
-            </Value>
-          </Total>
-        </Div>
-      </Summary>
-    </Wrapper>
+    <SectionWrapper>
+      <H3><FormattedMessage {...messages.header} /></H3>
+      <Row>
+        <FormattedMessage {...messages.inbound} />
+        { inbound }
+      </Row>
+      <Row>
+        <FormattedMessage {...messages.checkedin} />
+        { checkedin }
+      </Row>
+      <Row>
+        <FormattedMessage {...messages.checkedout} />
+        { checkedout }
+      </Row>
+      <Row>
+        <FormattedMessage {...messages.available} />
+        { available }
+      </Row>
+      <Row total>
+        <FormattedMessage {...messages.total} />
+        { inbound*1 + checkedin*1 + checkedout*1 + available*1 }
+      </Row>
+    </SectionWrapper>
   )
 };
 
-const Wrapper = styled.div`
-  height: calc(50% - 2em);
-  margin-bottom: 2em;
-  overflow: auto;
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-weight: ${ props => props.total && '700' }
 `
-
-const Div = styled.div`
-  padding: 6px 0px;
-`
-
-const Summary = styled.div`
-  padding: 16px 40px;
-`
-
-const Total = styled.div`
-  font-weight: 700;
-`
-
-const Value = styled.div`
-  text-align: right;
-`
-
-SummaryBox.propTypes = {
-
-};
 
 export default SummaryBox;

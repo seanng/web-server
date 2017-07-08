@@ -14,8 +14,8 @@ import Navigation from 'components/Navigation';
 import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
-  min-height: 100%;
-  padding-bottom: 20px;
+  min-height: calc(100vh);
+  background-color: #EEF4F7;
 `;
 
 export class App extends React.Component {

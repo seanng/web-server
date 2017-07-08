@@ -6,6 +6,7 @@ injectGlobal`
   body {
     height: 100vh;
     width: 100%;
+    background-color: #fafafa;
   }
 
   body {
@@ -16,22 +17,6 @@ injectGlobal`
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-  h3 {
-    font-size: 18px;
-    margin: 0;
-    display: inline-block;
-  }
-
-  .overviewBoxHeader > h3 {
-    padding-top: 8px;
-  }
-
-  #app {
-    background-color: #fafafa;
-    min-height: 100%;
-    min-width: 100%;
-  }
-
   p,
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
@@ -40,14 +25,6 @@ injectGlobal`
 
   .navbar {
     margin-bottom: 0px;
-  }
-
-  .body-wrapper {
-    height: calc(100vh - 200px);
-  }
-
-  .column-wrapper {
-    height: 100%;
   }
 
   .overviewBox {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Row, Col } from 'react-bootstrap';
 import { fetchRooms, checkIn, makeAvailable, deleteRoom, createRoom, setFilter, displayAddRoomModal } from './actions'
 import { getRoomsByStatus, getFilter, getDisplayAddRoom } from './selectors';
 
@@ -43,14 +44,14 @@ export class Overview extends React.PureComponent {
 
     return (
       <div>
-        <div className="row body-wrapper">
-          <div className="col-sm-5 column-wrapper">
+        <Row>
+          <Col sm={5}>
             <SummaryBox
               summary={this.getSummary()}
             />
             <ActivityFeedBox />
-          </div>
-          <div className="col-sm-7 column-wrapper">
+          </Col>
+          <Col sm={7}>
             <RoomManagementBox
               setFilter={setFilter}
               rooms={this.getFilteredRooms()}
@@ -59,8 +60,8 @@ export class Overview extends React.PureComponent {
               makeAvailable={makeAvailable}
               remove={deleteRoom}
             />
-          </div>
-        </div>
+          </Col>
+        </Row>
         <AddRoomModal
           show={this.props.displayAddRoom}
           hide={hideAddRoomModal}
