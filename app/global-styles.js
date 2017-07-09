@@ -3,11 +3,6 @@ import { injectGlobal } from 'styled-components';
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   html,
-  body {
-    height: 100vh;
-    width: 100%;
-    background-color: #fafafa;
-  }
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -15,6 +10,14 @@ injectGlobal`
 
   body.fontLoaded {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .nav>li>a:hover {
+    background-color: transparent;
+  }
+
+  .nav>li>a:focus {
+    background-color: transparent;
   }
 
   p,
@@ -53,4 +56,6 @@ injectGlobal`
   .pac-container {
     z-index: 10000;
   }
+
+
 `;

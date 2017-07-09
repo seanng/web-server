@@ -7,37 +7,39 @@
  */
 
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 import Navigation from 'components/Navigation';
 import withProgressBar from 'components/ProgressBar';
-
-const AppWrapper = styled.div`
-  min-height: calc(100vh);
-  background-color: #EEF4F7;
-`;
+import { currentUser } from './selectors';
+import AppWrapper from './AppWrapper';
 
 export class App extends React.Component {
-  showNavigation () {
-    return location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/logout'
+  showNavigation() {
+    return (
+      location.pathname !== '/' &&
+      location.pathname !== '/login' &&
+      location.pathname !== '/logout'
+    );
   }
-  render () {
-    const { location, children } = this.props
+  render() {
+    const { children, user } = this.props;
     return (
       <AppWrapper>
         <Helmet
           titleTemplate="%s - React.js Boilerplate"
           defaultTitle="Haven Web Application"
-          meta={[
-            { name: 'description', content: 'Haven Web Application' },
-          ]}
+          meta={[{ name: 'description', content: 'Haven Web Application' }]}
         />
-        { this.showNavigation() && <Navigation />}
+        {this.showNavigation() && user !== null && <Navigation user={user} />}
         {React.Children.toArray(children)}
       </AppWrapper>
     );
   }
 }
+const mapStateToProps = createStructuredSelector({
+  user: currentUser(),
+});
 
-export default withProgressBar(App);
+export default connect(mapStateToProps)(withProgressBar(App));
